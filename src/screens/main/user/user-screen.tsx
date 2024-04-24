@@ -9,12 +9,19 @@ import SectionTitle from '@/components/section/section-title'
 import TopBar from '@/components/top-bar/top-bar'
 import { AppColors } from '@/constants/colors'
 import { routes } from '@/constants/routes'
+import { DefaultStackScreenProps } from '@/types/interface'
 import { UserData, UserType } from '@/types/interface/user'
 
-export default function UserScreen({ navigation, route }: any) {
+export default function UserScreen({
+    navigation,
+    route,
+}: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
-    const type: UserType = route.params.type
+    const type: UserType = route.params
+        ? (route.params as { type: UserType }).type
+        : 'you'
+
     const userData: UserData =
         type === 'you'
             ? {

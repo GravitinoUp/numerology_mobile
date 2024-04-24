@@ -13,6 +13,7 @@ import AppScrollView from '@/components/ui/scroll-view'
 import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
+import { DefaultStackScreenProps } from '@/types/interface'
 
 const registerSchema = z.object({
     phone: z.string(),
@@ -21,7 +22,9 @@ const registerSchema = z.object({
     birtday: z.date(),
 })
 
-export default function RegisterScreen({ navigation }: any) {
+export default function RegisterScreen({
+    navigation,
+}: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
     const form = useForm({

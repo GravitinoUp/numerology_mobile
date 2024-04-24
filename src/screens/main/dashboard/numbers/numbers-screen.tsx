@@ -3,8 +3,9 @@ import { useTranslation } from 'react-i18next'
 import NumberCard from './components/number-card'
 import TopBar from '@/components/top-bar/top-bar'
 import { AppColors } from '@/constants/colors'
+import { DefaultStackScreenProps } from '@/types/interface'
 
-export default function NumbersScreen({ navigation }: any) {
+export default function NumbersScreen({ navigation }: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
     return (

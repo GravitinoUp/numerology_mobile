@@ -6,8 +6,11 @@ import StatusCard from '@/components/status-card/status-card'
 import TopBar from '@/components/top-bar/top-bar'
 import { AppColors } from '@/constants/colors'
 import { routes } from '@/constants/routes'
+import { DefaultStackScreenProps } from '@/types/interface'
 
-export default function DashboardScreen({ navigation }: any) {
+export default function DashboardScreen({
+    navigation,
+}: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
     return (

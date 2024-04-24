@@ -13,13 +13,14 @@ import AppScrollView from '@/components/ui/scroll-view'
 import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
+import { DefaultStackScreenProps } from '@/types/interface'
 
 const authSchema = z.object({
     phone: z.string().min(1, i18next.t('error.required')),
     password: z.string().min(1, i18next.t('error.required')),
 })
 
-export default function AuthScreen({ navigation }: any) {
+export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
     const form = useForm({

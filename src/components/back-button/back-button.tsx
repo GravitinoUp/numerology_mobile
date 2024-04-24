@@ -3,8 +3,13 @@ import { TouchableOpacity } from 'react-native'
 import ChevronLeft from '@/assets/icons/chevron-left'
 import { AppColors } from '@/constants/colors'
 import { ACTIVE_OPACITY } from '@/constants/constants'
+import { DefaultStackNavigationProp } from '@/types/interface'
 
-const BackButton = ({ navigation }: { navigation: any }) => (
+const BackButton = ({
+    navigation,
+}: {
+    navigation: DefaultStackNavigationProp
+}) => (
     <View bgColor={AppColors.background} borderRadius="$full" softShadow="1">
         <TouchableOpacity
             activeOpacity={ACTIVE_OPACITY}
