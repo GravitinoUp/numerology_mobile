@@ -1,0 +1,68 @@
+{
+    "app.name": "Numerology",
+    "app.description": "App description App description App description App description",
+    "route": {
+        "dashboard": "Dashboard",
+        "union": "Union",
+        "prediction": "Prediction",
+        "profile": "Profile",
+        "numbers": "Numbers in matrix"
+    },
+    "select": {
+        "birthday": "Select your birthday"
+    },
+    "auth": {
+        "hello.title": "Hello!",
+        "hello.description": "Sign in or create a new account",
+        "title": "Sign in",
+        "description": "Sign in description"
+    },
+    "register": {
+        "title": "Register an account",
+        "description": "Register description TODO"
+    },
+    "user": {
+        "phone": "Your phone number",
+        "password": "Password",
+        "repeat.password": "Repeat password",
+        "data": "User data",
+        "name": "Your name",
+        "birthday": "Your birthday"
+    },
+    "placeholder": {
+        "user": {
+            "phone": "17771234567",
+            "name": "Bill",
+            "birthday": "2024-01-28"
+        },
+        "long.default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    },
+    "settings": {
+        "label": {
+            "notifications": "Notifications",
+            "customization": "App customization",
+            "other": "Other",
+            "logout": "Logout"
+        },
+        "description": {
+            "notifications": "Enable or disable app notifications",
+            "customization": "Customize the app theme for yourself",
+            "other": "Other settings",
+            "logout": "Are you sure you want to logout from account?"
+        }
+    },
+    "error": {
+        "required": ""
+    },
+    "action": {
+        "continue": "Continue",
+        "cancel": "Cancel",
+        "confirm": "Confirm"
+    },
+    "date.format": "yyyy-MM-dd",
+    "birthday": "Birthday",
+    "day": "Day",
+    "month": "Month",
+    "year": "Year",
+    "forgot.password": "Forgot your password?"
+}
