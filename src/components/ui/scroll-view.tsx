@@ -1,7 +1,6 @@
 import { ComponentProps } from 'react'
 import { VStack } from '@gluestack-ui/themed'
 import { ScrollView, StyleSheet } from 'react-native'
-import { AppColors } from '@/constants/colors'
 
 type ScrollViewProps = ComponentProps<typeof ScrollView>
 type AppScrollViewProps = {
@@ -25,7 +24,6 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         paddingVertical: 8,
-        backgroundColor: AppColors.background,
     },
 })
 

@@ -1,18 +1,18 @@
-import { useState } from 'react'
-import { Center, Text } from '@gluestack-ui/themed'
+import { Center, HStack, Text, View } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import DatePicker from 'react-native-date-picker'
 import { z } from 'zod'
 import { Logo } from '@/assets/icons/logo'
 import { CustomForm, useForm } from '@/components/form/form'
+import TopBar from '@/components/top-bar/top-bar'
 import AppButton from '@/components/ui/button'
 import { FormField, FormItem, FormMessage } from '@/components/ui/form'
 import AppInput from '@/components/ui/input'
 import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
+import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
-import { MAX_WIDTH } from '@/constants/constants'
-import { formatDate } from '@/utils/helpers'
+import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
 
 const registerSchema = z.object({
     phone: z.string(),
@@ -33,14 +33,13 @@ export default function RegisterScreen({ navigation }: any) {
         },
     })
 
-    const [birthdayDatepickerOpen, setBirthdayDatepickerOpen] = useState(false)
-
     const onSubmit = (data: z.infer<typeof registerSchema>) => {
         navigation.navigate('NavigationScreen')
     }
 
     return (
         <Scaffold>
+            <TopBar navigation={navigation} hardShadow={undefined} />
             <AppScrollView maxWidth={MAX_WIDTH}>
                 <Center justifyContent="center" mb="$4">
                     <Logo />
@@ -53,7 +52,7 @@ export default function RegisterScreen({ navigation }: any) {
                 >
                     {t('register.title')}
                 </Text>
-                <Text my="$8" color={AppColors.text} textAlign="center">
+                <Text mt="$2" my="$8" color={AppColors.text} textAlign="center">
                     {t('register.description')}
                 </Text>
                 <CustomForm form={form}>
@@ -62,12 +61,21 @@ export default function RegisterScreen({ navigation }: any) {
                         name="phone"
                         render={({ field }) => (
                             <FormItem style={{ marginBottom: 16 }}>
-                                <AppInput
-                                    value={field.value}
-                                    onChangeText={field.onChange}
-                                    placeholder={t('user.phone')}
-                                    required
-                                />
+                                <HStack gap="$4">
+                                    <AppSelect
+                                        style={{ width: 90 }}
+                                        selectedValue={phoneCountries[0].value}
+                                        onValueChange={() => {}}
+                                        items={phoneCountries}
+                                    />
+                                    <AppInput
+                                        style={{ flex: 1 }}
+                                        value={field.value}
+                                        onChangeText={field.onChange}
+                                        placeholder={t('user.phone')}
+                                        required
+                                    />
+                                </HStack>
                                 <FormMessage />
                             </FormItem>
                         )}
@@ -107,31 +115,25 @@ export default function RegisterScreen({ navigation }: any) {
                         name="birtday"
                         render={({ field }) => (
                             <FormItem>
-                                <DatePicker
-                                    modal
-                                    mode="date"
-                                    open={birthdayDatepickerOpen}
-                                    date={field.value}
-                                    onConfirm={(newDate) => {
-                                        setBirthdayDatepickerOpen(false)
-
-                                        field.onChange(newDate)
-                                    }}
-                                    onCancel={() =>
-                                        setBirthdayDatepickerOpen(false)
-                                    }
-                                />
-                                <AppInput
-                                    value={formatDate(field.value)}
-                                    onChangeText={field.onChange}
-                                    hint={t('user.birthday')}
-                                    placeholder={t('placeholder.user.birthday')}
-                                    required
-                                    readOnly
-                                    onTouchEnd={() =>
-                                        setBirthdayDatepickerOpen(true)
-                                    }
-                                />
+                                <Text
+                                    textAlign="center"
+                                    mb="$1"
+                                    color={AppColors.hint}
+                                >
+                                    {t('user.birthday')}
+                                </Text>
+                                <View
+                                    borderRadius="$lg"
+                                    borderColor={AppColors.border}
+                                    borderWidth="$1"
+                                    pl="$3"
+                                >
+                                    <DatePicker
+                                        mode="date"
+                                        date={field.value}
+                                        onConfirm={field.onChange}
+                                    />
+                                </View>
                                 <FormMessage />
                             </FormItem>
                         )}

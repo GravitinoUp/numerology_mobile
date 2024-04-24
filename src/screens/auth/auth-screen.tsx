@@ -1,16 +1,18 @@
-import { Center, Text } from '@gluestack-ui/themed'
+import { Center, HStack, Text } from '@gluestack-ui/themed'
 import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 import { Logo } from '@/assets/icons/logo'
 import { CustomForm, useForm } from '@/components/form/form'
+import TopBar from '@/components/top-bar/top-bar'
 import AppButton from '@/components/ui/button'
 import { FormField, FormItem, FormMessage } from '@/components/ui/form'
 import AppInput from '@/components/ui/input'
 import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
+import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
-import { MAX_WIDTH } from '@/constants/constants'
+import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
 
 const authSchema = z.object({
     phone: z.string().min(1, i18next.t('error.required')),
@@ -34,6 +36,7 @@ export default function AuthScreen({ navigation }: any) {
 
     return (
         <Scaffold>
+            <TopBar navigation={navigation} hardShadow={undefined} />
             <AppScrollView maxWidth={MAX_WIDTH}>
                 <Center mb="$4">
                     <Logo />
@@ -46,7 +49,7 @@ export default function AuthScreen({ navigation }: any) {
                 >
                     {t('auth.title')}
                 </Text>
-                <Text mt="$3" mb="$8" color={AppColors.hint} textAlign="center">
+                <Text mt="$2" my="$8" color={AppColors.hint} textAlign="center">
                     {t('auth.description')}
                 </Text>
                 <CustomForm form={form}>
@@ -55,12 +58,21 @@ export default function AuthScreen({ navigation }: any) {
                         name="phone"
                         render={({ field }) => (
                             <FormItem style={{ marginBottom: 16 }}>
-                                <AppInput
-                                    value={field.value}
-                                    onChangeText={field.onChange}
-                                    placeholder={t('user.phone')}
-                                    required
-                                />
+                                <HStack gap="$4">
+                                    <AppSelect
+                                        style={{ width: 90 }}
+                                        selectedValue={phoneCountries[0].value}
+                                        onValueChange={() => {}}
+                                        items={phoneCountries}
+                                    />
+                                    <AppInput
+                                        style={{ flex: 1 }}
+                                        value={field.value}
+                                        onChangeText={field.onChange}
+                                        placeholder={t('user.phone')}
+                                        required
+                                    />
+                                </HStack>
                                 <FormMessage />
                             </FormItem>
                         )}

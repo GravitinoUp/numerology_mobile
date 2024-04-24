@@ -6,7 +6,7 @@ import { AppColors } from '@/constants/colors'
 
 type HStackProps = ComponentProps<typeof HStack>
 type TopBarProps = {
-    title: string
+    title?: string
     subtitle?: string
     suffix?: React.ReactNode
     navigation?: any
