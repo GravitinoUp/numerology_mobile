@@ -1,9 +1,16 @@
+import { useEffect, useState } from 'react'
 import { config } from '@gluestack-ui/config'
 import { GluestackUIProvider, StatusBar } from '@gluestack-ui/themed'
+import { useNetInfo } from '@react-native-community/netinfo'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { Provider } from 'react-redux'
 import { AppColors } from './constants/colors'
 import { routes } from './constants/routes'
+import { useAppDispatch } from './hooks/use-app-dispatch'
+import { useRefreshTokenMutation } from './redux/api/auth'
+import { setAccessToken } from './redux/reducers/authSlice'
+import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
 import RegisterScreen from './screens/auth/register-screen'
@@ -11,23 +18,67 @@ import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
 import NavigationScreen from './screens/main/navigation-screen'
 import ProfileScreen from './screens/main/settings/profile-screen'
 import SplashScreen from './screens/splash/splash-screen'
+import { getJWTtokens } from './utils/helpers'
 
 const Stack = createNativeStackNavigator()
 
 export const AppWrapper = () => (
-    <GluestackUIProvider config={config}>
-        <StatusBar
-            backgroundColor={AppColors.background}
-            barStyle="dark-content"
-        />
-        <App />
-    </GluestackUIProvider>
+    <Provider store={store}>
+        <GluestackUIProvider config={config}>
+            <StatusBar
+                backgroundColor={AppColors.background}
+                barStyle="dark-content"
+            />
+            <App />
+        </GluestackUIProvider>
+    </Provider>
 )
 
 function App() {
-    return true ? (
+    const [isLoading, setLoading] = useState<boolean | null>(null)
+    const [initialRoute, setInitialRoute] = useState<string>(routes.AUTH_NAV)
+
+    const netInfo = useNetInfo()
+    const dispatch = useAppDispatch()
+
+    const [fetchRefresh, { data: newAccessToken, error, isSuccess }] =
+        useRefreshTokenMutation()
+
+    useEffect(() => {
+        getJWTtokens().then(({ refreshToken }) => {
+            if (refreshToken) {
+                fetchRefresh({ refresh_token: `${refreshToken}` })
+                setLoading(true)
+            } else {
+                setLoading(false)
+            }
+        })
+    }, [])
+
+    useEffect(() => {
+        if (isSuccess) {
+            dispatch(setAccessToken(newAccessToken))
+            setInitialRoute('NavigationScreen')
+            setLoading(false)
+        }
+    }, [isSuccess])
+
+    useEffect(() => {
+        if (error) {
+            if (netInfo.isConnected === false) {
+                setInitialRoute('NavigationScreen')
+                // TODO offline mode
+            }
+            setLoading(false)
+        }
+    }, [error])
+
+    return isLoading === false ? (
         <NavigationContainer>
-            <Stack.Navigator screenOptions={{ headerShown: false }}>
+            <Stack.Navigator
+                screenOptions={{ headerShown: false }}
+                initialRouteName={initialRoute}
+            >
                 <Stack.Group>
                     <Stack.Screen
                         name={routes.AUTH_NAV}
@@ -39,15 +90,20 @@ function App() {
                         component={RegisterScreen}
                     />
                 </Stack.Group>
-                <Stack.Screen
-                    name={routes.NAVIGATION}
-                    component={NavigationScreen}
-                />
-                <Stack.Screen
-                    name={routes.SETTINGS}
-                    component={ProfileScreen}
-                />
-                <Stack.Screen name={routes.NUMBERS} component={NumbersScreen} />
+                <Stack.Group>
+                    <Stack.Screen
+                        name={routes.NAVIGATION}
+                        component={NavigationScreen}
+                    />
+                    <Stack.Screen
+                        name={routes.SETTINGS}
+                        component={ProfileScreen}
+                    />
+                    <Stack.Screen
+                        name={routes.NUMBERS}
+                        component={NumbersScreen}
+                    />
+                </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
     ) : (

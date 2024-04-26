@@ -53,7 +53,9 @@
         }
     },
     "error": {
-        "required": ""
+        "default": "An error has occurred, please try again later",
+        "required": "This field is required",
+        "phone.required": "Provide the correct phone number"
     },
     "action": {
         "continue": "Continue",

@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Center, HStack, Text } from '@gluestack-ui/themed'
 import i18next from 'i18next'
 import { useTranslation } from 'react-i18next'
@@ -13,10 +14,13 @@ import AppScrollView from '@/components/ui/scroll-view'
 import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
-import { DefaultStackScreenProps } from '@/types/interface'
+import { useAppDispatch } from '@/hooks/use-app-dispatch'
+import { useAuthMutation } from '@/redux/api/auth'
+import { setAccessToken, setRefreshToken } from '@/redux/reducers/authSlice'
+import { DefaultStackScreenProps, ErrorInterface } from '@/types/interface'
 
 const authSchema = z.object({
-    phone: z.string().min(1, i18next.t('error.required')),
+    phone: z.string().min(1, i18next.t('error.phone.required')),
     password: z.string().min(1, i18next.t('error.required')),
 })
 
@@ -31,9 +35,32 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
         },
     })
 
+    const dispatch = useAppDispatch()
+    const [authUser, { data, error, isSuccess, isLoading }] = useAuthMutation()
+
     const onSubmit = (data: z.infer<typeof authSchema>) => {
-        navigation.navigate('NavigationScreen')
+        authUser({ phone: data.phone, password: data.password })
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            dispatch(setAccessToken(data?.accessToken))
+            dispatch(setRefreshToken(data?.refreshToken))
+
+            navigation.navigate('NavigationScreen')
+        }
+    }, [isSuccess])
+
+    useEffect(() => {
+        if (error) {
+            const errorData = error as ErrorInterface
+            form.setError('password', {
+                message: errorData.data?.text
+                    ? errorData.data?.text
+                    : t('error.default'),
+            })
+        }
+    }, [error])
 
     return (
         <Scaffold>
@@ -107,6 +134,7 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                     <AppButton
                         onPress={form.handleSubmit(onSubmit)}
                         text={t('action.continue')}
+                        isLoading={isLoading}
                     />
                 </CustomForm>
             </AppScrollView>
