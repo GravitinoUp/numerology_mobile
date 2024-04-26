@@ -1,7 +1,7 @@
 import { ScrollView, VStack } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import DashboardItem from './components/dashboard-item'
+import CardButton from '../../../components/card-button/card-button'
 import StatusCard from '@/components/status-card/status-card'
 import TopBar from '@/components/top-bar/top-bar'
 import { AppColors } from '@/constants/colors'
@@ -24,17 +24,17 @@ export default function DashboardScreen({
             />
             <ScrollView>
                 <VStack p="$4" gap="$4">
-                    <DashboardItem
+                    <CardButton
                         label="NUMBERS"
                         onPress={() => navigation.navigate(routes.NUMBERS)}
                     />
-                    <DashboardItem
+                    <CardButton
                         label="MATRIX"
                         onPress={() => navigation.navigate(routes.MATRIX)}
                     />
-                    <DashboardItem label="TEXT 3" />
-                    <DashboardItem label="TEXT 4" />
-                    <DashboardItem label="TEXT 5" />
+                    <CardButton label="TEXT 3" />
+                    <CardButton label="TEXT 4" />
+                    <CardButton label="TEXT 5" />
                 </VStack>
             </ScrollView>
         </SafeAreaView>

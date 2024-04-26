@@ -41,15 +41,13 @@
     },
     "settings": {
         "label": {
+            "personal.data": "Personal data",
             "notifications": "Notifications",
-            "customization": "App customization",
+            "language": "Language",
             "other": "Other",
             "logout": "Logout"
         },
         "description": {
-            "notifications": "Enable or disable app notifications",
-            "customization": "Customize the app theme for yourself",
-            "other": "Other settings",
             "logout": "Are you sure you want to logout from account?"
         }
     },

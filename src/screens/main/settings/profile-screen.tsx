@@ -1,11 +1,19 @@
 import { Fragment, useState } from 'react'
-import { HStack, ScrollView, Text } from '@gluestack-ui/themed'
+import {
+    Center,
+    HStack,
+    ScrollView,
+    Text,
+    VStack,
+    View,
+} from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
-import { SafeAreaView } from 'react-native-safe-area-context'
+import CardButton from '@/components/card-button/card-button'
 import StatusCard from '@/components/status-card/status-card'
 import TopBar from '@/components/top-bar/top-bar'
 import AppButton from '@/components/ui/button'
 import Dialog from '@/components/ui/dialog'
+import Scaffold from '@/components/ui/scaffold'
 import TextButton from '@/components/ui/text-button'
 import { AppColors } from '@/constants/colors'
 
@@ -49,14 +57,28 @@ export default function ProfileScreen() {
             >
                 <Text fontSize="$sm">{t('settings.description.logout')}</Text>
             </Dialog>
-            <SafeAreaView
-                style={{ flex: 1, backgroundColor: AppColors.background }}
-            >
+            <Scaffold>
                 <TopBar
                     title={t('route.profile')}
                     suffix={<StatusCard pro />}
                 />
-                <ScrollView p="$4">
+                <ScrollView>
+                    <Center>
+                        <View
+                            w="$20"
+                            h="$20"
+                            bgColor={AppColors.primary}
+                            borderRadius="$full"
+                        />
+                        <View position="absolute" bottom={-12}>
+                            <StatusCard pro />
+                        </View>
+                    </Center>
+                    <VStack mt="$2" p="$4" gap="$4">
+                        <CardButton label={t('settings.label.personal.data')} />
+                        <CardButton label={t('settings.label.notifications')} />
+                        <CardButton label={t('settings.label.language')} />
+                    </VStack>
                     <TextButton
                         text={t('settings.label.logout')}
                         textAlign="center"
@@ -66,7 +88,7 @@ export default function ProfileScreen() {
                         onPress={() => setDialogOpen(true)}
                     />
                 </ScrollView>
-            </SafeAreaView>
+            </Scaffold>
         </Fragment>
     )
 }

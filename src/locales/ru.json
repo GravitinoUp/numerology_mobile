@@ -41,14 +41,13 @@
     },
     "settings": {
         "label": {
+            "personal.data": "Персональная информация",
             "notifications": "Уведомления",
-            "customization": "Тема",
-            "other": "Other",
-            "logout": "Logout"
+            "language": "Язык приложения",
+            "other": "Другие настройки",
+            "logout": "Выйти из аккаунта"
         },
         "description": {
-            "notifications": "Настройки уведолмений приложения",
-            "customization": "Настройте стиль приложения под себя",
             "other": "Другие настройки",
             "logout": "Вы уверены, что хотите выйти из аккаунта?"
         }
