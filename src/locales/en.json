@@ -6,7 +6,8 @@
         "union": "Union",
         "prediction": "Prediction",
         "profile": "Profile",
-        "numbers": "Numbers in matrix"
+        "numbers": "Numbers in matrix",
+        "matrix": "Matrix decode"
     },
     "select": {
         "birthday": "Select your birthday"

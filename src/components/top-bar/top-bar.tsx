@@ -33,7 +33,6 @@ const TopBar = ({
             px={!navigation ? '$4' : undefined}
             borderBottomLeftRadius="$2xl"
             borderBottomRightRadius="$2xl"
-            hardShadow="2"
             {...props}
         >
             <HStack alignItems="center">

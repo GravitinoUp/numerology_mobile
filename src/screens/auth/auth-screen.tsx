@@ -1,6 +1,7 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Center, HStack, Text } from '@gluestack-ui/themed'
 import i18next from 'i18next'
+import { Eye, EyeOff } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 import { Logo } from '@/assets/icons/logo'
@@ -38,8 +39,11 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
     const dispatch = useAppDispatch()
     const [authUser, { data, error, isSuccess, isLoading }] = useAuthMutation()
 
+    const [passwordHidden, setPasswordHidden] = useState(true)
+
     const onSubmit = (data: z.infer<typeof authSchema>) => {
         authUser({ phone: data.phone, password: data.password })
+        navigation.navigate('NavigationScreen')
     }
 
     useEffect(() => {
@@ -114,6 +118,24 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                                     value={field.value}
                                     onChangeText={field.onChange}
                                     placeholder={t('user.password')}
+                                    autoCapitalize="none"
+                                    secureTextEntry={passwordHidden}
+                                    trailingIcon={
+                                        passwordHidden ? (
+                                            <EyeOff
+                                                size={18}
+                                                color={AppColors.text}
+                                            />
+                                        ) : (
+                                            <Eye
+                                                size={18}
+                                                color={AppColors.text}
+                                            />
+                                        )
+                                    }
+                                    onTrailingIconPress={() =>
+                                        setPasswordHidden(!passwordHidden)
+                                    }
                                     required
                                 />
                                 <FormMessage />

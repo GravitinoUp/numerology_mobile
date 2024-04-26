@@ -28,7 +28,10 @@ export default function DashboardScreen({
                         label="NUMBERS"
                         onPress={() => navigation.navigate(routes.NUMBERS)}
                     />
-                    <DashboardItem label="TEXT 2" />
+                    <DashboardItem
+                        label="MATRIX"
+                        onPress={() => navigation.navigate(routes.MATRIX)}
+                    />
                     <DashboardItem label="TEXT 3" />
                     <DashboardItem label="TEXT 4" />
                     <DashboardItem label="TEXT 5" />

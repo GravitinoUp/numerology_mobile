@@ -14,6 +14,7 @@ import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
 import RegisterScreen from './screens/auth/register-screen'
+import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
 import NavigationScreen from './screens/main/navigation-screen'
 import ProfileScreen from './screens/main/settings/profile-screen'
@@ -102,6 +103,10 @@ function App() {
                     <Stack.Screen
                         name={routes.NUMBERS}
                         component={NumbersScreen}
+                    />
+                    <Stack.Screen
+                        name={routes.MATRIX}
+                        component={MatrixScreen}
                     />
                 </Stack.Group>
             </Stack.Navigator>

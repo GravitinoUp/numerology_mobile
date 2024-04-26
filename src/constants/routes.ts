@@ -5,5 +5,6 @@ export const routes = {
     REGISTER: 'RegisterScreen',
     NAVIGATION: 'NavigationScreen',
     NUMBERS: 'NumbersScreen',
+    MATRIX: 'MatrixScreen',
     SETTINGS: 'SettingsScreen',
 }
