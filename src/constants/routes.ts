@@ -1,5 +1,6 @@
 export const routes = {
     SPLASH: 'SplashScreen',
+    ONBOARD: 'OnboardScreen',
     AUTH_NAV: 'AuthNavScreen',
     AUTH: 'AuthScreen',
     REGISTER: 'RegisterScreen',

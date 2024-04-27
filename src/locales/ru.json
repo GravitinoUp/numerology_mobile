@@ -60,7 +60,8 @@
     "action": {
         "continue": "Продолжить",
         "cancel": "Отменить",
-        "confirm": "Подтвердить"
+        "confirm": "Подтвердить",
+        "skip": "Пропустить"
     },
     "date.format": "dd.MM.yyyy",
     "birthday": "День рождения",

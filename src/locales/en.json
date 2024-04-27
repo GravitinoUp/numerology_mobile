@@ -59,7 +59,8 @@
     "action": {
         "continue": "Continue",
         "cancel": "Cancel",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "skip": "Skip"
     },
     "date.format": "yyyy-MM-dd",
     "birthday": "Birthday",
