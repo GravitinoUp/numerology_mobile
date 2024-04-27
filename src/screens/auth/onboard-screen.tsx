@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useTranslation } from 'react-i18next'
@@ -29,10 +29,6 @@ export default function OnboardScreen({ navigation }: DefaultStackScreenProps) {
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const pagerRef = useRef<any>(null)
-
-    useEffect(() => {
-        console.log(pages)
-    }, [onboardSuccess])
 
     return !onboardFetching && onboardSuccess ? (
         <Scaffold style={{ paddingVertical: 24 }}>
