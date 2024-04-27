@@ -1,4 +1,8 @@
+import { useEffect, useState } from 'react'
 import { Center, HStack, Text, View } from '@gluestack-ui/themed'
+import { CommonActions } from '@react-navigation/native'
+import i18next from 'i18next'
+import { Eye, EyeOff } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
 import DatePicker from 'react-native-date-picker'
 import { z } from 'zod'
@@ -13,19 +17,31 @@ import AppScrollView from '@/components/ui/scroll-view'
 import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
-import { DefaultStackScreenProps } from '@/types/interface'
+import { routes } from '@/constants/routes'
+import { useAppDispatch } from '@/hooks/use-app-dispatch'
+import { useAuthMutation } from '@/redux/api/auth'
+import { useCreateUserMutation } from '@/redux/api/users'
+import { setAccessToken, setRefreshToken } from '@/redux/reducers/authSlice'
+import { DefaultStackScreenProps, ErrorInterface } from '@/types/interface'
 
-const registerSchema = z.object({
-    phone: z.string(),
-    password: z.string(),
-    repeat_password: z.string(),
-    birtday: z.date(),
-})
+const registerSchema = z
+    .object({
+        phone: z.string().min(1, i18next.t('error.phone.required')),
+        password: z.string().min(1, i18next.t('error.required')),
+        repeat_password: z.string().min(1, i18next.t('error.required')),
+        birtday: z.date(),
+    })
+    .refine((data) => data.password === data.repeat_password, {
+        message: i18next.t('error.password.mismatch'),
+        path: ['repeat_password'],
+    })
 
 export default function RegisterScreen({
     navigation,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
+
+    const [passwordHidden, setPasswordHidden] = useState(true)
 
     const form = useForm({
         schema: registerSchema,
@@ -36,9 +52,64 @@ export default function RegisterScreen({
         },
     })
 
-    const onSubmit = (data: z.infer<typeof registerSchema>) => {
-        navigation.navigate('NavigationScreen')
+    const dispatch = useAppDispatch()
+    const [
+        authUser,
+        {
+            data: authData,
+            error: authError,
+            isSuccess: authSuccess,
+            isLoading: authLoading,
+        },
+    ] = useAuthMutation()
+
+    const [registerUser, { error, isSuccess, isLoading }] =
+        useCreateUserMutation()
+
+    const onSubmit = (registerData: z.infer<typeof registerSchema>) => {
+        registerUser({
+            birthday_day: registerData.birtday.getDate(),
+            birthday_month: registerData.birtday.getMonth(),
+            birthday_year: registerData.birtday.getFullYear(),
+            phone: registerData.phone,
+            password: registerData.password,
+        })
     }
+
+    useEffect(() => {
+        if (isSuccess) {
+            authUser({
+                phone: form.getValues('phone'),
+                password: form.getValues('password'),
+            })
+        }
+    }, [isSuccess])
+
+    useEffect(() => {
+        if (authSuccess) {
+            dispatch(setAccessToken(authData?.accessToken))
+            dispatch(setRefreshToken(authData?.refreshToken))
+
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: routes.NAVIGATION }],
+                })
+            )
+        }
+    }, [authSuccess])
+
+    useEffect(() => {
+        if (error || authError) {
+            const errorData = (error || authError) as ErrorInterface
+
+            form.setError('repeat_password', {
+                message: errorData.data?.text
+                    ? errorData.data?.text
+                    : t('error.default'),
+            })
+        }
+    }, [error, authError])
 
     return (
         <Scaffold>
@@ -92,6 +163,23 @@ export default function RegisterScreen({
                                     value={field.value}
                                     onChangeText={field.onChange}
                                     placeholder={t('user.password')}
+                                    secureTextEntry={passwordHidden}
+                                    trailingIcon={
+                                        passwordHidden ? (
+                                            <EyeOff
+                                                size={18}
+                                                color={AppColors.text}
+                                            />
+                                        ) : (
+                                            <Eye
+                                                size={18}
+                                                color={AppColors.text}
+                                            />
+                                        )
+                                    }
+                                    onTrailingIconPress={() =>
+                                        setPasswordHidden(!passwordHidden)
+                                    }
                                     required
                                 />
                                 <FormMessage />
@@ -107,6 +195,23 @@ export default function RegisterScreen({
                                     value={field.value}
                                     onChangeText={field.onChange}
                                     placeholder={t('user.repeat.password')}
+                                    secureTextEntry={passwordHidden}
+                                    trailingIcon={
+                                        passwordHidden ? (
+                                            <EyeOff
+                                                size={18}
+                                                color={AppColors.text}
+                                            />
+                                        ) : (
+                                            <Eye
+                                                size={18}
+                                                color={AppColors.text}
+                                            />
+                                        )
+                                    }
+                                    onTrailingIconPress={() =>
+                                        setPasswordHidden(!passwordHidden)
+                                    }
                                     required
                                 />
                                 <FormMessage />
@@ -144,7 +249,8 @@ export default function RegisterScreen({
                     <AppButton
                         mt="$8"
                         onPress={form.handleSubmit(onSubmit)}
-                        text={t('action.continue')}
+                        text={t('register.create.account')}
+                        isLoading={isLoading || authLoading}
                     />
                 </CustomForm>
             </AppScrollView>

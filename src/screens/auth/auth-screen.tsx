@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Center, HStack, Text } from '@gluestack-ui/themed'
+import { CommonActions } from '@react-navigation/native'
 import i18next from 'i18next'
 import { Eye, EyeOff } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
@@ -15,6 +16,7 @@ import AppScrollView from '@/components/ui/scroll-view'
 import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
+import { routes } from '@/constants/routes'
 import { useAppDispatch } from '@/hooks/use-app-dispatch'
 import { useAuthMutation } from '@/redux/api/auth'
 import { setAccessToken, setRefreshToken } from '@/redux/reducers/authSlice'
@@ -41,9 +43,16 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
 
     const [passwordHidden, setPasswordHidden] = useState(true)
 
-    const onSubmit = (data: z.infer<typeof authSchema>) => {
-        authUser({ phone: data.phone, password: data.password })
-        navigation.navigate('NavigationScreen')
+    const onSubmit = (authData: z.infer<typeof authSchema>) => {
+        authUser({ phone: authData.phone, password: authData.password })
+
+        // TODO remove
+        navigation.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [{ name: routes.NAVIGATION }],
+            })
+        )
     }
 
     useEffect(() => {
@@ -51,7 +60,12 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
             dispatch(setAccessToken(data?.accessToken))
             dispatch(setRefreshToken(data?.refreshToken))
 
-            navigation.navigate('NavigationScreen')
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: routes.NAVIGATION }],
+                })
+            )
         }
     }, [isSuccess])
 

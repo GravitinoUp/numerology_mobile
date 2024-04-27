@@ -20,7 +20,7 @@ import RegisterScreen from './screens/auth/register-screen'
 import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
 import NavigationScreen from './screens/main/navigation-screen'
-import ProfileScreen from './screens/main/settings/profile-screen'
+import ProfileScreen from './screens/main/profile/profile-screen'
 import SplashScreen from './screens/splash/splash-screen'
 import { getJWTtokens } from './utils/helpers'
 
@@ -125,7 +125,7 @@ function App({ initial }: { initial: string }) {
                         component={NavigationScreen}
                     />
                     <Stack.Screen
-                        name={routes.SETTINGS}
+                        name={routes.PROFILE}
                         component={ProfileScreen}
                     />
                     <Stack.Screen

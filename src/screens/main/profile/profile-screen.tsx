@@ -7,6 +7,8 @@ import {
     VStack,
     View,
 } from '@gluestack-ui/themed'
+import AsyncStorage from '@react-native-async-storage/async-storage'
+import { CommonActions } from '@react-navigation/native'
 import { useTranslation } from 'react-i18next'
 import CardButton from '@/components/card-button/card-button'
 import StatusCard from '@/components/status-card/status-card'
@@ -16,11 +18,28 @@ import Dialog from '@/components/ui/dialog'
 import Scaffold from '@/components/ui/scaffold'
 import TextButton from '@/components/ui/text-button'
 import { AppColors } from '@/constants/colors'
+import { routes } from '@/constants/routes'
+import { useAppDispatch } from '@/hooks/use-app-dispatch'
+import { api } from '@/redux/api'
+import { DefaultStackScreenProps } from '@/types/interface'
 
-export default function ProfileScreen() {
+export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
+    const dispatch = useAppDispatch()
     const [dialogOpen, setDialogOpen] = useState(false)
+
+    const handleLogout = async () => {
+        await AsyncStorage.clear()
+        dispatch(api.util.resetApiState())
+
+        navigation.dispatch(
+            CommonActions.reset({
+                index: 0,
+                routes: [{ name: routes.NAVIGATION }],
+            })
+        )
+    }
 
     return (
         <Fragment>
@@ -50,7 +69,7 @@ export default function ProfileScreen() {
                             }}
                             px="$1"
                             text={t('action.confirm')}
-                            onPress={() => {}}
+                            onPress={handleLogout}
                         />
                     </HStack>
                 }
@@ -76,6 +95,7 @@ export default function ProfileScreen() {
                     </Center>
                     <VStack mt="$2" p="$4" gap="$4">
                         <CardButton label={t('settings.label.personal.data')} />
+                        <CardButton label={t('settings.label.subscriptions')} />
                         <CardButton label={t('settings.label.notifications')} />
                         <CardButton label={t('settings.label.language')} />
                     </VStack>

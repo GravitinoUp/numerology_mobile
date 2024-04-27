@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTranslation } from 'react-i18next'
 import DashboardScreen from './dashboard/dashboard-screen'
-import ProfileScreen from './settings/profile-screen'
+import ProfileScreen from './profile/profile-screen'
 import DashboardIcon from '@/assets/icons/dashboard'
 import PredictionIcon from '@/assets/icons/prediction'
 import ProfileIcon from '@/assets/icons/profile'

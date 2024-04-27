@@ -21,3 +21,8 @@ export interface ErrorDataInterface {
     error: string
     statusCode: number
 }
+
+export interface FetchResultInterface<T = void> {
+    status: boolean
+    data?: T
+}

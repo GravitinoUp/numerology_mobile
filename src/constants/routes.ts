@@ -7,5 +7,5 @@ export const routes = {
     NAVIGATION: 'NavigationScreen',
     NUMBERS: 'NumbersScreen',
     MATRIX: 'MatrixScreen',
-    SETTINGS: 'SettingsScreen',
+    PROFILE: 'ProfileScreen',
 }

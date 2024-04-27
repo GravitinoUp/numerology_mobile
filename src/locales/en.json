@@ -20,7 +20,8 @@
     },
     "register": {
         "title": "Register an account",
-        "description": "Register description TODO"
+        "description": "Register description TODO",
+        "create.account": "Create new account"
     },
     "user": {
         "phone": "Your phone number",
@@ -42,6 +43,7 @@
     "settings": {
         "label": {
             "personal.data": "Personal data",
+            "subscriptions": "Subscriptions",
             "notifications": "Notifications",
             "language": "Language",
             "other": "Other",
@@ -54,7 +56,8 @@
     "error": {
         "default": "An error has occurred, please try again later",
         "required": "This field is required",
-        "phone.required": "Provide the correct phone number"
+        "phone.required": "Provide the correct phone number",
+        "password.mismatch": "Passwords don't match"
     },
     "action": {
         "continue": "Continue",
