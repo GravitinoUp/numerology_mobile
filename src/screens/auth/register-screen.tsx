@@ -104,8 +104,8 @@ export default function RegisterScreen({
             const errorData = (error || authError) as ErrorInterface
 
             form.setError('repeat_password', {
-                message: errorData.data?.text
-                    ? errorData.data?.text
+                message: errorData.data?.message
+                    ? errorData.data?.message
                     : t('error.default'),
             })
         }

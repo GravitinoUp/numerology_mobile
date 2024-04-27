@@ -63,7 +63,8 @@
         "continue": "Continue",
         "cancel": "Cancel",
         "confirm": "Confirm",
-        "skip": "Skip"
+        "skip": "Skip",
+        "retry": "Retry"
     },
     "date.format": "yyyy-MM-dd",
     "birthday": "Birthday",

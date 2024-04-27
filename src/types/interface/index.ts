@@ -15,9 +15,9 @@ export interface ErrorInterface {
 }
 
 export interface ErrorDataInterface {
-    text: string
-    url: string
-    method: string
+    message: string
+    url?: string
+    method?: string
     error: string
     statusCode: number
 }

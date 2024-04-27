@@ -24,6 +24,8 @@ import ProfileScreen from './screens/main/profile/profile-screen'
 import SplashScreen from './screens/splash/splash-screen'
 import { getJWTtokens } from './utils/helpers'
 
+global.languageCode = 'en'
+
 const Stack = createNativeStackNavigator()
 
 export const AppWrapper = () => {

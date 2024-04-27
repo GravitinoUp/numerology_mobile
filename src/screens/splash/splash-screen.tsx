@@ -1,11 +1,23 @@
-import { Text } from '@gluestack-ui/themed'
+import { Spinner, Text, VStack } from '@gluestack-ui/themed'
+import { SerializedError } from '@reduxjs/toolkit'
+import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { LogoLarge } from '@/assets/icons/logo'
+import AppButton from '@/components/ui/button'
 import { AppColors } from '@/constants/colors'
+import { MAX_WIDTH } from '@/constants/constants'
+import { ErrorInterface } from '@/types/interface'
 
-export default function SplashScreen() {
+type SplashScreenProps = {
+    error?: FetchBaseQueryError | SerializedError | undefined
+    refetch?: () => void
+}
+
+export default function SplashScreen({ error, refetch }: SplashScreenProps) {
     const { t } = useTranslation()
+
+    const errorData = error as ErrorInterface
 
     return (
         <SafeAreaView
@@ -17,9 +29,32 @@ export default function SplashScreen() {
             }}
         >
             <LogoLarge />
-            <Text fontSize="$2xl" fontWeight="$black" color={AppColors.text}>
+            <Text
+                mb="$6"
+                fontSize="$2xl"
+                fontWeight="$black"
+                color={AppColors.text}
+            >
                 {t('app.name')}
             </Text>
+            {!error && <Spinner size="large" color={AppColors.primary} />}
+            {error && (
+                <VStack w="$full" maxWidth={MAX_WIDTH} alignItems="center">
+                    <Text color={AppColors.text} textAlign="center">
+                        {errorData && errorData.data
+                            ? errorData.data?.message
+                            : t('error.default')}
+                    </Text>
+                    {typeof refetch !== 'undefined' && (
+                        <AppButton
+                            mt="$4"
+                            w="$1/2"
+                            onPress={refetch}
+                            text={t('action.retry')}
+                        />
+                    )}
+                </VStack>
+            )}
         </SafeAreaView>
     )
 }

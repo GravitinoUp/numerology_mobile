@@ -10,6 +10,7 @@ export const api = createApi({
         prepareHeaders: async (headers) => {
             const { accessToken } = await getJWTtokens()
 
+            headers.set('Accept-Language', global.languageCode)
             if (accessToken) {
                 headers.set('Authorization', `Bearer ${accessToken}`)
             }

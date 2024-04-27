@@ -36,7 +36,7 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
         navigation.dispatch(
             CommonActions.reset({
                 index: 0,
-                routes: [{ name: routes.NAVIGATION }],
+                routes: [{ name: routes.AUTH_NAV }],
             })
         )
     }

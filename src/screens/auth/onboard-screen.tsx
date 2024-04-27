@@ -1,44 +1,40 @@
-import { useRef, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { VStack } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useTranslation } from 'react-i18next'
 import PagerView from 'react-native-pager-view'
 import OnboardPage from './components/onboard-page'
+import SplashScreen from '../splash/splash-screen'
 import AppButton from '@/components/ui/button'
 import Pagination from '@/components/ui/pagination'
 import Scaffold from '@/components/ui/scaffold'
 import { AppColors } from '@/constants/colors'
 import { routes } from '@/constants/routes'
 import { storageKeys } from '@/constants/storage'
+import { useGetAllOnboardScreensQuery } from '@/redux/api/onboard'
 import { DefaultStackScreenProps } from '@/types/interface'
-import { OnboardInterface } from '@/types/interface/onboard'
 
 export default function OnboardScreen({ navigation }: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
-    const pages: OnboardInterface[] = [
-        {
-            onboard_name: 'PAGE 1',
-            onboard_description: t('placeholder.long.default'),
-            onboard_image: '',
-        },
-        {
-            onboard_name: 'PAGE 2',
-            onboard_description: t('placeholder.long.default'),
-            onboard_image: '',
-        },
-        {
-            onboard_name: 'PAGE 3',
-            onboard_description: t('placeholder.long.default'),
-            onboard_image: '',
-        },
-    ]
-
     const [currentPage, setCurrentPage] = useState(0)
+
+    const {
+        data: pages = [],
+        isFetching: onboardFetching,
+        isSuccess: onboardSuccess,
+        error: onboardError,
+        refetch: onboardRefetch,
+    } = useGetAllOnboardScreensQuery()
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const pagerRef = useRef<any>(null)
 
-    return (
+    useEffect(() => {
+        console.log(pages)
+    }, [onboardSuccess])
+
+    return !onboardFetching && onboardSuccess ? (
         <Scaffold style={{ paddingVertical: 24 }}>
             <Pagination currentPage={currentPage} pageCount={pages.length} />
             <PagerView
@@ -102,5 +98,7 @@ export default function OnboardScreen({ navigation }: DefaultStackScreenProps) {
                 </VStack>
             </VStack>
         </Scaffold>
+    ) : (
+        <SplashScreen error={onboardError} refetch={onboardRefetch} />
     )
 }

@@ -73,8 +73,8 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
         if (error) {
             const errorData = error as ErrorInterface
             form.setError('password', {
-                message: errorData.data?.text
-                    ? errorData.data?.text
+                message: errorData.data?.message
+                    ? errorData.data?.message
                     : t('error.default'),
             })
         }

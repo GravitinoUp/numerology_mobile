@@ -64,7 +64,8 @@
         "continue": "Продолжить",
         "cancel": "Отменить",
         "confirm": "Подтвердить",
-        "skip": "Пропустить"
+        "skip": "Пропустить",
+        "retry": "Повторить"
     },
     "date.format": "dd.MM.yyyy",
     "birthday": "День рождения",
