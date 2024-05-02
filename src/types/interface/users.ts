@@ -1,4 +1,5 @@
 export interface UserPayloadInterface {
+    name: string
     last_name?: string
     first_name?: string
     patronymic?: string
@@ -8,4 +9,5 @@ export interface UserPayloadInterface {
     email?: string
     phone: string
     password: string
+    code: number
 }

@@ -4,6 +4,7 @@ import {
     RefreshPayloadInterface,
     TokenInterface,
 } from '../../types/interface/auth'
+import { FetchResultInterface } from '@/types/interface'
 
 const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
@@ -29,8 +30,22 @@ const authApi = api.injectEndpoints({
                 body,
             }),
         }),
+        sendPhoneAuthCode: builder.mutation<
+            FetchResultInterface,
+            { phone: string }
+        >({
+            query: (body) => ({
+                url: 'auth-code/phone',
+                method: 'POST',
+                body,
+            }),
+        }),
     }),
 })
 
-export const { useAuthMutation, useRefreshTokenMutation, useLogoutMutation } =
-    authApi
+export const {
+    useAuthMutation,
+    useRefreshTokenMutation,
+    useLogoutMutation,
+    useSendPhoneAuthCodeMutation,
+} = authApi

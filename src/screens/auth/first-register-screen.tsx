@@ -1,10 +1,8 @@
 import { useEffect, useState } from 'react'
-import { Center, HStack, Text, View } from '@gluestack-ui/themed'
-import { CommonActions } from '@react-navigation/native'
+import { Center, HStack, Text } from '@gluestack-ui/themed'
 import i18next from 'i18next'
 import { Eye, EyeOff } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
-import DatePicker from 'react-native-date-picker'
 import { z } from 'zod'
 import { Logo } from '@/assets/icons/logo'
 import { CustomForm, useForm } from '@/components/form/form'
@@ -18,10 +16,7 @@ import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
 import { routes } from '@/constants/routes'
-import { useAppDispatch } from '@/hooks/use-app-dispatch'
-import { useAuthMutation } from '@/redux/api/auth'
-import { useCreateUserMutation } from '@/redux/api/users'
-import { setAccessToken, setRefreshToken } from '@/redux/reducers/authSlice'
+import { useCheckUserExistsMutation } from '@/redux/api/users'
 import { DefaultStackScreenProps, ErrorInterface } from '@/types/interface'
 
 const registerSchema = z
@@ -29,17 +24,20 @@ const registerSchema = z
         phone: z.string().min(1, i18next.t('error.phone.required')),
         password: z.string().min(1, i18next.t('error.required')),
         repeat_password: z.string().min(1, i18next.t('error.required')),
-        birtday: z.date(),
     })
     .refine((data) => data.password === data.repeat_password, {
         message: i18next.t('error.password.mismatch'),
         path: ['repeat_password'],
     })
 
-export default function RegisterScreen({
+export default function FirstRegisterScreen({
     navigation,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
+
+    const [selectedCountry, setSelectedCountry] = useState(
+        phoneCountries[0].value
+    )
 
     const [passwordHidden, setPasswordHidden] = useState(true)
 
@@ -48,60 +46,43 @@ export default function RegisterScreen({
         defaultValues: {
             phone: '',
             password: '',
-            birtday: new Date(),
         },
     })
 
-    const dispatch = useAppDispatch()
     const [
-        authUser,
+        checkUser,
         {
-            data: authData,
-            error: authError,
-            isSuccess: authSuccess,
-            isLoading: authLoading,
+            data: checkData,
+            error: checkError,
+            isSuccess: checkSuccess,
+            isLoading: checkLoading,
         },
-    ] = useAuthMutation()
-
-    const [registerUser, { error, isSuccess, isLoading }] =
-        useCreateUserMutation()
+    ] = useCheckUserExistsMutation()
 
     const onSubmit = (registerData: z.infer<typeof registerSchema>) => {
-        registerUser({
-            birthday_day: registerData.birtday.getDate(),
-            birthday_month: registerData.birtday.getMonth(),
-            birthday_year: registerData.birtday.getFullYear(),
-            phone: registerData.phone,
-            password: registerData.password,
-        })
+        checkUser({ phone: registerData.phone })
     }
 
     useEffect(() => {
-        if (isSuccess) {
-            authUser({
-                phone: form.getValues('phone'),
-                password: form.getValues('password'),
-            })
-        }
-    }, [isSuccess])
-
-    useEffect(() => {
-        if (authSuccess) {
-            dispatch(setAccessToken(authData?.accessToken))
-            dispatch(setRefreshToken(authData?.refreshToken))
-
-            navigation.dispatch(
-                CommonActions.reset({
-                    index: 0,
-                    routes: [{ name: routes.NAVIGATION }],
+        if (checkSuccess) {
+            if (checkData.status === false) {
+                navigation.navigate(routes.USER_REGISTER, {
+                    registerData: {
+                        phone: `${selectedCountry}${form.getValues('phone')}`,
+                        password: form.getValues('password'),
+                    },
                 })
-            )
+            } else {
+                form.setError('repeat_password', {
+                    message: t('error.user.exists'),
+                })
+            }
         }
-    }, [authSuccess])
+    }, [checkSuccess])
 
     useEffect(() => {
-        if (error || authError) {
-            const errorData = (error || authError) as ErrorInterface
+        if (checkError) {
+            const errorData = checkError as ErrorInterface
 
             form.setError('repeat_password', {
                 message: errorData.data?.message
@@ -109,11 +90,11 @@ export default function RegisterScreen({
                     : t('error.default'),
             })
         }
-    }, [error, authError])
+    }, [checkError])
 
     return (
         <Scaffold>
-            <TopBar navigation={navigation} hardShadow={undefined} />
+            <TopBar navigation={navigation} />
             <AppScrollView maxWidth={MAX_WIDTH}>
                 <Center justifyContent="center" mb="$4">
                     <Logo />
@@ -138,8 +119,8 @@ export default function RegisterScreen({
                                 <HStack gap="$4">
                                     <AppSelect
                                         style={{ width: 90 }}
-                                        selectedValue={phoneCountries[0].value}
-                                        onValueChange={() => {}}
+                                        selectedValue={selectedCountry}
+                                        onValueChange={setSelectedCountry}
                                         items={phoneCountries}
                                     />
                                     <AppInput
@@ -218,39 +199,11 @@ export default function RegisterScreen({
                             </FormItem>
                         )}
                     />
-                    <FormField
-                        control={form.control}
-                        name="birtday"
-                        render={({ field }) => (
-                            <FormItem>
-                                <Text
-                                    textAlign="center"
-                                    mb="$1"
-                                    color={AppColors.hint}
-                                >
-                                    {t('user.birthday')}
-                                </Text>
-                                <View
-                                    borderRadius="$lg"
-                                    borderColor={AppColors.border}
-                                    borderWidth="$1"
-                                    pl="$3"
-                                >
-                                    <DatePicker
-                                        mode="date"
-                                        date={field.value}
-                                        onConfirm={field.onChange}
-                                    />
-                                </View>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
                     <AppButton
                         mt="$8"
                         onPress={form.handleSubmit(onSubmit)}
-                        text={t('register.create.account')}
-                        isLoading={isLoading || authLoading}
+                        text={t('action.continue')}
+                        isLoading={checkLoading}
                     />
                 </CustomForm>
             </AppScrollView>

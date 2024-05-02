@@ -15,8 +15,10 @@ import { setAccessToken } from './redux/reducers/authSlice'
 import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
+import FirstRegisterScreen from './screens/auth/first-register-screen'
 import OnboardScreen from './screens/auth/onboard-screen'
-import RegisterScreen from './screens/auth/register-screen'
+import UserRegisterScreen from './screens/auth/user-register-screen'
+import VerifyCodeScreen from './screens/auth/verify-code-screen'
 import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
 import NavigationScreen from './screens/main/navigation-screen'
@@ -116,10 +118,20 @@ function App({ initial }: { initial: string }) {
                         component={AuthNavScreen}
                     />
                     <Stack.Screen name={routes.AUTH} component={AuthScreen} />
-                    <Stack.Screen
-                        name={routes.REGISTER}
-                        component={RegisterScreen}
-                    />
+                    <Stack.Group>
+                        <Stack.Screen
+                            name={routes.REGISTER}
+                            component={FirstRegisterScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.USER_REGISTER}
+                            component={UserRegisterScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.VERIFY_CODE}
+                            component={VerifyCodeScreen}
+                        />
+                    </Stack.Group>
                 </Stack.Group>
                 <Stack.Group>
                     <Stack.Screen

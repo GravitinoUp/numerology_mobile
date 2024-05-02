@@ -9,7 +9,17 @@ const usersApi = api.injectEndpoints({
             UserPayloadInterface
         >({
             query: (body) => ({
-                url: 'auth',
+                url: 'users',
+                method: 'POST',
+                body,
+            }),
+        }),
+        checkUserExists: builder.mutation<
+            FetchResultInterface,
+            { phone: string }
+        >({
+            query: (body) => ({
+                url: 'users/check-exists',
                 method: 'POST',
                 body,
             }),
@@ -17,4 +27,4 @@ const usersApi = api.injectEndpoints({
     }),
 })
 
-export const { useCreateUserMutation } = usersApi
+export const { useCreateUserMutation, useCheckUserExistsMutation } = usersApi

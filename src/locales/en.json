@@ -20,11 +20,13 @@
     },
     "register": {
         "title": "Register an account",
-        "description": "Register description TODO",
+        "description": "Set the phone number and password for your account, please",
+        "user.data.description": "Enter your name and birthday, please",
         "create.account": "Create new account"
     },
     "user": {
         "phone": "Your phone number",
+        "email": "Your email",
         "password": "Password",
         "repeat.password": "Repeat password",
         "data": "User data",
@@ -57,14 +59,16 @@
         "default": "An error has occurred, please try again later",
         "required": "This field is required",
         "phone.required": "Provide the correct phone number",
-        "password.mismatch": "Passwords don't match"
+        "password.mismatch": "Passwords don't match",
+        "user.exists": "User with this phone is already exists"
     },
     "action": {
         "continue": "Continue",
         "cancel": "Cancel",
         "confirm": "Confirm",
         "skip": "Skip",
-        "retry": "Retry"
+        "retry": "Retry",
+        "verify": "Verify"
     },
     "date.format": "yyyy-MM-dd",
     "birthday": "Birthday",
