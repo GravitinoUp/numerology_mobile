@@ -1,13 +1,7 @@
-import Svg, { Path } from 'react-native-svg'
+import Svg, { Path, SvgProps } from 'react-native-svg'
 
-const PredictionIcon = (props: any) => (
-    <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={32}
-        height={32}
-        fill="none"
-        {...props}
-    >
+const PredictionIcon = (props: SvgProps) => (
+    <Svg width={32} height={32} fill="none" {...props}>
         <Path
             fill={props.color}
             d="M16 7.75a7.562 7.562 0 1 0 0 15.125A7.562 7.562 0 0 0 16 7.75Zm0 4.125a3.438 3.438 0 0 0-3.438 3.438.687.687 0 1 1-1.374 0A4.813 4.813 0 0 1 16 10.5a.687.687 0 1 1 0 1.375Z"

@@ -6,7 +6,8 @@
         "union": "Союз",
         "prediction": "Предсказание",
         "profile": "Профиль",
-        "numbers": "Цифры в матрице"
+        "numbers": "Цифры в матрице",
+        "matrix": "Расшифровка матрицы"
     },
     "select": {
         "birthday": "Выберите ваш день рождения"
@@ -19,10 +20,13 @@
     },
     "register": {
         "title": "Регистрация",
-        "description": "Описание регистрации"
+        "description": "Пожалуйста, укажите номер телефона и пароль для своего аккаунта",
+        "user.data.description": "Пожалуйста, укажите свое имя и день рождения",
+        "create.account": "Зарегистрироваться"
     },
     "user": {
         "phone": "Номер телефона",
+        "email": "Email",
         "password": "Пароль",
         "repeat.password": "Повторите пароль",
         "data": "Данные пользователя",
@@ -35,29 +39,37 @@
             "name": "Иван",
             "birthday": "28.01.2024"
         },
+        "select.value": "Выберите значение",
         "long.default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     "settings": {
         "label": {
+            "personal.data": "Персональная информация",
+            "subscriptions": "Подписки",
             "notifications": "Уведомления",
-            "customization": "Тема",
-            "other": "Other",
-            "logout": "Logout"
+            "language": "Язык приложения",
+            "other": "Другие настройки",
+            "logout": "Выйти из аккаунта"
         },
         "description": {
-            "notifications": "Настройки уведолмений приложения",
-            "customization": "Настройте стиль приложения под себя",
             "other": "Другие настройки",
             "logout": "Вы уверены, что хотите выйти из аккаунта?"
         }
     },
     "error": {
-        "required": "Поле должно быть заполнено"
+        "default": "Произошла ошибка, повторите попытку позднее",
+        "required": "Поле должно быть заполнено",
+        "phone.required": "Укажите правильный номер телефона",
+        "password.mismatch": "Пароли не совпадают",
+        "user.exists": "Пользователь с таким номером телефона уже существует"
     },
     "action": {
         "continue": "Продолжить",
         "cancel": "Отменить",
-        "confirm": "Подтвердить"
+        "confirm": "Подтвердить",
+        "skip": "Пропустить",
+        "retry": "Повторить",
+        "verify": "Проверить"
     },
     "date.format": "dd.MM.yyyy",
     "birthday": "День рождения",

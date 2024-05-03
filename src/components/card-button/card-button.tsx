@@ -4,13 +4,13 @@ import ChevronRight from '@/assets/icons/chevron-right'
 import { AppColors } from '@/constants/colors'
 import { ACTIVE_OPACITY } from '@/constants/constants'
 
-type DashboardItemProps = {
+type CardButtonProps = {
     label: string
     onPress?: () => void
 }
 
-const DashboardItem = ({ label, onPress }: DashboardItemProps) => (
-    <View softShadow="2" bgColor={AppColors.background} borderRadius="$2xl">
+const CardButton = ({ label, onPress }: CardButtonProps) => (
+    <View softShadow="1" bgColor={AppColors.background} borderRadius="$2xl">
         <TouchableOpacity activeOpacity={ACTIVE_OPACITY} onPress={onPress}>
             <HStack
                 px="$5"
@@ -27,4 +27,4 @@ const DashboardItem = ({ label, onPress }: DashboardItemProps) => (
     </View>
 )
 
-export default DashboardItem
+export default CardButton

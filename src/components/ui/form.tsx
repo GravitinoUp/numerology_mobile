@@ -88,7 +88,13 @@ const FormMessage = ({ children }: { children?: React.ReactNode }) => {
     }
 
     return (
-        <Text fontSize={14} color={AppColors.error} id={formMessageId}>
+        <Text
+            mt="$1"
+            fontSize={14}
+            color={AppColors.error}
+            fontWeight="$medium"
+            id={formMessageId}
+        >
             {body}
         </Text>
     )

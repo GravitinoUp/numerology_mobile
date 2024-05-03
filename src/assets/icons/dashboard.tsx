@@ -1,12 +1,6 @@
-import Svg, { G, Path, Defs, ClipPath } from 'react-native-svg'
-const DashboardIcon = (props: any) => (
-    <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={32}
-        height={32}
-        fill="none"
-        {...props}
-    >
+import Svg, { G, Path, Defs, ClipPath, SvgProps } from 'react-native-svg'
+const DashboardIcon = (props: SvgProps) => (
+    <Svg width={32} height={32} fill="none" {...props}>
         <G clipPath="url(#a)">
             <Path
                 fill={props.color}

@@ -1,13 +1,7 @@
-import Svg, { Path } from 'react-native-svg'
+import Svg, { Path, SvgProps } from 'react-native-svg'
 
-const ChevronRight = (props: any) => (
-    <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={21}
-        height={21}
-        fill="none"
-        {...props}
-    >
+const ChevronRight = (props: SvgProps) => (
+    <Svg width={21} height={21} fill="none" {...props}>
         <Path
             fill="#000"
             fillRule="evenodd"

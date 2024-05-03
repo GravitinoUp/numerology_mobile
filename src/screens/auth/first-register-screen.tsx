@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
 import { Center, HStack, Text } from '@gluestack-ui/themed'
-import { CommonActions } from '@react-navigation/native'
 import i18next from 'i18next'
 import { Eye, EyeOff } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
@@ -17,74 +16,87 @@ import AppSelect from '@/components/ui/select'
 import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
 import { routes } from '@/constants/routes'
-import { useAppDispatch } from '@/hooks/use-app-dispatch'
-import { useAuthMutation } from '@/redux/api/auth'
-import { setAccessToken, setRefreshToken } from '@/redux/reducers/authSlice'
+import { useCheckUserExistsMutation } from '@/redux/api/users'
 import { DefaultStackScreenProps, ErrorInterface } from '@/types/interface'
 
-const authSchema = z.object({
-    phone: z.string().min(1, i18next.t('error.phone.required')),
-    password: z.string().min(1, i18next.t('error.required')),
-})
+const registerSchema = z
+    .object({
+        phone: z.string().min(1, i18next.t('error.phone.required')),
+        password: z.string().min(1, i18next.t('error.required')),
+        repeat_password: z.string().min(1, i18next.t('error.required')),
+    })
+    .refine((data) => data.password === data.repeat_password, {
+        message: i18next.t('error.password.mismatch'),
+        path: ['repeat_password'],
+    })
 
-export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
+export default function FirstRegisterScreen({
+    navigation,
+}: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
+    const [selectedCountry, setSelectedCountry] = useState(
+        phoneCountries[0].value
+    )
+
+    const [passwordHidden, setPasswordHidden] = useState(true)
+
     const form = useForm({
-        schema: authSchema,
+        schema: registerSchema,
         defaultValues: {
             phone: '',
             password: '',
         },
     })
 
-    const dispatch = useAppDispatch()
-    const [authUser, { data, error, isSuccess, isLoading }] = useAuthMutation()
+    const [
+        checkUser,
+        {
+            data: checkData,
+            error: checkError,
+            isSuccess: checkSuccess,
+            isLoading: checkLoading,
+        },
+    ] = useCheckUserExistsMutation()
 
-    const [passwordHidden, setPasswordHidden] = useState(true)
-
-    const onSubmit = (authData: z.infer<typeof authSchema>) => {
-        authUser({ phone: authData.phone, password: authData.password })
-
-        // TODO remove
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: routes.NAVIGATION }],
-            })
-        )
+    const onSubmit = (registerData: z.infer<typeof registerSchema>) => {
+        checkUser({ phone: registerData.phone })
     }
 
     useEffect(() => {
-        if (isSuccess) {
-            dispatch(setAccessToken(data?.accessToken))
-            dispatch(setRefreshToken(data?.refreshToken))
-
-            navigation.dispatch(
-                CommonActions.reset({
-                    index: 0,
-                    routes: [{ name: routes.NAVIGATION }],
+        if (checkSuccess) {
+            if (checkData.status === false) {
+                navigation.navigate(routes.USER_REGISTER, {
+                    registerData: {
+                        phone: `${selectedCountry}${form.getValues('phone')}`,
+                        password: form.getValues('password'),
+                    },
                 })
-            )
+            } else {
+                form.setError('repeat_password', {
+                    message: t('error.user.exists'),
+                })
+            }
         }
-    }, [isSuccess])
+    }, [checkSuccess])
 
     useEffect(() => {
-        if (error) {
-            const errorData = error as ErrorInterface
-            form.setError('password', {
+        if (checkError) {
+            const errorData = checkError as ErrorInterface
+
+            form.setError('repeat_password', {
                 message: errorData.data?.message
                     ? errorData.data?.message
                     : t('error.default'),
             })
         }
-    }, [error])
+    }, [checkError])
 
     return (
         <Scaffold>
-            <TopBar navigation={navigation} hardShadow={undefined} />
+            <TopBar navigation={navigation} />
             <AppScrollView maxWidth={MAX_WIDTH}>
-                <Center mb="$4">
+                <Center justifyContent="center" mb="$4">
                     <Logo />
                 </Center>
                 <Text
@@ -93,10 +105,10 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                     color={AppColors.primary}
                     textAlign="center"
                 >
-                    {t('auth.title')}
+                    {t('register.title')}
                 </Text>
-                <Text mt="$2" my="$8" color={AppColors.hint} textAlign="center">
-                    {t('auth.description')}
+                <Text mt="$2" my="$8" color={AppColors.text} textAlign="center">
+                    {t('register.description')}
                 </Text>
                 <CustomForm form={form}>
                     <FormField
@@ -107,8 +119,8 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                                 <HStack gap="$4">
                                     <AppSelect
                                         style={{ width: 90 }}
-                                        selectedValue={phoneCountries[0].value}
-                                        onValueChange={() => {}}
+                                        selectedValue={selectedCountry}
+                                        onValueChange={setSelectedCountry}
                                         items={phoneCountries}
                                     />
                                     <AppInput
@@ -127,12 +139,43 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                         control={form.control}
                         name="password"
                         render={({ field }) => (
-                            <FormItem>
+                            <FormItem style={{ marginBottom: 16 }}>
                                 <AppInput
                                     value={field.value}
                                     onChangeText={field.onChange}
                                     placeholder={t('user.password')}
-                                    autoCapitalize="none"
+                                    secureTextEntry={passwordHidden}
+                                    trailingIcon={
+                                        passwordHidden ? (
+                                            <EyeOff
+                                                size={18}
+                                                color={AppColors.text}
+                                            />
+                                        ) : (
+                                            <Eye
+                                                size={18}
+                                                color={AppColors.text}
+                                            />
+                                        )
+                                    }
+                                    onTrailingIconPress={() =>
+                                        setPasswordHidden(!passwordHidden)
+                                    }
+                                    required
+                                />
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="repeat_password"
+                        render={({ field }) => (
+                            <FormItem style={{ marginBottom: 16 }}>
+                                <AppInput
+                                    value={field.value}
+                                    onChangeText={field.onChange}
+                                    placeholder={t('user.repeat.password')}
                                     secureTextEntry={passwordHidden}
                                     trailingIcon={
                                         passwordHidden ? (
@@ -157,20 +200,10 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                         )}
                     />
                     <AppButton
-                        mt="$2"
-                        textProps={{
-                            color: AppColors.hint,
-                            fontWeight: '$normal',
-                            textAlign: 'right',
-                        }}
-                        bgColor={AppColors.transparent}
-                        onPress={() => {}}
-                        text={t('forgot.password')}
-                    />
-                    <AppButton
+                        mt="$8"
                         onPress={form.handleSubmit(onSubmit)}
                         text={t('action.continue')}
-                        isLoading={isLoading}
+                        isLoading={checkLoading}
                     />
                 </CustomForm>
             </AppScrollView>

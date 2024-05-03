@@ -36,6 +36,7 @@ const AppInput = ({
         fontSize: '$sm',
         color: AppColors.text,
     },
+    h = 52,
     minHeight,
     leadingIcon,
     trailingIcon,
@@ -56,7 +57,7 @@ const AppInput = ({
         )}
         <Input
             variant="rounded"
-            h={props.multiline ? undefined : 52}
+            h={props.multiline ? undefined : h}
             minHeight={minHeight}
             borderColor={AppColors.border}
             $focus-borderColor={AppColors.borderActive}

@@ -3,13 +3,14 @@ import { HStack, Text, VStack, View } from '@gluestack-ui/themed'
 import { StatusBar } from 'react-native'
 import BackButton from '../back-button/back-button'
 import { AppColors } from '@/constants/colors'
+import { DefaultStackNavigationProp } from '@/types/interface'
 
 type HStackProps = ComponentProps<typeof HStack>
 type TopBarProps = {
-    title: string
+    title?: string
     subtitle?: string
     suffix?: React.ReactNode
-    navigation?: any
+    navigation?: DefaultStackNavigationProp
 } & HStackProps
 
 const TopBar = ({
@@ -32,7 +33,6 @@ const TopBar = ({
             px={!navigation ? '$4' : undefined}
             borderBottomLeftRadius="$2xl"
             borderBottomRightRadius="$2xl"
-            hardShadow="2"
             {...props}
         >
             <HStack alignItems="center">

@@ -16,7 +16,7 @@
         "paths": {
             "@/*": ["./src/*"]
         },
-        "typeRoots": ["./src/@types/env.d.ts", "./src/@types/globals.d.ts"],
+        "typeRoots": ["./src/@types/env.d.ts", "src/@types/global.d.ts"],
 
         /* Linting */
         "alwaysStrict": true,
