@@ -153,6 +153,7 @@ export default function UserRegisterScreen({
                                 >
                                     <DatePicker
                                         mode="date"
+                                        theme="light"
                                         date={field.value}
                                         onConfirm={field.onChange}
                                     />

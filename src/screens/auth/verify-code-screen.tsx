@@ -282,5 +282,6 @@ const styles = StyleSheet.create({
         borderColor: AppColors.border,
         borderWidth: 1.5,
         textAlign: 'center',
+        color: AppColors.text,
     },
 })

@@ -87,5 +87,7 @@
     "planets": {
         "life.path.number": "Число жизненного пути",
         "soul.number": "Число души"
-    }
+    },
+    "title": "Заголовок",
+    "description": "Описание"
 }

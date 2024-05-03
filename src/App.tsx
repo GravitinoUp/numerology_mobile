@@ -77,8 +77,6 @@ function App({ initial }: { initial: string }) {
 
     useEffect(() => {
         getJWTtokens().then(({ refreshToken }) => {
-            console.log(refreshToken)
-
             if (refreshToken) {
                 fetchRefresh({ refresh_token: `${refreshToken}` })
                 setLoading(true)

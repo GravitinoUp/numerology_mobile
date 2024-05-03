@@ -60,7 +60,7 @@ export default function FirstRegisterScreen({
     ] = useCheckUserExistsMutation()
 
     const onSubmit = (registerData: z.infer<typeof registerSchema>) => {
-        checkUser({ phone: registerData.phone })
+        checkUser({ phone: `${selectedCountry}${registerData.phone}` })
     }
 
     useEffect(() => {

@@ -86,5 +86,7 @@
     "planets": {
         "life.path.number": "The number of the life path",
         "soul.number": "The number of the soul"
-    }
+    },
+    "title": "Title",
+    "description": "Description"
 }
