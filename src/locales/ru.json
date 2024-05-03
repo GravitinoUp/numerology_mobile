@@ -5,9 +5,7 @@
         "dashboard": "Главная",
         "union": "Союз",
         "prediction": "Предсказание",
-        "profile": "Профиль",
-        "numbers": "Цифры в матрице",
-        "matrix": "Расшифровка матрицы"
+        "profile": "Профиль"
     },
     "select": {
         "birthday": "Выберите ваш день рождения"
@@ -76,5 +74,18 @@
     "day": "День",
     "month": "Месяц",
     "year": "Год",
-    "forgot.password": "Забыли пароль?"
+    "forgot.password": "Забыли пароль?",
+    "section": {
+        "numerology.health": "Нумерология здоровья",
+        "fate.cards": "Карты судьбы",
+        "professions": "Профессии и самореализация",
+        "weaknesses": "Слабые качества",
+        "lucky.numbers": "Числа удачи",
+        "planets": "Планеты",
+        "ancestors": "Кем были ваши предки?"
+    },
+    "planets": {
+        "life.path.number": "Число жизненного пути",
+        "soul.number": "Число души"
+    }
 }

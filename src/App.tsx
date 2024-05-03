@@ -19,8 +19,10 @@ import FirstRegisterScreen from './screens/auth/first-register-screen'
 import OnboardScreen from './screens/auth/onboard-screen'
 import UserRegisterScreen from './screens/auth/user-register-screen'
 import VerifyCodeScreen from './screens/auth/verify-code-screen'
+import FateCardsScreen from './screens/main/dashboard/fate-cards/fate-cards-screen'
+import LuckyNumbersScreen from './screens/main/dashboard/lucky-numbers/lucky-numbers-screen'
 import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
-import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
+import PlanetsScreen from './screens/main/dashboard/planets/planets-screen'
 import NavigationScreen from './screens/main/navigation-screen'
 import ProfileScreen from './screens/main/profile/profile-screen'
 import SplashScreen from './screens/splash/splash-screen'
@@ -75,6 +77,8 @@ function App({ initial }: { initial: string }) {
 
     useEffect(() => {
         getJWTtokens().then(({ refreshToken }) => {
+            console.log(refreshToken)
+
             if (refreshToken) {
                 fetchRefresh({ refresh_token: `${refreshToken}` })
                 setLoading(true)
@@ -87,7 +91,7 @@ function App({ initial }: { initial: string }) {
     useEffect(() => {
         if (isSuccess) {
             dispatch(setAccessToken(newAccessToken))
-            setInitialRoute('NavigationScreen')
+            setInitialRoute(routes.NAVIGATION)
             setLoading(false)
         }
     }, [isSuccess])
@@ -95,7 +99,7 @@ function App({ initial }: { initial: string }) {
     useEffect(() => {
         if (error) {
             if (netInfo.isConnected === false) {
-                setInitialRoute('NavigationScreen')
+                setInitialRoute(routes.NAVIGATION)
                 // TODO offline mode
             }
             setLoading(false)
@@ -142,14 +146,25 @@ function App({ initial }: { initial: string }) {
                         name={routes.PROFILE}
                         component={ProfileScreen}
                     />
-                    <Stack.Screen
-                        name={routes.NUMBERS}
-                        component={NumbersScreen}
-                    />
-                    <Stack.Screen
-                        name={routes.MATRIX}
-                        component={MatrixScreen}
-                    />
+                    {/* DASHBOARD ROUTES */}
+                    <Stack.Group>
+                        <Stack.Screen
+                            name={routes.FATE_CARDS}
+                            component={FateCardsScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.LUCKY_NUMBERS}
+                            component={LuckyNumbersScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.PLANETS}
+                            component={PlanetsScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.MATRIX}
+                            component={MatrixScreen}
+                        />
+                    </Stack.Group>
                 </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>

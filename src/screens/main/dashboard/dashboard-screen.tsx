@@ -25,16 +25,37 @@ export default function DashboardScreen({
             <ScrollView>
                 <VStack p="$4" gap="$4">
                     <CardButton
-                        label="NUMBERS"
-                        onPress={() => navigation.navigate(routes.NUMBERS)}
+                        label={t('section.numerology.health')}
+                        onPress={() =>
+                            navigation.navigate(routes.NUMEROLOGY_HEALTH)
+                        }
                     />
                     <CardButton
-                        label="MATRIX"
-                        onPress={() => navigation.navigate(routes.MATRIX)}
+                        label={t('section.fate.cards')}
+                        onPress={() => navigation.navigate(routes.FATE_CARDS)}
                     />
-                    <CardButton label="TEXT 3" />
-                    <CardButton label="TEXT 4" />
-                    <CardButton label="TEXT 5" />
+                    <CardButton
+                        label={t('section.professions')}
+                        onPress={() => navigation.navigate(routes.PROFESSIONS)}
+                    />
+                    <CardButton
+                        label={t('section.weaknesses')}
+                        onPress={() => navigation.navigate(routes.WEAKNESSES)}
+                    />
+                    <CardButton
+                        label={t('section.lucky.numbers')}
+                        onPress={() =>
+                            navigation.navigate(routes.LUCKY_NUMBERS)
+                        }
+                    />
+                    <CardButton
+                        label={t('section.planets')}
+                        onPress={() => navigation.navigate(routes.PLANETS)}
+                    />
+                    <CardButton
+                        label={t('section.ancestors')}
+                        onPress={() => navigation.navigate(routes.ANCESTORS)}
+                    />
                 </VStack>
             </ScrollView>
         </SafeAreaView>

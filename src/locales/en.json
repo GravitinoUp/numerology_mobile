@@ -5,9 +5,7 @@
         "dashboard": "Dashboard",
         "union": "Union",
         "prediction": "Prediction",
-        "profile": "Profile",
-        "numbers": "Numbers in matrix",
-        "matrix": "Matrix decode"
+        "profile": "Profile"
     },
     "select": {
         "birthday": "Select your birthday"
@@ -75,5 +73,18 @@
     "day": "Day",
     "month": "Month",
     "year": "Year",
-    "forgot.password": "Forgot your password?"
+    "forgot.password": "Forgot your password?",
+    "section": {
+        "numerology.health": "Нумерология здоровья",
+        "fate.cards": "Карты судьбы",
+        "professions": "Профессии и самореализация",
+        "weaknesses": "Слабые качества",
+        "lucky.numbers": "Числа удачи",
+        "planets": "Планеты",
+        "ancestors": "Кем были ваши предки?"
+    },
+    "planets": {
+        "life.path.number": "The number of the life path",
+        "soul.number": "The number of the soul"
+    }
 }
