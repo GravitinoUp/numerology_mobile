@@ -28,7 +28,9 @@
         "password": "Пароль",
         "repeat.password": "Повторите пароль",
         "data": "Данные пользователя",
-        "name": "Ваше имя",
+        "first.name": "Имя",
+        "last.name": "Фамилия",
+        "patronymic": "Отчество",
         "birthday": "День рождения"
     },
     "placeholder": {

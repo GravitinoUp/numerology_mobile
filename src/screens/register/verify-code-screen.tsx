@@ -69,9 +69,6 @@ export default function VerifyCodeScreen({
         registerUser({
             ...registerData,
             code: code,
-            // REMOVE
-            last_name: '',
-            first_name: '',
         })
     }
 

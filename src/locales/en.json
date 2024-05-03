@@ -28,7 +28,9 @@
         "password": "Password",
         "repeat.password": "Repeat password",
         "data": "User data",
-        "name": "Your name",
+        "first.name": "First name",
+        "last.name": "Last name",
+        "patronymic": "Patronymic",
         "birthday": "Your birthday"
     },
     "placeholder": {

@@ -1,7 +1,7 @@
 import { api } from '.'
 import { OnboardInterface } from '@/types/interface/onboard'
 
-const usersApi = api.injectEndpoints({
+const onboardApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getAllOnboardScreens: builder.query<OnboardInterface[], void>({
             query: () => ({
@@ -11,4 +11,4 @@ const usersApi = api.injectEndpoints({
     }),
 })
 
-export const { useGetAllOnboardScreensQuery } = usersApi
+export const { useGetAllOnboardScreensQuery } = onboardApi

@@ -41,18 +41,17 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
     const dispatch = useAppDispatch()
     const [authUser, { data, error, isSuccess, isLoading }] = useAuthMutation()
 
+    const [selectedCountry, setSelectedCountry] = useState(
+        phoneCountries[0].value
+    )
+
     const [passwordHidden, setPasswordHidden] = useState(true)
 
     const onSubmit = (authData: z.infer<typeof authSchema>) => {
-        authUser({ phone: authData.phone, password: authData.password })
-
-        // TODO remove
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: routes.NAVIGATION }],
-            })
-        )
+        authUser({
+            phone: `${selectedCountry}${authData.phone}`,
+            password: authData.password,
+        })
     }
 
     useEffect(() => {
@@ -107,8 +106,8 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                                 <HStack gap="$4">
                                     <AppSelect
                                         style={{ width: 90 }}
-                                        selectedValue={phoneCountries[0].value}
-                                        onValueChange={() => {}}
+                                        selectedValue={selectedCountry}
+                                        onValueChange={setSelectedCountry}
                                         items={phoneCountries}
                                     />
                                     <AppInput

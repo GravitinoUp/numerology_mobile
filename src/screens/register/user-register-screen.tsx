@@ -19,7 +19,9 @@ import { useSendPhoneAuthCodeMutation } from '@/redux/api/auth'
 import { DefaultStackScreenProps, ErrorInterface } from '@/types/interface'
 
 const userSchema = z.object({
-    name: z.string().min(1, i18next.t('error.required')),
+    last_name: z.string().min(1, i18next.t('error.required')),
+    first_name: z.string().min(1, i18next.t('error.required')),
+    patronymic: z.string().min(1, i18next.t('error.required')),
     email: z.string().optional(),
     birthday: z.date(),
 })
@@ -37,7 +39,9 @@ export default function UserRegisterScreen({
     const form = useForm({
         schema: userSchema,
         defaultValues: {
-            name: '',
+            last_name: '',
+            first_name: '',
+            patronymic: '',
             email: '',
             birthday: new Date(),
         },
@@ -49,8 +53,6 @@ export default function UserRegisterScreen({
     ] = useSendPhoneAuthCodeMutation()
 
     const onSubmit = () => {
-        console.log(registerData)
-
         sendCode({ phone: registerData.phone })
     }
 
@@ -59,7 +61,9 @@ export default function UserRegisterScreen({
             const userBirthday = form.getValues('birthday')
             navigation.navigate(routes.VERIFY_CODE, {
                 registerData: {
-                    name: form.getValues('name'),
+                    last_name: form.getValues('last_name'),
+                    first_name: form.getValues('first_name'),
+                    patronymic: form.getValues('patronymic'),
                     birthday_day: userBirthday.getDate(),
                     birthday_month: userBirthday.getMonth(),
                     birthday_year: userBirthday.getFullYear(),
@@ -105,7 +109,37 @@ export default function UserRegisterScreen({
                 <CustomForm form={form}>
                     <FormField
                         control={form.control}
-                        name="name"
+                        name="last_name"
+                        render={({ field }) => (
+                            <FormItem style={{ marginBottom: 16 }}>
+                                <AppInput
+                                    value={field.value}
+                                    onChangeText={field.onChange}
+                                    placeholder={t('user.name')}
+                                    required
+                                />
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="first_name"
+                        render={({ field }) => (
+                            <FormItem style={{ marginBottom: 16 }}>
+                                <AppInput
+                                    value={field.value}
+                                    onChangeText={field.onChange}
+                                    placeholder={t('user.name')}
+                                    required
+                                />
+                                <FormMessage />
+                            </FormItem>
+                        )}
+                    />
+                    <FormField
+                        control={form.control}
+                        name="patronymic"
                         render={({ field }) => (
                             <FormItem style={{ marginBottom: 16 }}>
                                 <AppInput
