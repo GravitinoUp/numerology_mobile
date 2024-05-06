@@ -8,7 +8,12 @@ const numbersApi = api.injectEndpoints({
                 url: 'number/fate-card',
             }),
         }),
+        getProfessions: builder.query<PageInterface[], void>({
+            query: () => ({
+                url: 'number/professions',
+            }),
+        }),
     }),
 })
 
-export const { useGetFateCardQuery } = numbersApi
+export const { useGetFateCardQuery, useGetProfessionsQuery } = numbersApi

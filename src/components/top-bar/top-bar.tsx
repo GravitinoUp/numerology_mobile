@@ -35,7 +35,7 @@ const TopBar = ({
             borderBottomRightRadius="$2xl"
             {...props}
         >
-            <HStack alignItems="center">
+            <HStack flex={1} alignItems="center">
                 {navigation && (
                     <View px="$4">
                         <BackButton navigation={navigation} />
@@ -43,22 +43,28 @@ const TopBar = ({
                 )}
                 {!subtitle ? (
                     <Text
-                        fontSize="$xl"
+                        fontSize="$lg"
                         fontWeight="$medium"
                         color={AppColors.text}
+                        flexShrink={1}
                     >
                         {title}
                     </Text>
                 ) : (
                     <VStack>
                         <Text
-                            fontSize="$xl"
+                            fontSize="$lg"
                             fontWeight="$medium"
                             color={AppColors.text}
+                            flexShrink={1}
                         >
                             {title}
                         </Text>
-                        <Text fontSize="$sm" color={AppColors.text}>
+                        <Text
+                            fontSize="$sm"
+                            color={AppColors.text}
+                            flexShrink={1}
+                        >
                             {subtitle}
                         </Text>
                     </VStack>

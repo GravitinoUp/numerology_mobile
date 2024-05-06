@@ -16,9 +16,11 @@ import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
 import FateCardsScreen from './screens/main/dashboard/fate-cards/fate-cards-screen'
+import HealthNumerologyScreen from './screens/main/dashboard/health-numerology/health-numerology-screen'
 import LuckyNumbersScreen from './screens/main/dashboard/lucky-numbers/lucky-numbers-screen'
 import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
 import PlanetsScreen from './screens/main/dashboard/planets/planets-screen'
+import ProfessionsScreen from './screens/main/dashboard/professions/professions-screen'
 import NavigationScreen from './screens/main/navigation-screen'
 import ProfileScreen from './screens/main/profile/profile-screen'
 import OnboardScreen from './screens/onboard/onboard-screen'
@@ -147,8 +149,16 @@ function App({ initial }: { initial: string }) {
                     {/* DASHBOARD ROUTES */}
                     <Stack.Group>
                         <Stack.Screen
+                            name={routes.HEALTH_NUMEROLOGY}
+                            component={HealthNumerologyScreen}
+                        />
+                        <Stack.Screen
                             name={routes.FATE_CARDS}
                             component={FateCardsScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.PROFESSIONS}
+                            component={ProfessionsScreen}
                         />
                         <Stack.Screen
                             name={routes.LUCKY_NUMBERS}

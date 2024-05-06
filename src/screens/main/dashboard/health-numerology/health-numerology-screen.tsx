@@ -1,16 +1,17 @@
 import { useState } from 'react'
 import { ScrollView, Text, VStack } from '@gluestack-ui/themed'
-import { CloverIcon, InfoIcon } from 'lucide-react-native'
+import { DiamondIcon, HeartIcon, InfoIcon } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
-import NumberCard from '../../../../components/number-card/number-card'
+import DashboardLabel from '@/components/dashboard/dashboard-label'
 import DescriptionActionsheet from '@/components/description-actionsheet/description-actionsheet'
 import IconButton from '@/components/icon-button/icon-button'
+import NumberCard from '@/components/number-card/number-card'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
 import { AppColors } from '@/constants/colors'
 import { DefaultStackScreenProps } from '@/types/interface'
 
-export default function LuckyNumbersScreen({
+export default function HealthNumerologyScreen({
     navigation,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
@@ -20,7 +21,7 @@ export default function LuckyNumbersScreen({
     return (
         <Scaffold>
             <TopBar
-                title={t('section.lucky.numbers')}
+                title={t('section.health.numerology')}
                 navigation={navigation}
                 suffix={
                     <IconButton
@@ -31,36 +32,29 @@ export default function LuckyNumbersScreen({
             />
             <ScrollView>
                 <VStack p="$4" gap="$4">
+                    <DashboardLabel>
+                        Число судьбы и психосоматика
+                    </DashboardLabel>
                     <NumberCard
-                        color="#32CD32"
-                        number={18}
-                        icon={<CloverIcon color={AppColors.background} />}
+                        color="#2D9CDB"
+                        number={2}
+                        max={22}
+                        icon={<DiamondIcon color={AppColors.background} />}
+                        label="Число судьбы"
+                        description="Описание числа судьбы"
                     />
+                    <DashboardLabel>Хронические заболевания</DashboardLabel>
                     <NumberCard
-                        color="#32CD32"
-                        number={6}
-                        icon={<CloverIcon color={AppColors.background} />}
+                        color="#F94144"
+                        number={2}
+                        max={22}
+                        icon={<HeartIcon color={AppColors.background} />}
+                        label="Название хронического заболевания"
+                        description="Описание хронического заболевания"
                     />
-                    <NumberCard
-                        color="#32CD32"
-                        number={22}
-                        icon={<CloverIcon color={AppColors.background} />}
-                    />
-                    <NumberCard
-                        color="#32CD32"
-                        number={10}
-                        icon={<CloverIcon color={AppColors.background} />}
-                    />
-                    <NumberCard
-                        color="#32CD32"
-                        number={9}
-                        icon={<CloverIcon color={AppColors.background} />}
-                    />
-                    <NumberCard
-                        color="#32CD32"
-                        number={1}
-                        icon={<CloverIcon color={AppColors.background} />}
-                    />
+                    <DashboardLabel>
+                        Метафизические причины болезней
+                    </DashboardLabel>
                 </VStack>
             </ScrollView>
             <DescriptionActionsheet

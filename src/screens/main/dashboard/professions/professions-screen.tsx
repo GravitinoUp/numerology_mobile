@@ -1,18 +1,18 @@
 import { Fragment, useState } from 'react'
-import { ScrollView, Text, VStack, Image, Center } from '@gluestack-ui/themed'
+import { ScrollView, Text, VStack } from '@gluestack-ui/themed'
 import { InfoIcon } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
-import DashboardLabel from '@/components/dashboard/dashboard-label'
 import DescriptionActionsheet from '@/components/description-actionsheet/description-actionsheet'
 import IconButton from '@/components/icon-button/icon-button'
+import NumberCard from '@/components/number-card/number-card'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
 import { AppColors } from '@/constants/colors'
-import { useGetFateCardQuery } from '@/redux/api/numbers'
+import { useGetProfessionsQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
 
-export default function FateCardsScreen({
+export default function ProfessionsScreen({
     navigation,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
@@ -20,19 +20,19 @@ export default function FateCardsScreen({
     const [actionsheetOpen, setActionsheetOpen] = useState(false)
 
     const {
-        data: fateCard,
+        data: professions = [],
         isFetching,
         isSuccess,
         error,
         refetch,
-    } = useGetFateCardQuery()
+    } = useGetProfessionsQuery()
 
     const successLoad = !isFetching && isSuccess
 
     return (
         <Scaffold>
             <TopBar
-                title={t('section.fate.cards')}
+                title={t('section.professions')}
                 navigation={navigation}
                 suffix={
                     successLoad && (
@@ -46,28 +46,21 @@ export default function FateCardsScreen({
             {successLoad ? (
                 <Fragment>
                     <ScrollView>
-                        <VStack p="$4" gap="$10">
-                            <DashboardLabel
-                                fontSize="$lg"
-                                fontWeight="$bold"
-                                color={AppColors.text}
-                                textAlign="center"
-                            >
-                                {fateCard.page_name}
-                            </DashboardLabel>
-                            {fateCard.page_image !== '' && (
-                                <Center>
-                                    <Image
-                                        source={fateCard.page_image}
-                                        alt=""
-                                        h={135}
-                                        w={90}
-                                    />
-                                </Center>
-                            )}
-                            <Text color={AppColors.text}>
-                                {fateCard.page_content}
-                            </Text>
+                        <VStack p="$4" gap="$4">
+                            {professions.map((value, index) => (
+                                <NumberCard
+                                    key={index}
+                                    color="#2D9CDB"
+                                    number={Number(value.page_keys[0])}
+                                    max={22}
+                                    label={value.page_name}
+                                    description={value.page_content}
+                                />
+                            ))}
+                            {/* <DashboardLabel>
+                        Группа профессий по судьбе 1
+                    </DashboardLabel>
+                    */}
                         </VStack>
                     </ScrollView>
                     <DescriptionActionsheet

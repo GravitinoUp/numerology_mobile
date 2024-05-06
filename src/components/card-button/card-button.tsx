@@ -10,17 +10,25 @@ type CardButtonProps = {
 }
 
 const CardButton = ({ label, onPress }: CardButtonProps) => (
-    <View softShadow="1" bgColor={AppColors.background} borderRadius="$2xl">
+    <View
+        softShadow="1"
+        shadowColor="#00000040"
+        bgColor={AppColors.background}
+        borderRadius="$2xl"
+        overflow="hidden"
+    >
         <TouchableOpacity activeOpacity={ACTIVE_OPACITY} onPress={onPress}>
-            <HStack
-                px="$5"
-                py="$8"
-                justifyContent="space-between"
-                alignItems="center"
-            >
-                <Text fontWeight="$bold" color={AppColors.text}>
-                    {label}
-                </Text>
+            <HStack justifyContent="space-between" alignItems="center" pr="$4">
+                <HStack flex={1} alignItems="center">
+                    <View bgColor={AppColors.primary} w="$20" h="$20" mr="$3" />
+                    <Text
+                        fontWeight="$bold"
+                        color={AppColors.text}
+                        flexShrink={1}
+                    >
+                        {label}
+                    </Text>
+                </HStack>
                 <ChevronRight color={AppColors.text} fontWeight="900" />
             </HStack>
         </TouchableOpacity>

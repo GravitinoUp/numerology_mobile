@@ -19,7 +19,7 @@ const ProgressBar = ({
     ...props
 }: ProgressBarProps) => (
     <Progress
-        height={8}
+        height="$2"
         borderRadius="$xl"
         justifyContent="center"
         bgColor={AppColors.track}

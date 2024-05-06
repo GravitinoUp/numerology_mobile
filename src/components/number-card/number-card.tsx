@@ -1,3 +1,4 @@
+import React from 'react'
 import { HStack, Text, VStack, View } from '@gluestack-ui/themed'
 import { CheckIcon } from 'lucide-react-native'
 import ProgressBar from '@/components/progress-bar/progress-bar'
@@ -6,6 +7,7 @@ import { AppColors } from '@/constants/colors'
 type NumberCardProps = {
     number: number
     max?: number
+    icon?: React.ReactNode
     label?: string
     description?: string
     color?: string
@@ -14,14 +16,23 @@ type NumberCardProps = {
 const NumberCard = ({
     number,
     max = 31,
+    icon = <CheckIcon color={AppColors.background} />,
     label,
     description,
     color = AppColors.primary,
 }: NumberCardProps) => (
     <VStack w="$full">
-        <HStack justifyContent="center">
-            <View bgColor={color} borderRadius="$full" p="$3" mr="$2">
-                <CheckIcon color={AppColors.background} />
+        <HStack alignItems="center" justifyContent="center">
+            <View
+                h="$12"
+                w="$12"
+                alignItems="center"
+                justifyContent="center"
+                bgColor={color}
+                borderRadius="$full"
+                mr="$2"
+            >
+                {icon}
             </View>
             <VStack style={{ flex: 1 }} gap="$1">
                 <Text>
@@ -45,7 +56,7 @@ const NumberCard = ({
             </VStack>
         </HStack>
         {description && (
-            <Text mt="$2" color={AppColors.text}>
+            <Text mt="$2" color={AppColors.hint}>
                 {description}
             </Text>
         )}

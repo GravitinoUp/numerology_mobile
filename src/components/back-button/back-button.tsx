@@ -10,7 +10,12 @@ const BackButton = ({
 }: {
     navigation: DefaultStackNavigationProp
 }) => (
-    <View bgColor={AppColors.background} borderRadius="$full" softShadow="1">
+    <View
+        bgColor={AppColors.background}
+        borderRadius="$full"
+        softShadow="1"
+        shadowColor="#00000040"
+    >
         <TouchableOpacity
             activeOpacity={ACTIVE_OPACITY}
             onPress={navigation.goBack}
