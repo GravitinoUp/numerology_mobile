@@ -15,12 +15,13 @@ import { setAccessToken } from './redux/reducers/authSlice'
 import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
-import FateCardsScreen from './screens/main/dashboard/fate-cards/fate-cards-screen'
-import HealthNumerologyScreen from './screens/main/dashboard/health-numerology/health-numerology-screen'
-import LuckyNumbersScreen from './screens/main/dashboard/lucky-numbers/lucky-numbers-screen'
 import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
-import PlanetsScreen from './screens/main/dashboard/planets/planets-screen'
-import ProfessionsScreen from './screens/main/dashboard/professions/professions-screen'
+import FateCardsScreen from './screens/main/dashboard/numbers/fate-cards/fate-cards-screen'
+import HealthNumerologyScreen from './screens/main/dashboard/numbers/health-numerology/health-numerology-screen'
+import LuckyNumbersScreen from './screens/main/dashboard/numbers/lucky-numbers/lucky-numbers-screen'
+import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
+import PlanetsScreen from './screens/main/dashboard/numbers/planets/planets-screen'
+import ProfessionsScreen from './screens/main/dashboard/numbers/professions/professions-screen'
 import NavigationScreen from './screens/main/navigation-screen'
 import ProfileScreen from './screens/main/profile/profile-screen'
 import OnboardScreen from './screens/onboard/onboard-screen'
@@ -148,6 +149,10 @@ function App({ initial }: { initial: string }) {
                     />
                     {/* DASHBOARD ROUTES */}
                     <Stack.Group>
+                        <Stack.Screen
+                            name={routes.NUMBERS}
+                            component={NumbersScreen}
+                        />
                         <Stack.Screen
                             name={routes.HEALTH_NUMEROLOGY}
                             component={HealthNumerologyScreen}

@@ -8,7 +8,16 @@ type IconButtonProps = {
 
 const IconButton = ({ style, icon, onPress }: IconButtonProps) => (
     <TouchableOpacity
-        style={[style, { padding: 16 }]}
+        style={[
+            style,
+            {
+                width: 40,
+                height: 40,
+                justifyContent: 'center',
+                alignItems: 'center',
+                borderRadius: 100,
+            },
+        ]}
         activeOpacity={0.8}
         onPress={onPress}
     >

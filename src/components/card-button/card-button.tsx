@@ -20,7 +20,7 @@ const CardButton = ({ label, onPress }: CardButtonProps) => (
         <TouchableOpacity activeOpacity={ACTIVE_OPACITY} onPress={onPress}>
             <HStack justifyContent="space-between" alignItems="center" pr="$4">
                 <HStack flex={1} alignItems="center">
-                    <View bgColor={AppColors.primary} w="$20" h="$20" mr="$3" />
+                    <View bgColor={AppColors.primary} w="$24" h="$24" mr="$3" />
                     <Text
                         fontWeight="$bold"
                         color={AppColors.text}

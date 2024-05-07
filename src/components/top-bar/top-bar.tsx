@@ -29,19 +29,25 @@ const TopBar = ({
             h={80}
             bgColor={AppColors.background}
             alignItems="center"
-            justifyContent="space-between"
-            px={!navigation ? '$4' : undefined}
+            justifyContent={!navigation && !suffix ? 'center' : 'space-between'}
+            px="$4"
             borderBottomLeftRadius="$2xl"
             borderBottomRightRadius="$2xl"
             {...props}
         >
-            <HStack flex={1} alignItems="center">
-                {navigation && (
-                    <View px="$4">
-                        <BackButton navigation={navigation} />
-                    </View>
-                )}
-                {!subtitle ? (
+            {navigation && <BackButton navigation={navigation} />}
+            {!subtitle ? (
+                <Text
+                    fontSize="$lg"
+                    fontWeight="$medium"
+                    color={AppColors.text}
+                    flexShrink={1}
+                    textAlign="center"
+                >
+                    {title}
+                </Text>
+            ) : (
+                <VStack>
                     <Text
                         fontSize="$lg"
                         fontWeight="$medium"
@@ -50,27 +56,12 @@ const TopBar = ({
                     >
                         {title}
                     </Text>
-                ) : (
-                    <VStack>
-                        <Text
-                            fontSize="$lg"
-                            fontWeight="$medium"
-                            color={AppColors.text}
-                            flexShrink={1}
-                        >
-                            {title}
-                        </Text>
-                        <Text
-                            fontSize="$sm"
-                            color={AppColors.text}
-                            flexShrink={1}
-                        >
-                            {subtitle}
-                        </Text>
-                    </VStack>
-                )}
-            </HStack>
-            {suffix}
+                    <Text fontSize="$sm" color={AppColors.text} flexShrink={1}>
+                        {subtitle}
+                    </Text>
+                </VStack>
+            )}
+            {(navigation || suffix) && <View>{suffix}</View>}
         </HStack>
     </Fragment>
 )

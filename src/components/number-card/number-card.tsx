@@ -1,6 +1,7 @@
 import React from 'react'
 import { HStack, Text, VStack, View } from '@gluestack-ui/themed'
 import { CheckIcon } from 'lucide-react-native'
+import DashboardLabel from '../dashboard/dashboard-label'
 import ProgressBar from '@/components/progress-bar/progress-bar'
 import { AppColors } from '@/constants/colors'
 
@@ -8,6 +9,7 @@ type NumberCardProps = {
     number: number
     max?: number
     icon?: React.ReactNode
+    title?: string
     label?: string
     description?: string
     color?: string
@@ -15,13 +17,15 @@ type NumberCardProps = {
 
 const NumberCard = ({
     number,
-    max = 31,
+    max = 22,
     icon = <CheckIcon color={AppColors.background} />,
+    title,
     label,
     description,
     color = AppColors.primary,
 }: NumberCardProps) => (
     <VStack w="$full">
+        {title && <DashboardLabel mb="$3">{title}</DashboardLabel>}
         <HStack alignItems="center" justifyContent="center">
             <View
                 h="$12"

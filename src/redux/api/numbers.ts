@@ -1,8 +1,18 @@
 import { api } from '.'
-import { PageInterface } from '@/types/interface/numbers'
+import { PageInterface, PageType } from '@/types/interface/numbers'
 
 const numbersApi = api.injectEndpoints({
     endpoints: (builder) => ({
+        getNumbers: builder.query<PageInterface[], PageType>({
+            query: (type) => ({
+                url: `number/${type}`,
+            }),
+        }),
+        getHealthNumerology: builder.query<PageInterface[], void>({
+            query: () => ({
+                url: 'number/health',
+            }),
+        }),
         getFateCard: builder.query<PageInterface, void>({
             query: () => ({
                 url: 'number/fate-card',
@@ -13,7 +23,18 @@ const numbersApi = api.injectEndpoints({
                 url: 'number/professions',
             }),
         }),
+        getPlanets: builder.query<PageInterface[], void>({
+            query: () => ({
+                url: 'number/planets',
+            }),
+        }),
     }),
 })
 
-export const { useGetFateCardQuery, useGetProfessionsQuery } = numbersApi
+export const {
+    useGetNumbersQuery,
+    useGetHealthNumerologyQuery,
+    useGetFateCardQuery,
+    useGetProfessionsQuery,
+    useGetPlanetsQuery,
+} = numbersApi

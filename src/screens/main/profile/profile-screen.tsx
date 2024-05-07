@@ -77,10 +77,7 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                 <Text fontSize="$sm">{t('settings.description.logout')}</Text>
             </Dialog>
             <Scaffold>
-                <TopBar
-                    title={t('route.profile')}
-                    suffix={<StatusCard pro />}
-                />
+                <TopBar title={t('route.profile')} />
                 <ScrollView>
                     <Center>
                         <View
