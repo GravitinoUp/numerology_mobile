@@ -5,22 +5,33 @@ import { AppColors } from '@/constants/colors'
 import { ACTIVE_OPACITY } from '@/constants/constants'
 
 type CardButtonProps = {
+    prefix?: React.ReactNode
     label: string
     onPress?: () => void
 }
 
-const CardButton = ({ label, onPress }: CardButtonProps) => (
+const CardButton = ({ prefix, label, onPress }: CardButtonProps) => (
     <View
-        softShadow="1"
-        shadowColor="#00000040"
+        h="$20"
         bgColor={AppColors.background}
-        borderRadius="$2xl"
+        borderWidth={1}
+        borderColor={AppColors.border}
+        borderRadius={20}
         overflow="hidden"
+        justifyContent="center"
     >
         <TouchableOpacity activeOpacity={ACTIVE_OPACITY} onPress={onPress}>
             <HStack justifyContent="space-between" alignItems="center" pr="$4">
                 <HStack flex={1} alignItems="center">
-                    <View bgColor={AppColors.primary} w="$24" h="$24" mr="$3" />
+                    <View
+                        w="$20"
+                        h="$20"
+                        mr="$2"
+                        justifyContent="center"
+                        alignItems="center"
+                    >
+                        {prefix}
+                    </View>
                     <Text
                         fontWeight="$bold"
                         color={AppColors.text}

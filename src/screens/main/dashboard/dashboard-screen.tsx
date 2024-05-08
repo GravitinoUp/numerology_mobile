@@ -1,20 +1,18 @@
-import { ScrollView, VStack } from '@gluestack-ui/themed'
-import { useTranslation } from 'react-i18next'
-import CardButton from '../../../components/card-button/card-button'
+import { HStack, ScrollView } from '@gluestack-ui/themed'
+import { Image } from 'react-native'
+import DropShadow from 'react-native-drop-shadow'
+import CategoryCard from '@/components/dashboard/category-card'
 import StatusCard from '@/components/status-card/status-card'
-import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
+import { categories } from '@/constants/constants'
 import { routes } from '@/constants/routes'
 import { useGetPageTypesQuery } from '@/redux/api/pages'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
-import { PageType } from '@/types/interface/numbers'
 
 export default function DashboardScreen({
     navigation,
 }: DefaultStackScreenProps) {
-    const { t } = useTranslation()
-
     const {
         //data: pages = [],
         isFetching,
@@ -27,74 +25,94 @@ export default function DashboardScreen({
 
     return (
         <Scaffold>
-            <TopBar
-                title={t(`route.dashboard`)}
-                subtitle="Hi, Name Surname"
-                suffix={<StatusCard pro />}
-            />
+            <HStack
+                position="absolute"
+                w="$full"
+                px="$4"
+                justifyContent="flex-end"
+                alignItems="center"
+                h={80}
+                zIndex={100}
+            >
+                <StatusCard pro />
+            </HStack>
             {successLoad ? (
                 <ScrollView>
-                    <VStack p="$4" gap="$4">
-                        {/* {pages.map((value, index) => (
-                            <CardButton
-                                key={index}
-                                label={value.page_type_name}
-                                onPress={() => {}}
+                    <Image
+                        style={{
+                            position: 'absolute',
+                            width: '100%',
+                            height: 180,
+                        }}
+                        source={require('@/assets/images/space_background.png')}
+                    />
+                    <HStack pt={90} px="$6" pb="$6" gap="$4" flexWrap="wrap">
+                        <DropShadow
+                            style={{
+                                shadowColor: '#091219',
+                                shadowOffset: {
+                                    width: 0,
+                                    height: 4,
+                                },
+                                shadowOpacity: 0.8,
+                                shadowRadius: 10,
+                                marginBottom: 12,
+                            }}
+                        >
+                            <CategoryCard
+                                w="$full"
+                                borderWidth="$0"
+                                category="Программа судьбы"
+                                source={require('@/assets/images/destiny.png')}
+                                onPress={() =>
+                                    navigation.navigate(routes.CATEGORIES, {
+                                        label: 'Программа судьбы',
+                                        image: require('@/assets/images/destiny.png'),
+                                        pages: [
+                                            {
+                                                label: 'Программа судьбы',
+                                                route: routes.NUMBERS,
+                                                type: 'destiny',
+                                            },
+                                            {
+                                                label: 'Сильные качества и таланты',
+                                                route: routes.NUMBERS,
+                                                type: 'strong-qualities',
+                                            },
+                                            {
+                                                label: 'Карты судьбы',
+                                                route: routes.FATE_CARDS,
+                                                type: 'fate-card',
+                                            },
+                                            {
+                                                label: 'Слабые качества',
+                                                route: routes.NUMBERS,
+                                                type: 'weak-qualities',
+                                            },
+                                            {
+                                                label: 'Планеты',
+                                                route: routes.NUMBERS,
+                                                type: 'planets',
+                                            },
+                                        ],
+                                    })
+                                }
                             />
-                        ))} */}
-                        <CardButton
-                            label={t('section.health.numerology')}
-                            onPress={() =>
-                                navigation.navigate(routes.NUMBERS, {
-                                    title: t('section.health.numerology'),
-                                    type: 'health' as PageType,
-                                })
-                            }
-                        />
-                        <CardButton
-                            label={t('section.fate.cards')}
-                            onPress={() =>
-                                navigation.navigate(routes.FATE_CARDS)
-                            }
-                        />
-                        <CardButton
-                            label={t('section.professions')}
-                            onPress={() =>
-                                navigation.navigate(routes.NUMBERS, {
-                                    title: t('section.professions'),
-                                    type: 'professions' as PageType,
-                                })
-                            }
-                        />
-                        <CardButton
-                            label={t('section.weaknesses')}
-                            onPress={() =>
-                                navigation.navigate(routes.NUMBERS, {
-                                    title: t('section.weaknesses'),
-                                    type: 'negative-traits' as PageType,
-                                })
-                            }
-                        />
-                        <CardButton
-                            label={t('section.lucky.numbers')}
-                            onPress={() =>
-                                navigation.navigate(routes.LUCKY_NUMBERS)
-                            }
-                        />
-                        <CardButton
-                            label={t('section.planets')}
-                            onPress={() => navigation.navigate(routes.PLANETS)}
-                        />
-                        <CardButton
-                            label={t('section.ancestors')}
-                            onPress={() =>
-                                navigation.navigate(routes.NUMBERS, {
-                                    title: t('section.ancestors'),
-                                    type: 'ancestors' as PageType,
-                                })
-                            }
-                        />
-                    </VStack>
+                        </DropShadow>
+                        {categories.map((value, index) => (
+                            <CategoryCard
+                                key={index}
+                                category={value.label}
+                                source={value.image}
+                                onPress={() =>
+                                    navigation.navigate(
+                                        routes.CATEGORIES,
+                                        value
+                                    )
+                                }
+                            />
+                        ))}
+                    </HStack>
                 </ScrollView>
             ) : (
                 <SplashScreen error={error} refetch={refetch} />
