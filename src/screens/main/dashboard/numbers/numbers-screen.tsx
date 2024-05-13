@@ -1,4 +1,4 @@
-import { ScrollView, VStack } from '@gluestack-ui/themed'
+import { ScrollView, Text, VStack } from '@gluestack-ui/themed'
 import { Image } from 'react-native'
 import NumbersLayout from './components/numbers-layout'
 import getCardColor from '@/components/card-button/get-card-color'
@@ -42,7 +42,7 @@ export default function NumbersScreen({
                     <PageLabel
                         bgColor={getCardColor(routeParams.type)}
                         type={routeParams.type}
-                        top={-8}
+                        top={-22}
                     >
                         {routeParams.label}
                     </PageLabel>
@@ -50,6 +50,14 @@ export default function NumbersScreen({
                         {data.map((value, index) => (
                             <ExpandableCard
                                 key={index}
+                                prefix={
+                                    <Text
+                                        fontWeight="$bold"
+                                        color={AppColors.text}
+                                    >
+                                        {value.page_keys[0]}
+                                    </Text>
+                                }
                                 title={value.page_name}
                                 content={value.page_content}
                             />

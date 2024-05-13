@@ -6,11 +6,12 @@ import { ACTIVE_OPACITY } from '@/constants/constants'
 import { AppColors, AppShapes } from '@/constants/theme'
 
 type ExpandableCardProps = {
+    prefix?: React.ReactNode
     title?: string
     content?: string
 }
 
-const ExpandableCard = ({ title, content }: ExpandableCardProps) => {
+const ExpandableCard = ({ prefix, title, content }: ExpandableCardProps) => {
     const [expanded, setExpanded] = useState(true)
 
     return (
@@ -29,8 +30,25 @@ const ExpandableCard = ({ title, content }: ExpandableCardProps) => {
                     justifyContent="space-between"
                     alignItems="center"
                 >
-                    <View />
-                    <Text fontWeight="$medium" flexShrink={1}>
+                    {prefix ? (
+                        <View
+                            bgColor={AppColors.proColor}
+                            w="$12"
+                            h="$12"
+                            justifyContent="center"
+                            alignItems="center"
+                            borderRadius="$full"
+                        >
+                            {prefix}
+                        </View>
+                    ) : (
+                        <View />
+                    )}
+                    <Text
+                        fontWeight="$medium"
+                        color={AppColors.text}
+                        flexShrink={1}
+                    >
                         {title}
                     </Text>
                     <View
@@ -39,7 +57,11 @@ const ExpandableCard = ({ title, content }: ExpandableCardProps) => {
                         <ChevronDown />
                     </View>
                 </HStack>
-                {expanded && <Text pt="$2">{content}</Text>}
+                {expanded && (
+                    <Text pt="$2" color={AppColors.text}>
+                        {content}
+                    </Text>
+                )}
             </VStack>
         </TouchableOpacity>
     )
