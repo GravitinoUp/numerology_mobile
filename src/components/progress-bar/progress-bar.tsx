@@ -5,7 +5,7 @@ import {
     ProgressFilledTrack,
     Text,
 } from '@gluestack-ui/themed'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type ProgressProps = ComponentProps<typeof Progress>
 type ProgressBarProps = {

@@ -3,7 +3,7 @@ import { HStack, Text, VStack, View } from '@gluestack-ui/themed'
 import { CheckIcon } from 'lucide-react-native'
 import DashboardLabel from '../dashboard/dashboard-label'
 import ProgressBar from '@/components/progress-bar/progress-bar'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type NumberCardProps = {
     number: number

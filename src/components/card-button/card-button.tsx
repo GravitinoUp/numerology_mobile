@@ -1,8 +1,8 @@
 import { HStack, Text, View } from '@gluestack-ui/themed'
 import { TouchableOpacity } from 'react-native'
 import ChevronRight from '@/assets/icons/chevron-right'
-import { AppColors } from '@/constants/colors'
 import { ACTIVE_OPACITY } from '@/constants/constants'
+import { AppColors } from '@/constants/theme'
 
 type CardButtonProps = {
     prefix?: React.ReactNode

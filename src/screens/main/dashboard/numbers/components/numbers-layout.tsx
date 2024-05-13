@@ -6,11 +6,11 @@ import DescriptionActionsheet from '@/components/description-actionsheet/descrip
 import IconButton from '@/components/icon-button/icon-button'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 import { DefaultStackNavigationProp } from '@/types/interface'
 
 type NumbersLayoutProps = {
-    title: string
+    title?: string
     navigation: DefaultStackNavigationProp
     children: React.ReactNode
 }

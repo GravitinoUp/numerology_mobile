@@ -2,7 +2,7 @@ import { ComponentProps, Fragment } from 'react'
 import { HStack, Text, VStack, View } from '@gluestack-ui/themed'
 import { StatusBar } from 'react-native'
 import BackButton from '../back-button/back-button'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 import { DefaultStackNavigationProp } from '@/types/interface'
 
 type HStackProps = ComponentProps<typeof HStack>

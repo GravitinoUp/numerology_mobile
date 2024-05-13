@@ -9,7 +9,7 @@ import {
     VStack,
 } from '@gluestack-ui/themed'
 import { StyleProp, ViewStyle } from 'react-native'
-import { AppColors } from '../../constants/colors'
+import { AppColors } from '../../constants/theme'
 
 type ActionsheetContentProps = ComponentProps<typeof ActionsheetContent>
 type Props = {

@@ -1,6 +1,10 @@
 import { ScrollView, VStack } from '@gluestack-ui/themed'
+import { Image } from 'react-native'
 import NumbersLayout from './components/numbers-layout'
-import NumberCard from '@/components/number-card/number-card'
+import getCardColor from '@/components/card-button/get-card-color'
+import ExpandableCard from '@/components/expandable-card/expandable-card'
+import PageLabel from '@/components/page/page-label'
+import { AppColors, AppShapes } from '@/constants/theme'
 import { useGetNumbersQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
@@ -10,9 +14,7 @@ export default function NumbersScreen({
     navigation,
     route,
 }: DefaultStackScreenProps) {
-    const routeParams = route.params as { title: string; type: PageType }
-    const title: string = routeParams.title
-    const type: PageType = routeParams.type
+    const routeParams = route.params as { label: string; type: PageType }
 
     const {
         data = [],
@@ -20,16 +22,39 @@ export default function NumbersScreen({
         isSuccess,
         error,
         refetch,
-    } = useGetNumbersQuery(type)
+    } = useGetNumbersQuery(routeParams.type)
 
     const successLoad = !isFetching && isSuccess
 
     return (
-        <NumbersLayout title={title} navigation={navigation}>
+        <NumbersLayout navigation={navigation}>
             {successLoad ? (
                 <ScrollView>
+                    <Image
+                        style={{
+                            height: 180,
+                            backgroundColor: AppColors.primary,
+                            borderRadius: AppShapes.largeRadius,
+                            marginHorizontal: 16,
+                        }}
+                        source={{ uri: '' }}
+                    />
+                    <PageLabel
+                        bgColor={getCardColor(routeParams.type)}
+                        type={routeParams.type}
+                        top={-8}
+                    >
+                        {routeParams.label}
+                    </PageLabel>
                     <VStack p="$4" gap="$4">
                         {data.map((value, index) => (
+                            <ExpandableCard
+                                key={index}
+                                title={value.page_title}
+                                content={value.page_content}
+                            />
+                        ))}
+                        {/* {data.map((value, index) => (
                             <NumberCard
                                 key={index}
                                 color="#2D9CDB"
@@ -38,7 +63,7 @@ export default function NumbersScreen({
                                 label={value.page_name}
                                 description={value.page_content}
                             />
-                        ))}
+                        ))} */}
                     </VStack>
                 </ScrollView>
             ) : (

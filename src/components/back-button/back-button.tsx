@@ -1,7 +1,7 @@
 import { View } from '@gluestack-ui/themed'
 import { TouchableOpacity } from 'react-native'
 import ChevronLeft from '@/assets/icons/chevron-left'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 import { ACTIVE_OPACITY } from '@/constants/constants'
 import { DefaultStackNavigationProp } from '@/types/interface'
 

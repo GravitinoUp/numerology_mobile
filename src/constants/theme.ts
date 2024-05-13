@@ -17,3 +17,7 @@ export const AppColors = {
     trialColor: '#E8E8E8',
     proColor: '#FFE471',
 }
+
+export const AppShapes = {
+    largeRadius: 20,
+}

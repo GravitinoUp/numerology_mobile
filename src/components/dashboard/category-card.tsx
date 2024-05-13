@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import ChevronRightAlt from '@/assets/icons/chevron-right-alt'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 import { ACTIVE_OPACITY } from '@/constants/constants'
 
 type ViewProps = ComponentProps<typeof View>

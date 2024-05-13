@@ -6,7 +6,7 @@ import getCardPrefix from '@/components/card-button/get-card-prefix'
 import CategoryLabel from '@/components/dashboard/category-label'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 import { DefaultStackScreenProps } from '@/types/interface'
 import { CategoryInterface } from '@/types/interface/categories'
 
@@ -52,7 +52,7 @@ export default function CategoriesScreen({
                             label={value.label}
                             onPress={() =>
                                 navigation.navigate(value.route, {
-                                    title: value.label,
+                                    label: value.label,
                                     type: value.type,
                                 })
                             }

@@ -1,5 +1,5 @@
 import { HStack, View } from '@gluestack-ui/themed'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type PaginationProps = {
     currentPage: number

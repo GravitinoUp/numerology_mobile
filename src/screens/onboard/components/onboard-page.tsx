@@ -1,5 +1,5 @@
 import { Text, View } from '@gluestack-ui/themed'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 import { OnboardInterface } from '@/types/interface/onboard'
 
 type OnboardPageProps = {

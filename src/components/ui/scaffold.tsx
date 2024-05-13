@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type SafeAreaViewProps = ComponentProps<typeof SafeAreaView>
 type ScaffoldProps = {

@@ -1,7 +1,7 @@
 import { HStack, VStack } from '@gluestack-ui/themed'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { TouchableOpacity } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 import { ACTIVE_OPACITY } from '@/constants/constants'
 
 const NavigationBar = ({ ...props }: BottomTabBarProps) => (

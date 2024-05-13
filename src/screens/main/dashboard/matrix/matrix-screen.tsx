@@ -2,7 +2,7 @@ import { SafeAreaView, ScrollView, VStack } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import MatrixCard from './components/matrix-card'
 import TopBar from '@/components/top-bar/top-bar'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 import { DefaultStackScreenProps } from '@/types/interface'
 
 export default function MatrixScreen({ navigation }: DefaultStackScreenProps) {

@@ -8,7 +8,7 @@ import {
     View,
     ViewStyle,
 } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type InputFieldProps = ComponentProps<typeof InputField>
 type TextProps = ComponentProps<typeof Text>

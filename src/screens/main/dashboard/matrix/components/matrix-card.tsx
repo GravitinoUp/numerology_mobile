@@ -1,5 +1,5 @@
 import { HStack, Text, VStack, View } from '@gluestack-ui/themed'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type MatrixCardProps = {
     items: { label: string; value: number; color: string }[]

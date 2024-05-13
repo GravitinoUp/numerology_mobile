@@ -1,10 +1,10 @@
 import { ComponentProps } from 'react'
 import { Text, View } from '@gluestack-ui/themed'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
-type TextProps = ComponentProps<typeof Text>
+type ViewProps = ComponentProps<typeof View>
 
-const CategoryLabel = ({ ...props }: TextProps) => (
+const CategoryLabel = ({ ...props }: ViewProps) => (
     <View
         px="$5"
         py="$2"

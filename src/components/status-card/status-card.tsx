@@ -1,5 +1,5 @@
 import { Text } from '@gluestack-ui/themed'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type StatusCardProps = {
     pro?: boolean
