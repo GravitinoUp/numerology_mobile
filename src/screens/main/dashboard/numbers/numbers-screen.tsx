@@ -50,7 +50,7 @@ export default function NumbersScreen({
                         {data.map((value, index) => (
                             <ExpandableCard
                                 key={index}
-                                title={value.page_title}
+                                title={value.page_name}
                                 content={value.page_content}
                             />
                         ))}

@@ -91,5 +91,6 @@
         "soul.number": "Число души"
     },
     "title": "Заголовок",
-    "description": "Описание"
+    "description": "Описание",
+    "categories": "Категории"
 }

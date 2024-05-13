@@ -39,7 +39,7 @@ const ExpandableCard = ({ title, content }: ExpandableCardProps) => {
                         <ChevronDown />
                     </View>
                 </HStack>
-                {expanded && <Text pt="$5">{content}</Text>}
+                {expanded && <Text pt="$2">{content}</Text>}
             </VStack>
         </TouchableOpacity>
     )

@@ -33,7 +33,6 @@ const PageLabel = ({ type, ...props }: PageLabelProps) => (
             </View>
         }
         <Text
-            fontSize="$lg"
             fontWeight="$black"
             height="$10"
             verticalAlign="middle"

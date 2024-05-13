@@ -90,5 +90,6 @@
         "soul.number": "The number of the soul"
     },
     "title": "Title",
-    "description": "Description"
+    "description": "Description",
+    "categories": "Categories"
 }
