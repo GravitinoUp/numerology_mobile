@@ -2,7 +2,7 @@ import { ScrollView, VStack } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import NumberCard from '../../../../../components/number-card/number-card'
 import NumbersLayout from '../components/numbers-layout'
-import { useGetPlanetsQuery } from '@/redux/api/numbers'
+import { useGetNumbersQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
 
@@ -15,7 +15,7 @@ export default function PlanetsScreen({ navigation }: DefaultStackScreenProps) {
         isSuccess,
         error,
         refetch,
-    } = useGetPlanetsQuery()
+    } = useGetNumbersQuery({ type: 'planets' })
 
     const successLoad = !isFetching && isSuccess
 

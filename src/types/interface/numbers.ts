@@ -36,5 +36,5 @@ export type PageType =
     | 'lucky-numbers'
     | 'angel'
     | 'professions'
-    | 'mind'
+    | 'guessing-number'
     | 'ancestors'

@@ -45,7 +45,7 @@ const getCardColor = (type: PageType) => {
             return '#5EBBFF'
         case 'professions':
             return '#4B3016'
-        case 'mind':
+        case 'guessing-number':
             return '#4B3DAA'
         case 'ancestors':
             return '#FF7C7C'

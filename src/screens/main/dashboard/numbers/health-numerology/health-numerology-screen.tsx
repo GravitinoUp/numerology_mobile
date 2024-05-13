@@ -4,7 +4,7 @@ import NumbersLayout from '../components/numbers-layout'
 import CardButton from '@/components/card-button/card-button'
 import DashboardLabel from '@/components/dashboard/dashboard-label'
 import NumberCard from '@/components/number-card/number-card'
-import { useGetHealthNumerologyQuery } from '@/redux/api/numbers'
+import { useGetNumbersQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
 
@@ -19,7 +19,7 @@ export default function HealthNumerologyScreen({
         isSuccess,
         error,
         refetch,
-    } = useGetHealthNumerologyQuery()
+    } = useGetNumbersQuery('health')
 
     const successLoad = !isFetching && isSuccess
 

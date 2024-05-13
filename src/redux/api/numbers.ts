@@ -3,14 +3,20 @@ import { PageInterface, PageType } from '@/types/interface/numbers'
 
 const numbersApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        getNumbers: builder.query<PageInterface[], PageType>({
-            query: (type) => ({
-                url: `number/${type}`,
+        getNumbers: builder.query<
+            PageInterface[],
+            { type: PageType; query?: string | number }
+        >({
+            query: ({ type, query }) => ({
+                url: `number/${type}?query=${query}`,
             }),
         }),
-        getHealthNumerology: builder.query<PageInterface[], void>({
-            query: () => ({
-                url: 'number/health',
+        getSingleNumber: builder.query<
+            PageInterface,
+            { type: PageType; query?: string | number }
+        >({
+            query: ({ type, query }) => ({
+                url: `number/${type}?query=${query}`,
             }),
         }),
         getFateCard: builder.query<PageInterface, void>({
@@ -18,23 +24,11 @@ const numbersApi = api.injectEndpoints({
                 url: 'number/fate-card',
             }),
         }),
-        getProfessions: builder.query<PageInterface[], void>({
-            query: () => ({
-                url: 'number/professions',
-            }),
-        }),
-        getPlanets: builder.query<PageInterface[], void>({
-            query: () => ({
-                url: 'number/planets',
-            }),
-        }),
     }),
 })
 
 export const {
     useGetNumbersQuery,
-    useGetHealthNumerologyQuery,
+    useGetSingleNumberQuery,
     useGetFateCardQuery,
-    useGetProfessionsQuery,
-    useGetPlanetsQuery,
 } = numbersApi

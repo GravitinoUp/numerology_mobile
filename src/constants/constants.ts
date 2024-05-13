@@ -110,8 +110,8 @@ export const categories: CategoryInterface[] = [
             },
             {
                 label: 'Чтение мыслей по числам',
-                route: routes.NUMBERS,
-                type: 'mind',
+                route: routes.INPUT_NUMBERS,
+                type: 'guessing-number',
             },
             {
                 label: 'Кем были ваши предки',

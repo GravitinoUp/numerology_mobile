@@ -19,10 +19,10 @@ import CategoriesScreen from './screens/main/dashboard/category-screen'
 import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
 import FateCardsScreen from './screens/main/dashboard/numbers/fate-cards/fate-cards-screen'
 import HealthNumerologyScreen from './screens/main/dashboard/numbers/health-numerology/health-numerology-screen'
+import InputNumbersScreen from './screens/main/dashboard/numbers/input-numbers-screen'
 import LuckyNumbersScreen from './screens/main/dashboard/numbers/lucky-numbers/lucky-numbers-screen'
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
 import PlanetsScreen from './screens/main/dashboard/numbers/planets/planets-screen'
-import ProfessionsScreen from './screens/main/dashboard/numbers/professions/professions-screen'
 import NavigationScreen from './screens/main/navigation-screen'
 import ProfileScreen from './screens/main/profile/profile-screen'
 import OnboardScreen from './screens/onboard/onboard-screen'
@@ -159,16 +159,16 @@ function App({ initial }: { initial: string }) {
                             component={NumbersScreen}
                         />
                         <Stack.Screen
+                            name={routes.INPUT_NUMBERS}
+                            component={InputNumbersScreen}
+                        />
+                        <Stack.Screen
                             name={routes.HEALTH_NUMEROLOGY}
                             component={HealthNumerologyScreen}
                         />
                         <Stack.Screen
                             name={routes.FATE_CARDS}
                             component={FateCardsScreen}
-                        />
-                        <Stack.Screen
-                            name={routes.PROFESSIONS}
-                            component={ProfessionsScreen}
                         />
                         <Stack.Screen
                             name={routes.LUCKY_NUMBERS}

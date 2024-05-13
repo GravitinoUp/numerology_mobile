@@ -8,8 +8,8 @@ import {
 } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import ChevronRightAlt from '@/assets/icons/chevron-right-alt'
-import { AppColors } from '@/constants/theme'
 import { ACTIVE_OPACITY } from '@/constants/constants'
+import { AppColors } from '@/constants/theme'
 
 type ViewProps = ComponentProps<typeof View>
 type CategoryCardProps = {

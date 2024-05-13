@@ -1,34 +1,34 @@
+import { useState } from 'react'
 import { ScrollView, Text, VStack } from '@gluestack-ui/themed'
 import { Image } from 'react-native'
 import NumbersLayout from './components/numbers-layout'
 import getCardColor from '@/components/card-button/get-card-color'
-import ExpandableCard from '@/components/expandable-card/expandable-card'
 import PageLabel from '@/components/page/page-label'
 import { AppColors, AppShapes } from '@/constants/theme'
-import { useGetNumbersQuery } from '@/redux/api/numbers'
+import { useGetSingleNumberQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
 import { PageType } from '@/types/interface/numbers'
 
-export default function NumbersScreen({
+export default function InputNumbersScreen({
     navigation,
     route,
 }: DefaultStackScreenProps) {
     const routeParams = route.params as { label: string; type: PageType }
 
-    const {
-        data = [],
-        isFetching,
-        isSuccess,
-        error,
-        refetch,
-    } = useGetNumbersQuery({ type: routeParams.type })
+    const [input, setInput] = useState('')
+
+    const { data, isFetching, isSuccess, error, refetch } =
+        useGetSingleNumberQuery(
+            { type: routeParams.type, query: input.trim() },
+            { skip: input.trim() === '' }
+        )
 
     const successLoad = !isFetching && isSuccess
 
     return (
         <NumbersLayout navigation={navigation}>
-            {successLoad ? (
+            {true ? ( // success load page
                 <ScrollView>
                     <Image
                         style={{
@@ -47,21 +47,11 @@ export default function NumbersScreen({
                         {routeParams.label}
                     </PageLabel>
                     <VStack p="$4" gap="$4">
-                        {data.map((value, index) => (
-                            <ExpandableCard
-                                key={index}
-                                prefix={
-                                    <Text
-                                        fontWeight="$bold"
-                                        color={AppColors.text}
-                                    >
-                                        {value.page_keys[0]}
-                                    </Text>
-                                }
-                                title={value.page_name}
-                                content={value.page_content}
-                            />
-                        ))}
+                        {successLoad && (
+                            <Text color={AppColors.text}>
+                                {data.page_content}
+                            </Text>
+                        )}
                     </VStack>
                 </ScrollView>
             ) : (

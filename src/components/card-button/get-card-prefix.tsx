@@ -65,7 +65,7 @@ const getCardPrefix = (type: PageType) => {
             return <AngelIcon />
         case 'professions':
             return <ProfessionIcon />
-        case 'mind':
+        case 'guessing-number':
             return <MindIcon />
         case 'ancestors':
             return <AncestorsIcon />
