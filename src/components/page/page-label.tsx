@@ -38,6 +38,7 @@ const PageLabel = ({ type, ...props }: PageLabelProps) => (
             verticalAlign="middle"
             color={AppColors.background}
             textTransform="uppercase"
+            textAlign="center"
             flexShrink={1}
         >
             {props.children}

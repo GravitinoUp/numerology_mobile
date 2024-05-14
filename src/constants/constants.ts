@@ -11,6 +11,11 @@ export const phoneCountries = [
     { label: '+888', value: '+888' },
 ]
 
+export const INPUT_LENGTH: { [page: string]: number } = {
+    'house-calculation': 1,
+    'guessing-number': 9,
+}
+
 export const categories: CategoryInterface[] = [
     {
         label: 'Карма. прошлая жизнь',
@@ -44,13 +49,13 @@ export const categories: CategoryInterface[] = [
         pages: [
             {
                 label: 'Расчет номера телефона',
-                route: routes.NUMBERS,
-                type: 'phone',
+                route: routes.INPUT_NUMBERS,
+                type: 'phone-calculation',
             },
             {
                 label: 'Расчет номера дома',
-                route: routes.NUMBERS,
-                type: 'home',
+                route: routes.INPUT_NUMBERS,
+                type: 'house-calculation',
             },
             {
                 label: 'Прогноз',

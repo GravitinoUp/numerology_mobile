@@ -27,7 +27,6 @@ export default function DashboardScreen({
             >
                 <StatusCard pro />
             </HStack>
-
             <ScrollView>
                 <VStack mt="$12" alignItems="center">
                     <Text

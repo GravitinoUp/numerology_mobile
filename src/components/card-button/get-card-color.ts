@@ -21,9 +21,9 @@ const getCardColor = (type: PageType) => {
             return '#D32F31'
         case 'charts':
             return ''
-        case 'phone':
+        case 'phone-calculation':
             return '#0085FF'
-        case 'home':
+        case 'house-calculation':
             return '#4B3DAA'
         case 'prediction':
             return '#F29F15'

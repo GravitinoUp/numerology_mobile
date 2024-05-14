@@ -19,6 +19,7 @@ const CategoryLabel = ({ ...props }: ViewProps) => (
             fontWeight="$black"
             color={AppColors.text}
             textTransform="uppercase"
+            textAlign="center"
         >
             {props.children}
         </Text>

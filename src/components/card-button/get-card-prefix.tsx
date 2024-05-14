@@ -41,9 +41,9 @@ const getCardPrefix = (type: PageType) => {
             return <BloodIcon />
         case 'charts':
             return <View /> //
-        case 'phone':
+        case 'phone-calculation':
             return <PhoneIcon />
-        case 'home':
+        case 'house-calculation':
             return <HomeIcon />
         case 'prediction':
             return <PredictionIcon />
