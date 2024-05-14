@@ -17,7 +17,9 @@ const ExpandableCard = ({ prefix, title, content }: ExpandableCardProps) => {
     return (
         <TouchableOpacity
             activeOpacity={ACTIVE_OPACITY}
-            onPress={() => setExpanded(!expanded)}
+            onPress={() => {
+                setExpanded(!expanded)
+            }}
         >
             <VStack>
                 <HStack

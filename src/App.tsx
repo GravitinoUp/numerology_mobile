@@ -15,7 +15,7 @@ import { setAccessToken } from './redux/reducers/authSlice'
 import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
-import CategoriesScreen from './screens/main/dashboard/category-screen'
+import CategoryScreen from './screens/main/dashboard/category-screen'
 import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
 import FateCardsScreen from './screens/main/dashboard/numbers/fate-cards/fate-cards-screen'
 import HealthNumerologyScreen from './screens/main/dashboard/numbers/health-numerology/health-numerology-screen'
@@ -151,8 +151,8 @@ function App({ initial }: { initial: string }) {
                     {/* DASHBOARD ROUTES */}
                     <Stack.Group>
                         <Stack.Screen
-                            name={routes.CATEGORIES}
-                            component={CategoriesScreen}
+                            name={routes.CATEGORY}
+                            component={CategoryScreen}
                         />
                         <Stack.Screen
                             name={routes.NUMBERS}

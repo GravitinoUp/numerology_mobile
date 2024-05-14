@@ -10,7 +10,7 @@ import { AppColors } from '@/constants/theme'
 import { DefaultStackScreenProps } from '@/types/interface'
 import { CategoryInterface } from '@/types/interface/categories'
 
-export default function CategoriesScreen({
+export default function CategoryScreen({
     navigation,
     route,
 }: DefaultStackScreenProps) {
@@ -48,6 +48,7 @@ export default function CategoriesScreen({
                     {routeParams.pages.map((value, index) => (
                         <CardButton
                             key={index}
+                            index={index}
                             prefix={getCardPrefix(value.type)}
                             label={value.label}
                             onPress={() =>

@@ -9,7 +9,7 @@ export const routes = {
     NAVIGATION: 'NavigationScreen',
     MATRIX: 'MatrixScreen',
     PROFILE: 'ProfileScreen',
-    CATEGORIES: 'CategoriesScreen',
+    CATEGORY: 'CategoryScreen',
     NUMBERS: 'NumbersScreen',
     INPUT_NUMBERS: 'InputNumbersScreen',
     HEALTH_NUMEROLOGY: 'HealthNumerologyScreen',
