@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Center, Text, View } from '@gluestack-ui/themed'
 import { CommonActions } from '@react-navigation/native'
 import i18next from 'i18next'
@@ -16,7 +17,9 @@ import AppScrollView from '@/components/ui/scroll-view'
 import { MAX_WIDTH } from '@/constants/constants'
 import { routes } from '@/constants/routes'
 import { AppColors } from '@/constants/theme'
-import { DefaultStackScreenProps } from '@/types/interface'
+import { useUpdateUserMutation } from '@/redux/api/users'
+import { DefaultStackScreenProps, ErrorInterface } from '@/types/interface'
+import { UserInterface } from '@/types/interface/users'
 
 const userSchema = z
     .object({
@@ -24,7 +27,7 @@ const userSchema = z
         first_name: z.string().min(1, i18next.t('error.required')),
         patronymic: z.string(),
         no_patronymic: z.boolean(),
-        password: z.string(),
+        password: z.string().optional(),
         birthday: z.date(),
     })
     .refine((data) => data.patronymic.trim().length > 0 || data.no_patronymic, {
@@ -34,31 +37,72 @@ const userSchema = z
 
 export default function EditProfileScreen({
     navigation,
+    route,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
+
+    const routeParams = route.params as UserInterface
 
     const form = useForm({
         schema: userSchema,
         defaultValues: {
-            last_name: '',
-            first_name: '',
-            patronymic: '',
-            no_patronymic: false,
+            last_name: routeParams.person.last_name,
+            first_name: routeParams.person.first_name,
+            patronymic: routeParams.person.patronymic,
+            no_patronymic: routeParams.person.patronymic === '',
             password: '',
-            birthday: new Date(),
+            birthday: new Date(
+                routeParams.person.birthday_year,
+                routeParams.person.birthday_month - 1,
+                routeParams.person.birthday_day
+            ),
         },
     })
 
     const noPatronymic = form.watch('no_patronymic')
 
+    const [
+        updateUser,
+        {
+            error: updateError,
+            isSuccess: updateSuccess,
+            isLoading: updateLoading,
+        },
+    ] = useUpdateUserMutation()
+
     const onSubmit = (data: z.infer<typeof userSchema>) => {
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: routes.PROFILE }],
-            })
-        )
+        updateUser({
+            last_name: data.last_name,
+            first_name: data.first_name,
+            patronymic: data.no_patronymic ? '' : data.patronymic,
+            birthday_day: data.birthday.getDate(),
+            birthday_month: data.birthday.getMonth() + 1,
+            birthday_year: data.birthday.getFullYear(),
+        })
     }
+
+    useEffect(() => {
+        if (updateSuccess) {
+            navigation.dispatch(
+                CommonActions.reset({
+                    index: 0,
+                    routes: [{ name: routes.NAVIGATION }],
+                })
+            )
+        }
+    }, [updateSuccess])
+
+    useEffect(() => {
+        if (updateError) {
+            const errorData = updateError as ErrorInterface
+
+            form.setError('birthday', {
+                message: errorData.data?.message
+                    ? errorData.data?.message
+                    : t('error.default'),
+            })
+        }
+    }, [updateError])
 
     return (
         <Scaffold>
@@ -161,7 +205,7 @@ export default function EditProfileScreen({
                                         mode="date"
                                         theme="light"
                                         date={field.value}
-                                        onConfirm={field.onChange}
+                                        onDateChange={field.onChange}
                                     />
                                 </View>
                                 <FormMessage />
@@ -172,7 +216,7 @@ export default function EditProfileScreen({
                         mt="$4"
                         onPress={form.handleSubmit(onSubmit)}
                         text={t('action.save')}
-                        isLoading={false}
+                        isLoading={updateLoading}
                     />
                 </CustomForm>
             </AppScrollView>

@@ -75,7 +75,7 @@ export default function UserRegisterScreen({
                     first_name: form.getValues('first_name'),
                     patronymic: form.getValues('patronymic'),
                     birthday_day: userBirthday.getDate(),
-                    birthday_month: userBirthday.getMonth(),
+                    birthday_month: userBirthday.getMonth() + 1,
                     birthday_year: userBirthday.getFullYear(),
                     email: form.getValues('email'),
                     phone: registerData.phone,
@@ -214,7 +214,7 @@ export default function UserRegisterScreen({
                                         mode="date"
                                         theme="light"
                                         date={field.value}
-                                        onConfirm={field.onChange}
+                                        onDateChange={field.onChange}
                                     />
                                 </View>
                                 <FormMessage />

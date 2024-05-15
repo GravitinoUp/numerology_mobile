@@ -7,11 +7,14 @@ import PredictionIcon from '@/assets/icons/prediction'
 import ProfileIcon from '@/assets/icons/profile'
 import UnionIcon from '@/assets/icons/union'
 import NavigationBar from '@/components/navigation-bar/navigation-bar'
+import { useGetCurrentUserQuery } from '@/redux/api/users'
 
 const Tab = createBottomTabNavigator()
 
 export default function NavigationScreen() {
     const { t } = useTranslation()
+
+    useGetCurrentUserQuery()
 
     return (
         <Tab.Navigator
