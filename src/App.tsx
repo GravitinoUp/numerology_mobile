@@ -16,14 +16,13 @@ import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
 import CategoryScreen from './screens/main/dashboard/category-screen'
-import MatrixScreen from './screens/main/dashboard/matrix/matrix-screen'
 import FateCardsScreen from './screens/main/dashboard/numbers/fate-cards/fate-cards-screen'
-import HealthNumerologyScreen from './screens/main/dashboard/numbers/health-numerology/health-numerology-screen'
 import InputNumbersScreen from './screens/main/dashboard/numbers/input-numbers-screen'
 import LuckyNumbersScreen from './screens/main/dashboard/numbers/lucky-numbers/lucky-numbers-screen'
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
-import PlanetsScreen from './screens/main/dashboard/numbers/planets/planets-screen'
 import NavigationScreen from './screens/main/navigation-screen'
+import EditProfileScreen from './screens/main/profile/edit-profile-screen'
+import NotificationsScreen from './screens/main/profile/notifications-screen'
 import ProfileScreen from './screens/main/profile/profile-screen'
 import OnboardScreen from './screens/onboard/onboard-screen'
 import FirstRegisterScreen from './screens/register/first-register-screen'
@@ -111,7 +110,12 @@ function App({ initial }: { initial: string }) {
     return isLoading === false ? (
         <NavigationContainer>
             <Stack.Navigator
-                screenOptions={{ headerShown: false }}
+                screenOptions={{
+                    headerShown: false,
+                    presentation: 'modal',
+                    animationTypeForReplace: 'push',
+                    animation: 'fade',
+                }}
                 initialRouteName={initialRoute}
             >
                 <Stack.Group>
@@ -148,6 +152,16 @@ function App({ initial }: { initial: string }) {
                         name={routes.PROFILE}
                         component={ProfileScreen}
                     />
+                    <Stack.Group>
+                        <Stack.Screen
+                            name={routes.EDIT_PROFILE}
+                            component={EditProfileScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.NOTIFICATIONS}
+                            component={NotificationsScreen}
+                        />
+                    </Stack.Group>
                     {/* DASHBOARD ROUTES */}
                     <Stack.Group>
                         <Stack.Screen
@@ -163,24 +177,12 @@ function App({ initial }: { initial: string }) {
                             component={InputNumbersScreen}
                         />
                         <Stack.Screen
-                            name={routes.HEALTH_NUMEROLOGY}
-                            component={HealthNumerologyScreen}
-                        />
-                        <Stack.Screen
                             name={routes.FATE_CARDS}
                             component={FateCardsScreen}
                         />
                         <Stack.Screen
                             name={routes.LUCKY_NUMBERS}
                             component={LuckyNumbersScreen}
-                        />
-                        <Stack.Screen
-                            name={routes.PLANETS}
-                            component={PlanetsScreen}
-                        />
-                        <Stack.Screen
-                            name={routes.MATRIX}
-                            component={MatrixScreen}
                         />
                     </Stack.Group>
                 </Stack.Group>

@@ -69,7 +69,8 @@
         "confirm": "Подтвердить",
         "skip": "Пропустить",
         "retry": "Повторить",
-        "verify": "Проверить"
+        "verify": "Проверить",
+        "save": "Сохранить"
     },
     "date.format": "dd.MM.yyyy",
     "birthday": "День рождения",
@@ -92,5 +93,6 @@
     },
     "title": "Заголовок",
     "description": "Описание",
-    "categories": "Категории"
+    "categories": "Категории",
+    "no.patronymic": "У меня нет отчетства"
 }

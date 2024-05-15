@@ -1,14 +1,28 @@
 import { api } from '.'
-import { PageTypeInterface } from '@/types/interface/numbers'
+import { CategoryInterface, PageInterface } from '@/types/interface/pages'
 
 const pagesApi = api.injectEndpoints({
     endpoints: (builder) => ({
-        getPageTypes: builder.query<PageTypeInterface[], void>({
+        getCategories: builder.query<CategoryInterface[], void>({
             query: () => ({
-                url: 'page-type/all',
+                url: 'category/all',
+            }),
+        }),
+        getPages: builder.query<PageInterface[], void>({
+            query: () => ({
+                url: 'page/all',
+            }),
+        }),
+        getPagesByCategory: builder.query<PageInterface[], number>({
+            query: (category: number) => ({
+                url: `page/all/${category}`,
             }),
         }),
     }),
 })
 
-export const { useGetPageTypesQuery } = pagesApi
+export const {
+    useGetCategoriesQuery,
+    useGetPagesQuery,
+    useGetPagesByCategoryQuery,
+} = pagesApi

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { Center, ScrollView, Text, VStack } from '@gluestack-ui/themed'
 import { Image } from 'react-native'
 import NumbersLayout from './components/numbers-layout'
-import getCardColor from '@/components/card-button/get-card-color'
 import PageLabel from '@/components/page/page-label'
 import AppInput from '@/components/ui/input'
 import { INPUT_LENGTH } from '@/constants/constants'
@@ -10,21 +9,21 @@ import { AppColors, AppShapes } from '@/constants/theme'
 import { useGetSingleNumberQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
-import { PageType } from '@/types/interface/numbers'
+import { PageInterface } from '@/types/interface/pages'
 
 export default function InputNumbersScreen({
     navigation,
     route,
 }: DefaultStackScreenProps) {
-    const routeParams = route.params as { label: string; type: PageType }
-    const maxLength = INPUT_LENGTH[routeParams.type]
+    const routeParams = route.params as PageInterface
+    const length = INPUT_LENGTH[routeParams.key]
 
     const [query, setQuery] = useState('')
     const [input, setInput] = useState('')
 
     const { data, isFetching, isSuccess, error, refetch } =
         useGetSingleNumberQuery(
-            { type: routeParams.type, query: query },
+            { type: routeParams.key, query: query },
             { skip: query === '' }
         )
 
@@ -32,7 +31,10 @@ export default function InputNumbersScreen({
 
     useEffect(() => {
         const delayTimeoutId = setTimeout(() => {
-            if (input.trim().length >= maxLength) {
+            if (
+                input.trim().length >= length[0] &&
+                input.trim().length <= length[1]
+            ) {
                 setQuery(input.trim())
             }
         }, 500)
@@ -40,7 +42,10 @@ export default function InputNumbersScreen({
     }, [input])
 
     return (
-        <NumbersLayout navigation={navigation}>
+        <NumbersLayout
+            description={routeParams.page_description}
+            navigation={navigation}
+        >
             <ScrollView>
                 <Image
                     style={{
@@ -52,11 +57,11 @@ export default function InputNumbersScreen({
                     source={{ uri: '1' }}
                 />
                 <PageLabel
-                    bgColor={getCardColor(routeParams.type)}
-                    type={routeParams.type}
+                    bgColor={routeParams.color}
+                    type={routeParams.key}
                     top={-22}
                 >
-                    {routeParams.label}
+                    {routeParams.page_name}
                 </PageLabel>
                 <VStack p="$4" gap="$4">
                     <AppInput
@@ -70,13 +75,14 @@ export default function InputNumbersScreen({
                         fontSize="$md"
                         fontWeight="$bold"
                         inputMode="numeric"
-                        maxLength={maxLength}
+                        maxLength={length[1]}
                         required
                     />
-                    {input.trim().length >= maxLength ? (
+                    {input.trim().length >= length[0] &&
+                    input.trim().length <= length[1] ? (
                         successLoad ? (
                             <Text color={AppColors.text}>
-                                {data.page_content}
+                                {data.result_content}
                             </Text>
                         ) : (
                             <SplashScreen error={error} refetch={refetch} />

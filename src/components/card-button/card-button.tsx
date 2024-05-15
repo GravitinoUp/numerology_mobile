@@ -34,21 +34,24 @@ const CardButton = ({ index, prefix, label, onPress }: CardButtonProps) => {
         >
             <TouchableOpacity activeOpacity={ACTIVE_OPACITY} onPress={onPress}>
                 <HStack
+                    h="$20"
                     justifyContent="space-between"
                     alignItems="center"
                     pr="$4"
                 >
                     <HStack flex={1} alignItems="center">
-                        <View
-                            w="$20"
-                            h="$20"
-                            mr="$2"
-                            justifyContent="center"
-                            alignItems="center"
-                        >
-                            {prefix}
-                        </View>
+                        {prefix && (
+                            <View
+                                w="$20"
+                                h="$20"
+                                justifyContent="center"
+                                alignItems="center"
+                            >
+                                {prefix}
+                            </View>
+                        )}
                         <Text
+                            ml={prefix ? '$2' : '$4'}
                             fontWeight="$bold"
                             color={AppColors.text}
                             flexShrink={1}

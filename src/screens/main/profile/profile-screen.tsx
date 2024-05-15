@@ -91,10 +91,28 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                         </View>
                     </Center>
                     <VStack mt="$2" p="$4" gap="$4">
-                        <CardButton label={t('settings.label.personal.data')} />
-                        <CardButton label={t('settings.label.subscriptions')} />
-                        <CardButton label={t('settings.label.notifications')} />
-                        <CardButton label={t('settings.label.language')} />
+                        <CardButton
+                            index={0}
+                            label={t('settings.label.personal.data')}
+                            onPress={() =>
+                                navigation.navigate(routes.EDIT_PROFILE)
+                            }
+                        />
+                        <CardButton
+                            index={1}
+                            label={t('settings.label.subscriptions')}
+                        />
+                        <CardButton
+                            index={2}
+                            label={t('settings.label.notifications')}
+                            onPress={() =>
+                                navigation.navigate(routes.NOTIFICATIONS)
+                            }
+                        />
+                        <CardButton
+                            index={3}
+                            label={t('settings.label.language')}
+                        />
                     </VStack>
                     <TextButton
                         text={t('settings.label.logout')}

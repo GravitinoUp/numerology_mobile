@@ -16,6 +16,8 @@ export const AppColors = {
     transparent: '#00000000',
     trialColor: '#E8E8E8',
     proColor: '#FFE471',
+    skeletonBackgroundColor: '#EDEDED',
+    skeletonForegroundColor: '#D1D1D1',
 }
 
 export const AppShapes = {

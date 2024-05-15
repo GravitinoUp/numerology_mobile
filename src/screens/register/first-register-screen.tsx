@@ -13,9 +13,9 @@ import AppInput from '@/components/ui/input'
 import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
 import AppSelect from '@/components/ui/select'
-import { AppColors } from '@/constants/theme'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
 import { routes } from '@/constants/routes'
+import { AppColors } from '@/constants/theme'
 import { useCheckUserExistsMutation } from '@/redux/api/users'
 import { DefaultStackScreenProps, ErrorInterface } from '@/types/interface'
 
@@ -61,6 +61,12 @@ export default function FirstRegisterScreen({
 
     const onSubmit = (registerData: z.infer<typeof registerSchema>) => {
         checkUser({ phone: `${selectedCountry}${registerData.phone}` })
+        navigation.navigate(routes.USER_REGISTER, {
+            registerData: {
+                phone: `${selectedCountry}${form.getValues('phone')}`,
+                password: form.getValues('password'),
+            },
+        })
     }
 
     useEffect(() => {

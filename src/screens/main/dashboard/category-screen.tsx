@@ -2,19 +2,31 @@ import { ScrollView, VStack } from '@gluestack-ui/themed'
 import { Image } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import CardButton from '@/components/card-button/card-button'
-import getCardPrefix from '@/components/card-button/get-card-prefix'
 import CategoryLabel from '@/components/dashboard/category-label'
+import getPageRoute from '@/components/page/get-page-route'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
 import { AppColors } from '@/constants/theme'
+import { useGetPagesByCategoryQuery } from '@/redux/api/pages'
+import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
-import { CategoryInterface } from '@/types/interface/categories'
+import { CategoryInterface } from '@/types/interface/pages'
 
 export default function CategoryScreen({
     navigation,
     route,
 }: DefaultStackScreenProps) {
     const routeParams = route.params as CategoryInterface
+
+    const {
+        data: pages = [],
+        isFetching: pagesFetching,
+        isSuccess: pagesSuccess,
+        error: pagesError,
+        refetch: pagesRefetch,
+    } = useGetPagesByCategoryQuery(routeParams.category_id)
+
+    const successLoad = !pagesFetching && pagesSuccess
 
     return (
         <Scaffold>
@@ -39,28 +51,35 @@ export default function CategoryScreen({
                 style={{
                     width: '100%',
                     height: 180,
+                    backgroundColor: AppColors.primary,
                 }}
-                source={routeParams.image}
+                source={{
+                    uri: routeParams.category_image,
+                }}
             />
-            <CategoryLabel top={-8}>{routeParams.label}</CategoryLabel>
-            <ScrollView>
-                <VStack p="$6" gap="$5">
-                    {routeParams.pages.map((value, index) => (
-                        <CardButton
-                            key={index}
-                            index={index}
-                            prefix={getCardPrefix(value.type)}
-                            label={value.label}
-                            onPress={() =>
-                                navigation.navigate(value.route, {
-                                    label: value.label,
-                                    type: value.type,
-                                })
-                            }
-                        />
-                    ))}
-                </VStack>
-            </ScrollView>
+            <CategoryLabel top={-8}>{routeParams.category_name}</CategoryLabel>
+            {successLoad ? (
+                <ScrollView>
+                    <VStack p="$6" gap="$5">
+                        {pages.map((value, index) => (
+                            <CardButton
+                                key={index}
+                                index={index}
+                                prefix={value.page_icon}
+                                label={value.page_name}
+                                onPress={() =>
+                                    navigation.navigate(
+                                        getPageRoute(value.key),
+                                        value
+                                    )
+                                }
+                            />
+                        ))}
+                    </VStack>
+                </ScrollView>
+            ) : (
+                <SplashScreen error={pagesError} refetch={pagesRefetch} />
+            )}
         </Scaffold>
     )
 }

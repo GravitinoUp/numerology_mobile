@@ -1,10 +1,10 @@
 import { api } from '.'
-import { PageInterface, PageType } from '@/types/interface/numbers'
+import { ResultInterface, PageType } from '@/types/interface/numbers'
 
 const numbersApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getNumbers: builder.query<
-            PageInterface[],
+            ResultInterface[],
             { type: PageType; query?: string | number }
         >({
             query: ({ type, query }) => ({
@@ -12,14 +12,14 @@ const numbersApi = api.injectEndpoints({
             }),
         }),
         getSingleNumber: builder.query<
-            PageInterface,
+            ResultInterface,
             { type: PageType; query?: string | number }
         >({
             query: ({ type, query }) => ({
                 url: `number/${type}?query=${query}`,
             }),
         }),
-        getFateCard: builder.query<PageInterface, void>({
+        getFateCard: builder.query<ResultInterface, void>({
             query: () => ({
                 url: 'number/fate-card',
             }),

@@ -68,7 +68,8 @@
         "confirm": "Confirm",
         "skip": "Skip",
         "retry": "Retry",
-        "verify": "Verify"
+        "verify": "Verify",
+        "save": "Save"
     },
     "date.format": "yyyy-MM-dd",
     "birthday": "Birthday",
@@ -91,5 +92,6 @@
     },
     "title": "Title",
     "description": "Description",
-    "categories": "Categories"
+    "categories": "Categories",
+    "no.patronymic": "I don't have a patronymic"
 }

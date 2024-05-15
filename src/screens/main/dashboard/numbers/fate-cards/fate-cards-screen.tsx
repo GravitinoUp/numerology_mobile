@@ -33,12 +33,12 @@ export default function FateCardsScreen({
                             color={AppColors.text}
                             textAlign="center"
                         >
-                            {fateCard.page_name}
+                            {fateCard.result_name}
                         </DashboardLabel>
-                        {fateCard.page_image !== '' && (
+                        {fateCard.result_image !== '' && (
                             <Center>
                                 <Image
-                                    source={fateCard?.page_image}
+                                    source={fateCard?.result_image}
                                     alt=""
                                     h={135}
                                     w={90}
@@ -46,7 +46,7 @@ export default function FateCardsScreen({
                             </Center>
                         )}
                         <Text color={AppColors.text}>
-                            {fateCard.page_content}
+                            {fateCard.result_content}
                         </Text>
                     </VStack>
                 </ScrollView>

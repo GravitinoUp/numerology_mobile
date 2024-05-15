@@ -3,13 +3,18 @@ import {
     AncestorsIcon,
     AngelIcon,
     AnimalIcon,
+    BirthdateStyleIcon,
     BloodIcon,
     CardsIcon,
+    ChartsIcon,
+    ColorPaletteIcon,
+    CompatibilityIcon,
     DestinyIcon,
     FormulaIcon,
     GiftIcon,
     HealthIcon,
     HomeIcon,
+    KarmaIcon,
     LuckyIcon,
     MindIcon,
     PhoneIcon,
@@ -23,7 +28,7 @@ import { PageType } from '@/types/interface/numbers'
 
 const getCardPrefix = (type: PageType) => {
     switch (type) {
-        case 'destiny':
+        case 'destiny-program':
             return <DestinyIcon />
         case 'strong-qualities':
             return <StrengthIcon />
@@ -34,13 +39,13 @@ const getCardPrefix = (type: PageType) => {
         case 'planets':
             return <PlanetsIcon />
         case 'karma':
-            return <View /> //
+            return <KarmaIcon />
         case 'health':
             return <HealthIcon />
         case 'blood':
             return <BloodIcon />
         case 'charts':
-            return <View /> //
+            return <ChartsIcon />
         case 'phone-calculation':
             return <PhoneIcon />
         case 'house-calculation':
@@ -48,11 +53,11 @@ const getCardPrefix = (type: PageType) => {
         case 'prediction':
             return <PredictionIcon />
         case 'birthdate-style':
-            return <View /> //
+            return <BirthdateStyleIcon />
         case 'compatibility':
-            return <View /> //
+            return <CompatibilityIcon />
         case 'color-palette':
-            return <View /> //
+            return <ColorPaletteIcon />
         case 'formula':
             return <FormulaIcon />
         case 'gift':
