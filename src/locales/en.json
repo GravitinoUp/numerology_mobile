@@ -73,7 +73,9 @@
         "retry": "Retry",
         "verify": "Verify",
         "save": "Save",
-        "buy": "Buy"
+        "buy": "Buy",
+        "subscribe": "Subscribe",
+        "unsubscribe": "Unsubscribe"
     },
     "date.format": "yyyy-MM-dd",
     "birthday": "Birthday",
@@ -99,5 +101,6 @@
     "categories": "Categories",
     "no.patronymic": "I don't have a patronymic",
     "required.pro.title": "PRO subscription is required",
-    "required.pro.content": "To access locked content you need to have an active PRO subscription."
+    "required.pro.content": "To access locked content you need to have an active PRO subscription.",
+    "active.subscriptions": "Active subscriptions"
 }

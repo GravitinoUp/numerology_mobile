@@ -117,6 +117,9 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                             <CardButton
                                 index={1}
                                 label={t('settings.label.subscriptions')}
+                                onPress={() =>
+                                    navigation.navigate(routes.SUBSCRIPTIONS)
+                                }
                             />
                             <CardButton
                                 index={2}
@@ -128,6 +131,9 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                             <CardButton
                                 index={3}
                                 label={t('settings.label.language')}
+                                onPress={() =>
+                                    navigation.navigate(routes.LANGUAGE)
+                                }
                             />
                         </VStack>
                         <TextButton

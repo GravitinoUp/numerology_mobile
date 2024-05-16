@@ -1,5 +1,6 @@
 import { DEFAULT_HOST } from '@env'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+import i18next from 'i18next'
 import { getJWTtokens } from '@/utils/helpers'
 
 export const api = createApi({
@@ -10,7 +11,7 @@ export const api = createApi({
         prepareHeaders: async (headers) => {
             const { accessToken } = await getJWTtokens()
 
-            headers.set('Accept-Language', global.languageCode)
+            headers.set('Accept-Language', i18next.language)
             if (accessToken) {
                 headers.set('Authorization', `Bearer ${accessToken}`)
             }

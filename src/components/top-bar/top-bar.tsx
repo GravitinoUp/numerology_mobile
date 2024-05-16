@@ -61,7 +61,8 @@ const TopBar = ({
                     </Text>
                 </VStack>
             )}
-            {(navigation || suffix) && <View>{suffix}</View>}
+            {navigation && !suffix && <View w="$10" h="$10" />}
+            {suffix && <View>{suffix}</View>}
         </HStack>
     </Fragment>
 )

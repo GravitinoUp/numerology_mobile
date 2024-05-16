@@ -5,6 +5,8 @@ import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useNetInfo } from '@react-native-community/netinfo'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
+import { useTranslation } from 'react-i18next'
+import { NativeModules, Platform } from 'react-native'
 import { Provider } from 'react-redux'
 import { routes } from './constants/routes'
 import { storageKeys } from './constants/storage'
@@ -22,8 +24,10 @@ import LuckyNumbersScreen from './screens/main/dashboard/numbers/lucky-numbers/l
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
 import NavigationScreen from './screens/main/navigation-screen'
 import EditProfileScreen from './screens/main/profile/edit-profile-screen'
+import LanguageScreen from './screens/main/profile/language-screen'
 import NotificationsScreen from './screens/main/profile/notifications-screen'
 import ProfileScreen from './screens/main/profile/profile-screen'
+import SubscriptionsScreen from './screens/main/profile/subscriptions-screen'
 import OnboardScreen from './screens/onboard/onboard-screen'
 import FirstRegisterScreen from './screens/register/first-register-screen'
 import UserRegisterScreen from './screens/register/user-register-screen'
@@ -31,25 +35,43 @@ import VerifyCodeScreen from './screens/register/verify-code-screen'
 import SplashScreen from './screens/splash/splash-screen'
 import { getJWTtokens } from './utils/helpers'
 
-global.languageCode = 'ru'
-
 const Stack = createNativeStackNavigator()
 
 export const AppWrapper = () => {
+    const { i18n } = useTranslation()
+
     const [isLoading, setLoading] = useState<boolean>(true)
     const [initialScreen, setInitialScreen] = useState<string | null>(null)
 
     useEffect(() => {
-        AsyncStorage.getItem(storageKeys.onboardDisabled).then(
-            (onboardDisabled) => {
-                setInitialScreen(
-                    onboardDisabled === 'true'
-                        ? routes.AUTH_NAV
-                        : routes.ONBOARD
-                )
-                setLoading(false)
+        AsyncStorage.getItem(storageKeys.language).then((language) => {
+            if (language) {
+                i18n.changeLanguage(language)
+            } else {
+                const deviceLanguage: string =
+                    Platform.OS === 'ios'
+                        ? NativeModules.SettingsManager.settings.AppleLocale ||
+                          NativeModules.SettingsManager.settings
+                              .AppleLanguages[0]
+                        : NativeModules.I18nManager.localeIdentifier
+
+                const splittedLanguage = deviceLanguage.split('_')
+                if (splittedLanguage.length > 0) {
+                    i18n.changeLanguage(splittedLanguage[0])
+                }
             }
-        )
+
+            AsyncStorage.getItem(storageKeys.onboardDisabled).then(
+                (onboardDisabled) => {
+                    setInitialScreen(
+                        onboardDisabled === 'true'
+                            ? routes.AUTH_NAV
+                            : routes.ONBOARD
+                    )
+                    setLoading(false)
+                }
+            )
+        })
     }, [])
 
     return (
@@ -158,8 +180,16 @@ function App({ initial }: { initial: string }) {
                             component={EditProfileScreen}
                         />
                         <Stack.Screen
+                            name={routes.SUBSCRIPTIONS}
+                            component={SubscriptionsScreen}
+                        />
+                        <Stack.Screen
                             name={routes.NOTIFICATIONS}
                             component={NotificationsScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.LANGUAGE}
+                            component={LanguageScreen}
                         />
                     </Stack.Group>
                     {/* DASHBOARD ROUTES */}

@@ -14,5 +14,7 @@ export const routes = {
     LUCKY_NUMBERS: 'LuckyNumbersScreen',
     PROFILE: 'ProfileScreen',
     EDIT_PROFILE: 'EditProfileScreen',
+    SUBSCRIPTIONS: 'SubscriptionsScreen',
     NOTIFICATIONS: 'NotificationsScreen',
+    LANGUAGE: 'LanguageScreen',
 }

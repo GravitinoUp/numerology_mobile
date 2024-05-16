@@ -118,7 +118,10 @@ export default function EditProfileScreen({
                 title={t('settings.label.personal.data')}
                 navigation={navigation}
             />
-            <AppScrollView maxWidth={MAX_WIDTH}>
+            <AppScrollView
+                contentContainerStyle={{ justifyContent: 'flex-start' }}
+                maxWidth={MAX_WIDTH}
+            >
                 <Center mb="$10">
                     <View
                         w="$20"
@@ -130,103 +133,104 @@ export default function EditProfileScreen({
                         <StatusCard pro />
                     </View>
                 </Center>
-                <CustomForm form={form}>
-                    <FormField
-                        control={form.control}
-                        name="last_name"
-                        render={({ field }) => (
-                            <FormItem style={{ marginBottom: 16 }}>
-                                <AppInput
-                                    value={field.value}
-                                    onChangeText={field.onChange}
-                                    placeholder={t('user.first.name')}
-                                    required
-                                />
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="first_name"
-                        render={({ field }) => (
-                            <FormItem style={{ marginBottom: 16 }}>
-                                <AppInput
-                                    value={field.value}
-                                    onChangeText={field.onChange}
-                                    placeholder={t('user.last.name')}
-                                    required
-                                />
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    {!noPatronymic && (
+                <View px="$4">
+                    <CustomForm form={form}>
                         <FormField
                             control={form.control}
-                            name="patronymic"
+                            name="last_name"
                             render={({ field }) => (
                                 <FormItem style={{ marginBottom: 16 }}>
                                     <AppInput
                                         value={field.value}
                                         onChangeText={field.onChange}
-                                        placeholder={t('user.patronymic')}
+                                        placeholder={t('user.first.name')}
                                         required
                                     />
                                     <FormMessage />
                                 </FormItem>
                             )}
                         />
-                    )}
-                    <FormField
-                        control={form.control}
-                        name="no_patronymic"
-                        render={({ field }) => (
-                            <AppCheckbox
-                                mb="$4"
-                                label={t('no.patronymic')}
-                                value=""
-                                isChecked={field.value}
-                                onChange={field.onChange}
+                        <FormField
+                            control={form.control}
+                            name="first_name"
+                            render={({ field }) => (
+                                <FormItem style={{ marginBottom: 16 }}>
+                                    <AppInput
+                                        value={field.value}
+                                        onChangeText={field.onChange}
+                                        placeholder={t('user.last.name')}
+                                        required
+                                    />
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        {!noPatronymic && (
+                            <FormField
+                                control={form.control}
+                                name="patronymic"
+                                render={({ field }) => (
+                                    <FormItem style={{ marginBottom: 16 }}>
+                                        <AppInput
+                                            value={field.value}
+                                            onChangeText={field.onChange}
+                                            placeholder={t('user.patronymic')}
+                                            required
+                                        />
+                                        <FormMessage />
+                                    </FormItem>
+                                )}
                             />
                         )}
-                    />
-                    <FormField
-                        control={form.control}
-                        name="birthday"
-                        render={({ field }) => (
-                            <FormItem>
-                                <Text
-                                    textAlign="center"
-                                    mb="$1"
-                                    color={AppColors.hint}
-                                >
-                                    {t('user.birthday')}
-                                </Text>
-                                <View
-                                    borderRadius="$lg"
-                                    borderColor={AppColors.border}
-                                    borderWidth="$1"
-                                    pl="$3"
-                                >
-                                    <DatePicker
-                                        mode="date"
-                                        theme="light"
-                                        date={field.value}
-                                        onDateChange={field.onChange}
-                                    />
-                                </View>
-                                <FormMessage />
-                            </FormItem>
-                        )}
-                    />
-                    <AppButton
-                        mt="$4"
-                        onPress={form.handleSubmit(onSubmit)}
-                        text={t('action.save')}
-                        isLoading={updateLoading}
-                    />
-                </CustomForm>
+                        <FormField
+                            control={form.control}
+                            name="no_patronymic"
+                            render={({ field }) => (
+                                <AppCheckbox
+                                    mb="$4"
+                                    label={t('no.patronymic')}
+                                    value=""
+                                    isChecked={field.value}
+                                    onChange={field.onChange}
+                                />
+                            )}
+                        />
+                        <FormField
+                            control={form.control}
+                            name="birthday"
+                            render={({ field }) => (
+                                <FormItem>
+                                    <Text
+                                        textAlign="center"
+                                        mb="$1"
+                                        color={AppColors.hint}
+                                    >
+                                        {t('user.birthday')}
+                                    </Text>
+                                    <View
+                                        borderRadius="$lg"
+                                        borderColor={AppColors.border}
+                                        borderWidth="$1"
+                                    >
+                                        <DatePicker
+                                            mode="date"
+                                            theme="light"
+                                            date={field.value}
+                                            onDateChange={field.onChange}
+                                        />
+                                    </View>
+                                    <FormMessage />
+                                </FormItem>
+                            )}
+                        />
+                        <AppButton
+                            mt="$4"
+                            onPress={form.handleSubmit(onSubmit)}
+                            text={t('action.save')}
+                            isLoading={updateLoading}
+                        />
+                    </CustomForm>
+                </View>
             </AppScrollView>
         </Scaffold>
     )
