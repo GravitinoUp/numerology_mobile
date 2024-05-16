@@ -1,14 +1,11 @@
 import { ComponentProps } from 'react'
+import { DEFAULT_HOST } from '@env'
 import { HStack, Text, View } from '@gluestack-ui/themed'
 import { animated, useSpring } from '@react-spring/native'
-import {
-    Dimensions,
-    Image,
-    ImageSourcePropType,
-    TouchableOpacity,
-} from 'react-native'
+import { Dimensions, Image, TouchableOpacity } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import ChevronRightAlt from '@/assets/icons/chevron-right-alt'
+import LockedIcon from '@/assets/icons/locked'
 import { ACTIVE_OPACITY } from '@/constants/constants'
 import { AppColors } from '@/constants/theme'
 
@@ -16,8 +13,10 @@ type ViewProps = ComponentProps<typeof View>
 type CategoryCardProps = {
     index: number
     category: string
-    source?: ImageSourcePropType
+    source?: string
+    locked?: boolean
     onPress?: () => void
+    onLockedPress?: () => void
 } & ViewProps
 
 const AnimatedView = animated(View)
@@ -26,7 +25,9 @@ const CategoryCard = ({
     index,
     category,
     source,
+    locked = false,
     onPress,
+    onLockedPress,
     ...props
 }: CategoryCardProps) => {
     const windowWidth = Dimensions.get('window').width / 2 - 32
@@ -39,6 +40,29 @@ const CategoryCard = ({
 
     return (
         <AnimatedView style={animatedOpacity}>
+            {locked && (
+                <View
+                    position="absolute"
+                    alignItems="flex-end"
+                    w="$full"
+                    h="$full"
+                    zIndex={2}
+                    onTouchEnd={onLockedPress}
+                >
+                    <View
+                        position="absolute"
+                        w="$full"
+                        h="$full"
+                        bgColor={AppColors.background}
+                        opacity={0.7}
+                        borderRadius={20}
+                        zIndex={-1}
+                    />
+                    <View p="$4">
+                        <LockedIcon />
+                    </View>
+                </View>
+            )}
             <View
                 w={windowWidth}
                 h={windowWidth}
@@ -69,7 +93,7 @@ const CategoryCard = ({
                             width: '100%',
                             height: '100%',
                         }}
-                        source={source}
+                        source={{ uri: `${DEFAULT_HOST}${source}` }}
                         width={windowWidth}
                         height={windowWidth}
                     />

@@ -3,6 +3,7 @@ export interface ResultInterface {
     result_keys: string[]
     result_name: string
     result_content: string
+    result_image: string
     formula_type: FormulaTypeInterface
 }
 

@@ -17,6 +17,9 @@ import AppScrollView from '@/components/ui/scroll-view'
 import { MAX_WIDTH } from '@/constants/constants'
 import { routes } from '@/constants/routes'
 import { AppColors } from '@/constants/theme'
+import { useAppDispatch } from '@/hooks/use-app-dispatch'
+import { useAppToast } from '@/hooks/use-toast'
+import { api } from '@/redux/api'
 import { useUpdateUserMutation } from '@/redux/api/users'
 import { DefaultStackScreenProps, ErrorInterface } from '@/types/interface'
 import { UserInterface } from '@/types/interface/users'
@@ -40,6 +43,9 @@ export default function EditProfileScreen({
     route,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
+    const { showSuccessToast } = useAppToast()
+
+    const dispatch = useAppDispatch()
 
     const routeParams = route.params as UserInterface
 
@@ -83,6 +89,8 @@ export default function EditProfileScreen({
 
     useEffect(() => {
         if (updateSuccess) {
+            showSuccessToast({ label: t('success.user.update') })
+            dispatch(api.util.resetApiState())
             navigation.dispatch(
                 CommonActions.reset({
                     index: 0,

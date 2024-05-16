@@ -1,14 +1,15 @@
+import { DEFAULT_HOST } from '@env'
 import { ScrollView, VStack } from '@gluestack-ui/themed'
 import { Image } from 'react-native'
 import LinearGradient from 'react-native-linear-gradient'
 import CardButton from '@/components/card-button/card-button'
 import CategoryLabel from '@/components/dashboard/category-label'
 import getPageRoute from '@/components/page/get-page-route'
+import CategorySkeleton from '@/components/skeleton/category-skeleton'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
 import { AppColors } from '@/constants/theme'
 import { useGetPagesByCategoryQuery } from '@/redux/api/pages'
-import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
 import { CategoryInterface } from '@/types/interface/pages'
 
@@ -54,7 +55,7 @@ export default function CategoryScreen({
                     backgroundColor: AppColors.primary,
                 }}
                 source={{
-                    uri: routeParams.category_image,
+                    uri: `${DEFAULT_HOST}${routeParams.category_image}`,
                 }}
             />
             <CategoryLabel top={-8}>{routeParams.category_name}</CategoryLabel>
@@ -78,7 +79,7 @@ export default function CategoryScreen({
                     </VStack>
                 </ScrollView>
             ) : (
-                <SplashScreen error={pagesError} refetch={pagesRefetch} />
+                <CategorySkeleton error={pagesError} refetch={pagesRefetch} />
             )}
         </Scaffold>
     )

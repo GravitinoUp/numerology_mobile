@@ -4,7 +4,7 @@ import { PageType } from '@/types/interface/numbers'
 const getPageRoute = (type: PageType) => {
     switch (type) {
         case 'fate-card':
-            return routes.FATE_CARDS // CARD
+            return routes.NUMBERS // CARD
         case 'charts':
             return routes.NUMBERS // CHARTS
         case 'phone-calculation':
