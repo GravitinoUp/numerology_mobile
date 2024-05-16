@@ -23,10 +23,10 @@ import InputNumbersScreen from './screens/main/dashboard/numbers/input-numbers-s
 import LuckyNumbersScreen from './screens/main/dashboard/numbers/lucky-numbers/lucky-numbers-screen'
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
 import NavigationScreen from './screens/main/navigation-screen'
+import NotificationScreen from './screens/main/notifications/notification-screen'
 import EditProfileScreen from './screens/main/profile/edit-profile-screen'
 import LanguageScreen from './screens/main/profile/language-screen'
-import NotificationsScreen from './screens/main/profile/notifications-screen'
-import ProfileScreen from './screens/main/profile/profile-screen'
+import ManageNotificationsScreen from './screens/main/profile/manage-notifications-screen'
 import SubscriptionsScreen from './screens/main/profile/subscriptions-screen'
 import OnboardScreen from './screens/onboard/onboard-screen'
 import FirstRegisterScreen from './screens/register/first-register-screen'
@@ -170,9 +170,10 @@ function App({ initial }: { initial: string }) {
                         name={routes.NAVIGATION}
                         component={NavigationScreen}
                     />
+                    {/* NOTIFICATION */}
                     <Stack.Screen
-                        name={routes.PROFILE}
-                        component={ProfileScreen}
+                        name={routes.NOTIFICATION}
+                        component={NotificationScreen}
                     />
                     <Stack.Group>
                         <Stack.Screen
@@ -184,8 +185,8 @@ function App({ initial }: { initial: string }) {
                             component={SubscriptionsScreen}
                         />
                         <Stack.Screen
-                            name={routes.NOTIFICATIONS}
-                            component={NotificationsScreen}
+                            name={routes.MANAGE_NOTIFICATIONS}
+                            component={ManageNotificationsScreen}
                         />
                         <Stack.Screen
                             name={routes.LANGUAGE}

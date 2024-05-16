@@ -8,6 +8,8 @@ import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
 import { MAX_WIDTH } from '@/constants/constants'
 import { storageKeys } from '@/constants/storage'
+import { useAppDispatch } from '@/hooks/use-app-dispatch'
+import { api } from '@/redux/api'
 import { DefaultStackScreenProps } from '@/types/interface'
 
 export default function LanguageScreen({
@@ -15,12 +17,16 @@ export default function LanguageScreen({
 }: DefaultStackScreenProps) {
     const { t, i18n } = useTranslation()
 
+    const dispatch = useAppDispatch()
+
     const [language, setLanguage] = useState(i18n.language)
 
     useEffect(() => {
         if (language !== i18n.language) {
             i18n.changeLanguage(language)
             AsyncStorage.setItem(storageKeys.language, language)
+
+            dispatch(api.util.resetApiState())
         }
     }, [language])
 

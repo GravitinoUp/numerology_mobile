@@ -5,6 +5,7 @@
         "dashboard": "Dashboard",
         "union": "Union",
         "prediction": "Prediction",
+        "notifications": "Notifications",
         "profile": "Profile"
     },
     "select": {

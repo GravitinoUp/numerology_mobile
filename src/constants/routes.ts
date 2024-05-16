@@ -15,6 +15,8 @@ export const routes = {
     PROFILE: 'ProfileScreen',
     EDIT_PROFILE: 'EditProfileScreen',
     SUBSCRIPTIONS: 'SubscriptionsScreen',
+    MANAGE_NOTIFICATIONS: 'ManageNotificationsScreen',
     NOTIFICATIONS: 'NotificationsScreen',
+    NOTIFICATION: 'NotificationScreen',
     LANGUAGE: 'LanguageScreen',
 }

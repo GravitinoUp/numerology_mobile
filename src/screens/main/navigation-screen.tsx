@@ -1,8 +1,10 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTranslation } from 'react-i18next'
 import DashboardScreen from './dashboard/dashboard-screen'
+import NotificationsScreen from './notifications/notifications-screen'
 import ProfileScreen from './profile/profile-screen'
 import DashboardIcon from '@/assets/icons/dashboard'
+import NotificationsIcon from '@/assets/icons/notifications'
 import PredictionIcon from '@/assets/icons/prediction'
 import ProfileIcon from '@/assets/icons/profile'
 import UnionIcon from '@/assets/icons/union'
@@ -40,6 +42,15 @@ export default function NavigationScreen() {
                 component={DashboardScreen}
                 options={() => ({
                     tabBarIcon: ({ color }) => <PredictionIcon color={color} />,
+                })}
+            />
+            <Tab.Screen
+                name={t('route.notifications')}
+                component={NotificationsScreen}
+                options={() => ({
+                    tabBarIcon: ({ color }) => (
+                        <NotificationsIcon color={color} />
+                    ),
                 })}
             />
             <Tab.Screen

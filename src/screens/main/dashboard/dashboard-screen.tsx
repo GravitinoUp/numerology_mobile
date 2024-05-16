@@ -174,8 +174,7 @@ export default function DashboardScreen({
                                         locked={
                                             index === 5 ||
                                             index === 6 ||
-                                            index === 7 ||
-                                            index === 8
+                                            index === 7
                                         }
                                         onLockedPress={() =>
                                             setProDialogOpen(true)

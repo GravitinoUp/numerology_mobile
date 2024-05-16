@@ -1,3 +1,4 @@
+import { DEFAULT_HOST } from '@env'
 import { HStack, Text } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
 import NumbersLayout from './components/numbers-layout'
@@ -45,7 +46,9 @@ export default function NumbersScreen({
                             borderRadius: AppShapes.largeRadius,
                             marginHorizontal: 16,
                         }}
-                        source={{ uri: routeParams.page_image }}
+                        source={{
+                            uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                        }}
                     />
                     <PageLabel
                         bgColor={routeParams.color}

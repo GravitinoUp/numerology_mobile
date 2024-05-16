@@ -16,7 +16,7 @@ const notificationsSchema = z.object({
     n5: z.boolean(),
 })
 
-export default function NotificationsScreen({
+export default function ManageNotificationsScreen({
     navigation,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
