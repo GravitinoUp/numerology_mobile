@@ -15,6 +15,7 @@ type ExpandableCardProps = {
     title?: string
     content?: string
     image: string
+    adaptive?: boolean
 }
 
 const ExpandableCard = ({
@@ -22,6 +23,7 @@ const ExpandableCard = ({
     title,
     content,
     image,
+    adaptive = true,
 }: ExpandableCardProps) => {
     const [expanded, setExpanded] = useState(true)
 
@@ -32,9 +34,11 @@ const ExpandableCard = ({
         Dimensions.get('window').width
     )
 
-    Dimensions.addEventListener('change', ({ window }) => {
-        setWindowQuery(window.width)
-    })
+    adaptive &&
+        Dimensions.addEventListener('change', ({ window }) => {
+            setWindowQuery(window.width)
+        })
+
     useEffect(() => {
         const delayTimeoutId = setTimeout(() => {
             if (windowWidth !== windowQuery) {
@@ -49,10 +53,11 @@ const ExpandableCard = ({
         <TouchableOpacity
             style={{
                 width: '100%',
-                maxWidth:
-                    windowWidth >= MEDIUM_MAX_WIDTH
+                maxWidth: adaptive
+                    ? windowWidth >= MEDIUM_MAX_WIDTH
                         ? MAX_WIDTH
-                        : MEDIUM_MAX_WIDTH,
+                        : MEDIUM_MAX_WIDTH
+                    : undefined,
             }}
             activeOpacity={ACTIVE_OPACITY}
             onPress={() => {

@@ -1,11 +1,13 @@
-import { ScrollView, VStack } from '@gluestack-ui/themed'
+import { VStack } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import { z } from 'zod'
 import { CustomForm, useForm } from '@/components/form/form'
 import TopBar from '@/components/top-bar/top-bar'
 import { FormField, FormItem } from '@/components/ui/form'
 import Scaffold from '@/components/ui/scaffold'
+import AppScrollView from '@/components/ui/scroll-view'
 import AppSwitch from '@/components/ui/switch'
+import { MAX_WIDTH } from '@/constants/constants'
 import { DefaultStackScreenProps } from '@/types/interface'
 
 const notificationsSchema = z.object({
@@ -38,7 +40,10 @@ export default function ManageNotificationsScreen({
                 title={t('settings.label.notifications')}
                 navigation={navigation}
             />
-            <ScrollView>
+            <AppScrollView
+                contentContainerStyle={{ justifyContent: 'flex-start' }}
+                maxWidth={MAX_WIDTH}
+            >
                 <CustomForm form={form}>
                     <VStack p="$4" gap="$5">
                         <FormField
@@ -113,7 +118,7 @@ export default function ManageNotificationsScreen({
                         />
                     </VStack>
                 </CustomForm>
-            </ScrollView>
+            </AppScrollView>
         </Scaffold>
     )
 }

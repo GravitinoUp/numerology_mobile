@@ -30,7 +30,7 @@ export type PageType =
     | 'compatibility'
     | 'color-palette'
     | 'formula'
-    | 'gift'
+    | 'fate-number-gifts'
     | 'animal'
     | 'lucky-numbers'
     | 'angel'

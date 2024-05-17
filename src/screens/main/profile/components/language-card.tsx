@@ -11,19 +11,21 @@ import { ACTIVE_OPACITY } from '@/constants/constants'
 import { AppColors } from '@/constants/theme'
 
 type LanguageCardProps = {
+    icon: React.ReactNode
     label: string
     value: string
     onChange: (value: string) => void
 }
 
-const LanguageCard = ({ label, value, onChange }: LanguageCardProps) => (
+const LanguageCard = ({ icon, label, value, onChange }: LanguageCardProps) => (
     <TouchableOpacity
         activeOpacity={ACTIVE_OPACITY}
         onPress={() => onChange(value)}
     >
         <HStack justifyContent="space-between">
             <HStack>
-                <Text fontWeight="$bold" color={AppColors.text}>
+                {icon}
+                <Text ml="$2" fontWeight="$bold" color={AppColors.text}>
                     {label}
                 </Text>
             </HStack>

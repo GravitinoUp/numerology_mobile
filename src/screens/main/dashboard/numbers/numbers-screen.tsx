@@ -72,6 +72,7 @@ export default function NumbersScreen({
                                 title={value.result_name}
                                 content={value.result_content}
                                 image={value.result_image}
+                                adaptive={data.length > 1}
                             />
                         ))}
                     </HStack>

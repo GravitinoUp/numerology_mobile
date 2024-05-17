@@ -18,6 +18,8 @@ import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
 import CategoryScreen from './screens/main/dashboard/category-screen'
+import CompatibilityScreen from './screens/main/dashboard/numbers/compatibility/compatibility-screen.tsx'
+import DateNumbersScreen from './screens/main/dashboard/numbers/date-numbers-screen'
 import FateCardsScreen from './screens/main/dashboard/numbers/fate-cards/fate-cards-screen'
 import InputNumbersScreen from './screens/main/dashboard/numbers/input-numbers-screen'
 import LuckyNumbersScreen from './screens/main/dashboard/numbers/lucky-numbers/lucky-numbers-screen'
@@ -204,8 +206,16 @@ function App({ initial }: { initial: string }) {
                             component={NumbersScreen}
                         />
                         <Stack.Screen
+                            name={routes.DATE_NUMBERS}
+                            component={DateNumbersScreen}
+                        />
+                        <Stack.Screen
                             name={routes.INPUT_NUMBERS}
                             component={InputNumbersScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.COMPATIBILITY}
+                            component={CompatibilityScreen}
                         />
                         <Stack.Screen
                             name={routes.FATE_CARDS}

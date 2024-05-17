@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react'
-import { Center, ScrollView, Text, VStack } from '@gluestack-ui/themed'
-import { Image } from 'react-native'
+import { DEFAULT_HOST } from '@env'
+import { Center, Text, VStack } from '@gluestack-ui/themed'
+import { Dimensions, Image } from 'react-native'
 import NumbersLayout from './components/numbers-layout'
 import PageLabel from '@/components/page/page-label'
 import AppInput from '@/components/ui/input'
-import { INPUT_LENGTH } from '@/constants/constants'
+import AppScrollView from '@/components/ui/scroll-view'
+import { INPUT_LENGTH, MEDIUM_MAX_WIDTH } from '@/constants/constants'
 import { AppColors, AppShapes } from '@/constants/theme'
 import { useGetSingleNumberQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
@@ -46,15 +48,21 @@ export default function InputNumbersScreen({
             description={routeParams.page_description}
             navigation={navigation}
         >
-            <ScrollView>
+            <AppScrollView
+                contentContainerStyle={{ justifyContent: 'flex-start' }}
+                maxWidth={MEDIUM_MAX_WIDTH}
+            >
                 <Image
                     style={{
-                        height: 180,
+                        height: Dimensions.get('window').width * 0.5,
+                        maxHeight: 280,
                         backgroundColor: AppColors.primary,
                         borderRadius: AppShapes.largeRadius,
                         marginHorizontal: 16,
                     }}
-                    source={{ uri: '1' }}
+                    source={{
+                        uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                    }}
                 />
                 <PageLabel
                     bgColor={routeParams.color}
@@ -100,7 +108,7 @@ export default function InputNumbersScreen({
                         </Center>
                     )}
                 </VStack>
-            </ScrollView>
+            </AppScrollView>
         </NumbersLayout>
     )
 }

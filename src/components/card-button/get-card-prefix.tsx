@@ -60,7 +60,7 @@ const getCardPrefix = (type: PageType) => {
             return <ColorPaletteIcon />
         case 'formula':
             return <FormulaIcon />
-        case 'gift':
+        case 'fate-number-gifts':
             return <GiftIcon />
         case 'animal':
             return <AnimalIcon />

@@ -3,6 +3,7 @@ import { RadioGroup } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
 import { useTranslation } from 'react-i18next'
 import LanguageCard from './components/language-card'
+import { EnglishIcon, RussianIcon } from '@/assets/icons/country'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
@@ -42,11 +43,13 @@ export default function LanguageScreen({
             >
                 <RadioGroup value={language} py="$4" px="$5" gap="$5">
                     <LanguageCard
+                        icon={<RussianIcon />}
                         label="Русский"
                         value="ru"
                         onChange={setLanguage}
                     />
                     <LanguageCard
+                        icon={<EnglishIcon />}
                         label="English"
                         value="en"
                         onChange={setLanguage}

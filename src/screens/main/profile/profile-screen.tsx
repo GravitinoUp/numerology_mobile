@@ -125,7 +125,9 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                                 index={2}
                                 label={t('settings.label.notifications')}
                                 onPress={() =>
-                                    navigation.navigate(routes.NOTIFICATIONS)
+                                    navigation.navigate(
+                                        routes.MANAGE_NOTIFICATIONS
+                                    )
                                 }
                             />
                             <CardButton

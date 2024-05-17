@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Text } from '@gluestack-ui/themed'
 import { InfoIcon } from 'lucide-react-native'
+import { useTranslation } from 'react-i18next'
 import DescriptionActionsheet from '@/components/description-actionsheet/description-actionsheet'
 import IconButton from '@/components/icon-button/icon-button'
 import TopBar from '@/components/top-bar/top-bar'
@@ -21,6 +22,8 @@ const NumbersLayout = ({
     navigation,
     children,
 }: NumbersLayoutProps) => {
+    const { t } = useTranslation()
+
     const [actionsheetOpen, setActionsheetOpen] = useState(false)
 
     return (
@@ -40,6 +43,7 @@ const NumbersLayout = ({
             {children}
             {description && (
                 <DescriptionActionsheet
+                    title={t('description')}
                     actionsheetOpen={actionsheetOpen}
                     setActionsheetOpen={setActionsheetOpen}
                 >

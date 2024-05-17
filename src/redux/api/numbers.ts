@@ -24,6 +24,21 @@ const numbersApi = api.injectEndpoints({
                 url: 'number/fate-card',
             }),
         }),
+        getLuckyNumbers: builder.query<number[], void>({
+            query: () => ({
+                url: 'number/lucky-numbers',
+            }),
+        }),
+        getCompatibility: builder.query<
+            ResultInterface[],
+            { first_partner_date: string; second_partner_date: string }
+        >({
+            query: (body) => ({
+                url: `number/compatibility`,
+                method: 'POST',
+                body,
+            }),
+        }),
     }),
 })
 
@@ -31,4 +46,6 @@ export const {
     useGetNumbersQuery,
     useGetSingleNumberQuery,
     useGetFateCardQuery,
+    useGetLuckyNumbersQuery,
+    useGetCompatibilityQuery,
 } = numbersApi

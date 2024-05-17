@@ -104,5 +104,7 @@
     "no.patronymic": "У меня нет отчетства",
     "required.pro.title": "Необходима подписка PRO",
     "required.pro.content": "Чтобы получить доступ к закрытому контенту, необходимо иметь актинвую подписку PRO.",
-    "active.subscriptions": "Активные подписки"
+    "active.subscriptions": "Активные подписки",
+    "you": "Вы",
+    "select.date": "Выберите дату"
 }

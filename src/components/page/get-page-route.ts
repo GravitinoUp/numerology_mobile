@@ -16,15 +16,15 @@ const getPageRoute = (type: PageType) => {
         case 'birthdate-style':
             return routes.NUMBERS
         case 'compatibility':
-            return routes.NUMBERS
+            return routes.COMPATIBILITY
         case 'color-palette':
             return routes.NUMBERS
-        case 'gift':
-            return routes.NUMBERS
+        case 'fate-number-gifts':
+            return routes.DATE_NUMBERS
         case 'animal':
             return routes.NUMBERS
         case 'lucky-numbers':
-            return routes.NUMBERS
+            return routes.LUCKY_NUMBERS
         case 'guessing-number':
             return routes.INPUT_NUMBERS
         default:
