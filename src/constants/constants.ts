@@ -10,7 +10,7 @@ export const phoneCountries = [
 ]
 
 export const INPUT_LENGTH: { [page: string]: [number, number] } = {
-    'phone-calculation': [1, 9],
+    'phone-calculation': [10, 12],
     'house-calculation': [1, 9],
     'guessing-number': [9, 9],
 }

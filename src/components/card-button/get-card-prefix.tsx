@@ -44,7 +44,7 @@ const getCardPrefix = (type: PageType) => {
             return <HealthIcon />
         case 'blood':
             return <BloodIcon />
-        case 'charts':
+        case 'graph':
             return <ChartsIcon />
         case 'phone-calculation':
             return <PhoneIcon />
@@ -52,21 +52,21 @@ const getCardPrefix = (type: PageType) => {
             return <HomeIcon />
         case 'prediction':
             return <PredictionIcon />
-        case 'birthdate-style':
+        case 'birthday-style':
             return <BirthdateStyleIcon />
         case 'compatibility':
             return <CompatibilityIcon />
-        case 'color-palette':
+        case 'color-graph':
             return <ColorPaletteIcon />
-        case 'formula':
+        case 'all-formulas':
             return <FormulaIcon />
         case 'fate-number-gifts':
             return <GiftIcon />
-        case 'animal':
+        case 'totemic-animals':
             return <AnimalIcon />
         case 'lucky-numbers':
             return <LuckyIcon />
-        case 'angel':
+        case 'angelic-numerology':
             return <AngelIcon />
         case 'professions':
             return <ProfessionIcon />

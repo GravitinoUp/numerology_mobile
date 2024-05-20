@@ -105,5 +105,9 @@
     "required.pro.content": "To access locked content you need to have an active PRO subscription.",
     "active.subscriptions": "Active subscriptions",
     "you": "You",
-    "select.date": "Select a date"
+    "select.date": "Select a date",
+    "under.development": "Under development",
+    "under.development.description": "This section is under development! Feature will be introduced in future updates.",
+    "type.number.from.to": "Please, specify a number with the number of digits from {{from}} to {{to}}",
+    "type.number.uqual.to": "Please, specify a number with the number of digits equal to {{to}}"
 }

@@ -18,12 +18,14 @@ import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
 import CategoryScreen from './screens/main/dashboard/category-screen'
+import ColorGraphScreen from './screens/main/dashboard/numbers/color-graph/color-graph-screen.tsx'
 import CompatibilityScreen from './screens/main/dashboard/numbers/compatibility/compatibility-screen.tsx'
 import DateNumbersScreen from './screens/main/dashboard/numbers/date-numbers-screen'
 import FateCardsScreen from './screens/main/dashboard/numbers/fate-cards/fate-cards-screen'
 import InputNumbersScreen from './screens/main/dashboard/numbers/input-numbers-screen'
 import LuckyNumbersScreen from './screens/main/dashboard/numbers/lucky-numbers/lucky-numbers-screen'
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
+import PlaceholderScreen from './screens/main/dashboard/numbers/placeholder-screen.tsx'
 import NavigationScreen from './screens/main/navigation-screen'
 import NotificationScreen from './screens/main/notifications/notification-screen'
 import EditProfileScreen from './screens/main/profile/edit-profile-screen'
@@ -172,6 +174,10 @@ function App({ initial }: { initial: string }) {
                         name={routes.NAVIGATION}
                         component={NavigationScreen}
                     />
+                    <Stack.Screen
+                        name={routes.PLACEHOLDER}
+                        component={PlaceholderScreen}
+                    />
                     {/* NOTIFICATION */}
                     <Stack.Screen
                         name={routes.NOTIFICATION}
@@ -208,6 +214,10 @@ function App({ initial }: { initial: string }) {
                         <Stack.Screen
                             name={routes.DATE_NUMBERS}
                             component={DateNumbersScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.COLOR_GRAPH}
+                            component={ColorGraphScreen}
                         />
                         <Stack.Screen
                             name={routes.INPUT_NUMBERS}

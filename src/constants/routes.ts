@@ -14,6 +14,7 @@ export const routes = {
     FATE_CARDS: 'FateCardsScreen',
     LUCKY_NUMBERS: 'LuckyNumbersScreen',
     COMPATIBILITY: 'CompatibilityScreen',
+    COLOR_GRAPH: 'ColorGraphScreen',
     PROFILE: 'ProfileScreen',
     EDIT_PROFILE: 'EditProfileScreen',
     SUBSCRIPTIONS: 'SubscriptionsScreen',
@@ -21,4 +22,5 @@ export const routes = {
     NOTIFICATIONS: 'NotificationsScreen',
     NOTIFICATION: 'NotificationScreen',
     LANGUAGE: 'LanguageScreen',
+    PLACEHOLDER: 'PlaceholderScreen',
 }

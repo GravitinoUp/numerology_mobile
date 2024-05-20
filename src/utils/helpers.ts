@@ -33,3 +33,11 @@ export const formatDateISO = (
     const newDate = new Date(date)
     return format(newDate, `yyyy-MM-dd${includeTime ? ' HH:mm' : ''}`)
 }
+
+export const formatTime = (date?: string | Date | null) => {
+    if (!date) {
+        return ''
+    }
+    const newDate = new Date(date)
+    return format(newDate, `HH:mm`)
+}

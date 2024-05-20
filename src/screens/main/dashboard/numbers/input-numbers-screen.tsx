@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { DEFAULT_HOST } from '@env'
 import { Center, Text, VStack } from '@gluestack-ui/themed'
+import { useTranslation } from 'react-i18next'
 import { Dimensions, Image } from 'react-native'
 import NumbersLayout from './components/numbers-layout'
 import PageLabel from '@/components/page/page-label'
@@ -17,6 +18,8 @@ export default function InputNumbersScreen({
     navigation,
     route,
 }: DefaultStackScreenProps) {
+    const { t } = useTranslation()
+
     const routeParams = route.params as PageInterface
     const length = INPUT_LENGTH[routeParams.key]
 
@@ -103,7 +106,14 @@ export default function InputNumbersScreen({
                                 color={AppColors.hint}
                                 textAlign="center"
                             >
-                                {/* TODO hint */}
+                                {length[0] !== length[1]
+                                    ? t('type.number.from.to', {
+                                          from: length[0],
+                                          to: length[1],
+                                      })
+                                    : t('type.number.exact.to', {
+                                          to: length[1],
+                                      })}
                             </Text>
                         </Center>
                     )}

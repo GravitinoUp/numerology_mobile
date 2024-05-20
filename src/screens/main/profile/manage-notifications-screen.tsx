@@ -7,7 +7,7 @@ import { FormField, FormItem } from '@/components/ui/form'
 import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
 import AppSwitch from '@/components/ui/switch'
-import { MAX_WIDTH } from '@/constants/constants'
+import { MEDIUM_MAX_WIDTH } from '@/constants/constants'
 import { DefaultStackScreenProps } from '@/types/interface'
 
 const notificationsSchema = z.object({
@@ -42,7 +42,7 @@ export default function ManageNotificationsScreen({
             />
             <AppScrollView
                 contentContainerStyle={{ justifyContent: 'flex-start' }}
-                maxWidth={MAX_WIDTH}
+                maxWidth={MEDIUM_MAX_WIDTH}
             >
                 <CustomForm form={form}>
                     <VStack p="$4" gap="$5">
