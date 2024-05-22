@@ -91,7 +91,7 @@ const ExpandableCard = ({
                         justifyContent="space-between"
                         alignItems="center"
                     >
-                        {prefix ? (
+                        {prefix && (
                             <View
                                 bgColor={AppColors.proColor}
                                 w="$12"
@@ -102,8 +102,6 @@ const ExpandableCard = ({
                             >
                                 {prefix}
                             </View>
-                        ) : (
-                            <View />
                         )}
                         <Text
                             fontWeight="$medium"

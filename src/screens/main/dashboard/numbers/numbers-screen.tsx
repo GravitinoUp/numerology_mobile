@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import { DEFAULT_HOST } from '@env'
 import { HStack, Text } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
@@ -37,10 +36,6 @@ export default function NumbersScreen({
 
     const successLoad = !isFetching && isSuccess
 
-    useEffect(() => {
-        console.log(`${DEFAULT_HOST}${routeParams.page_image}`)
-    }, [])
-
     return (
         <NumbersLayout
             description={routeParams.page_description}
@@ -75,12 +70,14 @@ export default function NumbersScreen({
                             <ExpandableCard
                                 key={index}
                                 prefix={
-                                    <Text
-                                        fontWeight="$bold"
-                                        color={AppColors.text}
-                                    >
-                                        {value.result_keys[0]}
-                                    </Text>
+                                    value.result_keys[0].length <= 2 && (
+                                        <Text
+                                            fontWeight="$bold"
+                                            color={AppColors.text}
+                                        >
+                                            {value.result_keys[0]}
+                                        </Text>
+                                    )
                                 }
                                 title={value.result_name}
                                 content={value.result_content}
