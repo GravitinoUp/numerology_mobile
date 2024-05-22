@@ -50,7 +50,7 @@ const ExpandableCard = ({
     }, [windowQuery])
 
     return (
-        <TouchableOpacity
+        <VStack
             style={{
                 width: '100%',
                 maxWidth: adaptive
@@ -59,31 +59,32 @@ const ExpandableCard = ({
                         : MEDIUM_MAX_WIDTH
                     : undefined,
             }}
-            activeOpacity={ACTIVE_OPACITY}
-            onPress={() => {
-                setExpanded(!expanded)
-            }}
         >
-            <VStack>
-                <VStack
-                    borderRadius={AppShapes.largeRadius}
-                    borderWidth="$1"
-                    borderColor={AppColors.border}
-                    backgroundColor={AppColors.background}
-                    overflow="hidden"
+            <VStack
+                borderRadius={AppShapes.largeRadius}
+                borderWidth="$1"
+                borderColor={AppColors.border}
+                backgroundColor={AppColors.background}
+                overflow="hidden"
+            >
+                {image !== '' && (
+                    <Image
+                        style={{
+                            width: '100%',
+                            height: 180,
+                            backgroundColor: AppColors.primary,
+                        }}
+                        source={{
+                            uri: `${DEFAULT_HOST}${image}`,
+                        }}
+                    />
+                )}
+                <TouchableOpacity
+                    activeOpacity={ACTIVE_OPACITY}
+                    onPress={() => {
+                        setExpanded(!expanded)
+                    }}
                 >
-                    {image !== '' && (
-                        <Image
-                            style={{
-                                width: '100%',
-                                height: 180,
-                                backgroundColor: AppColors.primary,
-                            }}
-                            source={{
-                                uri: `${DEFAULT_HOST}${image}`,
-                            }}
-                        />
-                    )}
                     <HStack
                         h={80}
                         px="$4"
@@ -119,14 +120,14 @@ const ExpandableCard = ({
                             <ChevronDown />
                         </View>
                     </HStack>
-                </VStack>
-                {expanded && (
-                    <Text pt="$2" color={AppColors.text}>
-                        {content}
-                    </Text>
-                )}
+                </TouchableOpacity>
             </VStack>
-        </TouchableOpacity>
+            {expanded && (
+                <Text pt="$2" color={AppColors.text}>
+                    {content}
+                </Text>
+            )}
+        </VStack>
     )
 }
 

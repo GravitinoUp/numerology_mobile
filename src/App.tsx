@@ -18,6 +18,7 @@ import { store } from './redux/store'
 import AuthNavScreen from './screens/auth/auth-nav-screen'
 import AuthScreen from './screens/auth/auth-screen'
 import CategoryScreen from './screens/main/dashboard/category-screen'
+import BloodTypeScreen from './screens/main/dashboard/numbers/blood-type/blood-type-screen.tsx'
 import ColorGraphScreen from './screens/main/dashboard/numbers/color-graph/color-graph-screen.tsx'
 import CompatibilityScreen from './screens/main/dashboard/numbers/compatibility/compatibility-screen.tsx'
 import DateNumbersScreen from './screens/main/dashboard/numbers/date-numbers-screen'
@@ -214,6 +215,10 @@ function App({ initial }: { initial: string }) {
                         <Stack.Screen
                             name={routes.DATE_NUMBERS}
                             component={DateNumbersScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.BLOOD_TYPE}
+                            component={BloodTypeScreen}
                         />
                         <Stack.Screen
                             name={routes.COLOR_GRAPH}

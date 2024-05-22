@@ -109,5 +109,6 @@
     "under.development": "Under development",
     "under.development.description": "This section is under development! Feature will be introduced in future updates.",
     "type.number.from.to": "Please, specify a number with the number of digits from {{from}} to {{to}}",
-    "type.number.uqual.to": "Please, specify a number with the number of digits equal to {{to}}"
+    "type.number.uqual.to": "Please, specify a number with the number of digits equal to {{to}}",
+    "select.blood.type": "Please, select your blood type"
 }

@@ -42,7 +42,7 @@ const getCardPrefix = (type: PageType) => {
             return <KarmaIcon />
         case 'health':
             return <HealthIcon />
-        case 'blood':
+        case 'blood-type':
             return <BloodIcon />
         case 'graph':
             return <ChartsIcon />

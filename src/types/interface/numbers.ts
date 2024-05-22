@@ -21,7 +21,7 @@ export type PageType =
     | 'planets'
     | 'karma'
     | 'health'
-    | 'blood'
+    | 'blood-type'
     | 'graph'
     | 'phone-calculation'
     | 'house-calculation'
