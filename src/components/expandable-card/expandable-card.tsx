@@ -60,31 +60,31 @@ const ExpandableCard = ({
                     : undefined,
             }}
         >
-            <VStack
-                borderRadius={AppShapes.largeRadius}
-                borderWidth="$1"
-                borderColor={AppColors.border}
-                backgroundColor={AppColors.background}
-                overflow="hidden"
+            <TouchableOpacity
+                activeOpacity={ACTIVE_OPACITY}
+                onPress={() => {
+                    setExpanded(!expanded)
+                }}
             >
-                {image !== '' && (
-                    <Image
-                        style={{
-                            width: '100%',
-                            height: 180,
-                            backgroundColor: AppColors.primary,
-                        }}
-                        source={{
-                            uri: `${DEFAULT_HOST}${image}`,
-                        }}
-                    />
-                )}
-                <TouchableOpacity
-                    activeOpacity={ACTIVE_OPACITY}
-                    onPress={() => {
-                        setExpanded(!expanded)
-                    }}
+                <VStack
+                    borderRadius={AppShapes.largeRadius}
+                    borderWidth="$1"
+                    borderColor={AppColors.border}
+                    backgroundColor={AppColors.background}
+                    overflow="hidden"
                 >
+                    {image !== '' && (
+                        <Image
+                            style={{
+                                width: '100%',
+                                height: 180,
+                                backgroundColor: AppColors.primary,
+                            }}
+                            source={{
+                                uri: `${DEFAULT_HOST}${image}`,
+                            }}
+                        />
+                    )}
                     <HStack
                         h={80}
                         px="$4"
@@ -118,8 +118,8 @@ const ExpandableCard = ({
                             <ChevronDown />
                         </View>
                     </HStack>
-                </TouchableOpacity>
-            </VStack>
+                </VStack>
+            </TouchableOpacity>
             {expanded && (
                 <Text pt="$2" color={AppColors.text}>
                     {content}
