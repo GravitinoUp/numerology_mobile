@@ -1,6 +1,6 @@
 import { Text, VStack } from '@gluestack-ui/themed'
 import { TouchableOpacity } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type SettingFieldProps = {
     label: string

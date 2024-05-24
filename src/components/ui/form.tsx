@@ -8,7 +8,7 @@ import {
     useFormContext,
 } from 'react-hook-form'
 import { StyleProp, ViewStyle } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type FormFieldContextValue<
     TFieldValues extends FieldValues = FieldValues,

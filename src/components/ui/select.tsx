@@ -16,7 +16,7 @@ import {
 } from '@gluestack-ui/themed'
 import i18next from 'i18next'
 import { StyleProp, StyleSheet, TextStyle, View, ViewStyle } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 export interface SelectItemInterface {
     label: string

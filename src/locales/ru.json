@@ -5,9 +5,8 @@
         "dashboard": "Главная",
         "union": "Союз",
         "prediction": "Предсказание",
-        "profile": "Профиль",
-        "numbers": "Цифры в матрице",
-        "matrix": "Расшифровка матрицы"
+        "notifications": "Уведомления",
+        "profile": "Профиль"
     },
     "select": {
         "birthday": "Выберите ваш день рождения"
@@ -30,7 +29,9 @@
         "password": "Пароль",
         "repeat.password": "Повторите пароль",
         "data": "Данные пользователя",
-        "name": "Ваше имя",
+        "first.name": "Имя",
+        "last.name": "Фамилия",
+        "patronymic": "Отчество",
         "birthday": "День рождения"
     },
     "placeholder": {
@@ -63,18 +64,52 @@
         "password.mismatch": "Пароли не совпадают",
         "user.exists": "Пользователь с таким номером телефона уже существует"
     },
+    "success": {
+        "user.update": "Данные аккаунта успешно обновлены"
+    },
     "action": {
         "continue": "Продолжить",
         "cancel": "Отменить",
         "confirm": "Подтвердить",
         "skip": "Пропустить",
         "retry": "Повторить",
-        "verify": "Проверить"
+        "verify": "Проверить",
+        "save": "Сохранить",
+        "buy": "Купить",
+        "subscribe": "Оформить подписку",
+        "unsubscribe": "Отменить подписку"
     },
     "date.format": "dd.MM.yyyy",
     "birthday": "День рождения",
     "day": "День",
     "month": "Месяц",
     "year": "Год",
-    "forgot.password": "Забыли пароль?"
+    "forgot.password": "Забыли пароль?",
+    "section": {
+        "health.numerology": "Нумерология здоровья",
+        "fate.cards": "Карты судьбы",
+        "professions": "Профессии и самореализация",
+        "weaknesses": "Слабые качества",
+        "lucky.numbers": "Числа удачи",
+        "planets": "Планеты",
+        "ancestors": "Кем были ваши предки?"
+    },
+    "planets": {
+        "life.path.number": "Число жизненного пути",
+        "soul.number": "Число души"
+    },
+    "title": "Заголовок",
+    "description": "Описание",
+    "categories": "Категории",
+    "no.patronymic": "У меня нет отчетства",
+    "required.pro.title": "Необходима подписка PRO",
+    "required.pro.content": "Чтобы получить доступ к закрытому контенту, необходимо иметь актинвую подписку PRO.",
+    "active.subscriptions": "Активные подписки",
+    "you": "Вы",
+    "select.date": "Выберите дату",
+    "under.development": "В разработке",
+    "under.development.description": "Этот раздел находится в разработке! Он появится в будущих обновлениях.",
+    "type.number.from.to": "Пожалуйста, укажите число с количеством цифр от {{from}} до {{to}}",
+    "type.number.uqual.to": "Пожалуйста, укажите число с количеством цифр равным {{to}}",
+    "select.blood.type": "Пожалуйста, укажите вашу группу крови"
 }

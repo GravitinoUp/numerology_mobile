@@ -1,8 +1,9 @@
 import { View } from '@gluestack-ui/themed'
 import { TouchableOpacity } from 'react-native'
+import DropShadow from 'react-native-drop-shadow'
 import ChevronLeft from '@/assets/icons/chevron-left'
-import { AppColors } from '@/constants/colors'
 import { ACTIVE_OPACITY } from '@/constants/constants'
+import { AppColors } from '@/constants/theme'
 import { DefaultStackNavigationProp } from '@/types/interface'
 
 const BackButton = ({
@@ -10,16 +11,33 @@ const BackButton = ({
 }: {
     navigation: DefaultStackNavigationProp
 }) => (
-    <View bgColor={AppColors.background} borderRadius="$full" softShadow="1">
+    <DropShadow
+        style={{
+            shadowColor: '#091219',
+            shadowOffset: {
+                width: 0,
+                height: 4,
+            },
+            shadowOpacity: 0.2,
+            shadowRadius: 10,
+        }}
+    >
         <TouchableOpacity
             activeOpacity={ACTIVE_OPACITY}
             onPress={navigation.goBack}
         >
-            <View p="$3">
+            <View
+                w="$10"
+                h="$10"
+                bgColor={AppColors.background}
+                borderRadius="$full"
+                justifyContent="center"
+                alignItems="center"
+            >
                 <ChevronLeft />
             </View>
         </TouchableOpacity>
-    </View>
+    </DropShadow>
 )
 
 export default BackButton

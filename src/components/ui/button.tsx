@@ -1,7 +1,7 @@
 import React, { ComponentProps, Fragment } from 'react'
 import { Button, ButtonSpinner, ButtonText } from '@gluestack-ui/themed'
 import { StyleProp, ViewStyle } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type ButtonProps = ComponentProps<typeof Button>
 type ButtonTextProps = ComponentProps<typeof ButtonText>

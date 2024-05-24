@@ -5,8 +5,8 @@ import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { LogoLarge } from '@/assets/icons/logo'
 import AppButton from '@/components/ui/button'
-import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH } from '@/constants/constants'
+import { AppColors } from '@/constants/theme'
 import { ErrorInterface } from '@/types/interface'
 
 type SplashScreenProps = {

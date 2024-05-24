@@ -17,10 +17,12 @@ import AppButton from '@/components/ui/button'
 import Dialog from '@/components/ui/dialog'
 import Scaffold from '@/components/ui/scaffold'
 import TextButton from '@/components/ui/text-button'
-import { AppColors } from '@/constants/colors'
 import { routes } from '@/constants/routes'
+import { AppColors } from '@/constants/theme'
 import { useAppDispatch } from '@/hooks/use-app-dispatch'
 import { api } from '@/redux/api'
+import { useGetCurrentUserQuery } from '@/redux/api/users'
+import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
 
 export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
@@ -28,6 +30,16 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
 
     const dispatch = useAppDispatch()
     const [dialogOpen, setDialogOpen] = useState(false)
+
+    const {
+        data: user,
+        isFetching: userFetching,
+        isSuccess: userSuccess,
+        error: userError,
+        refetch: userRefetch,
+    } = useGetCurrentUserQuery()
+
+    const successLoad = !userFetching && userSuccess
 
     const handleLogout = async () => {
         await AsyncStorage.clear()
@@ -77,37 +89,67 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                 <Text fontSize="$sm">{t('settings.description.logout')}</Text>
             </Dialog>
             <Scaffold>
-                <TopBar
-                    title={t('route.profile')}
-                    suffix={<StatusCard pro />}
-                />
-                <ScrollView>
-                    <Center>
-                        <View
-                            w="$20"
-                            h="$20"
-                            bgColor={AppColors.primary}
-                            borderRadius="$full"
+                <TopBar title={t('route.profile')} />
+                {successLoad ? (
+                    <ScrollView>
+                        <Center>
+                            <View
+                                w="$20"
+                                h="$20"
+                                bgColor={AppColors.primary}
+                                borderRadius="$full"
+                            />
+                            <View position="absolute" bottom={-12}>
+                                <StatusCard pro />
+                            </View>
+                        </Center>
+                        <VStack mt="$2" p="$4" gap="$4">
+                            <CardButton
+                                index={0}
+                                label={t('settings.label.personal.data')}
+                                onPress={() =>
+                                    navigation.navigate(
+                                        routes.EDIT_PROFILE,
+                                        user
+                                    )
+                                }
+                            />
+                            <CardButton
+                                index={1}
+                                label={t('settings.label.subscriptions')}
+                                onPress={() =>
+                                    navigation.navigate(routes.SUBSCRIPTIONS)
+                                }
+                            />
+                            <CardButton
+                                index={2}
+                                label={t('settings.label.notifications')}
+                                onPress={() =>
+                                    navigation.navigate(
+                                        routes.MANAGE_NOTIFICATIONS
+                                    )
+                                }
+                            />
+                            <CardButton
+                                index={3}
+                                label={t('settings.label.language')}
+                                onPress={() =>
+                                    navigation.navigate(routes.LANGUAGE)
+                                }
+                            />
+                        </VStack>
+                        <TextButton
+                            text={t('settings.label.logout')}
+                            textAlign="center"
+                            fontWeight="$medium"
+                            color={AppColors.error}
+                            py="$4"
+                            onPress={() => setDialogOpen(true)}
                         />
-                        <View position="absolute" bottom={-12}>
-                            <StatusCard pro />
-                        </View>
-                    </Center>
-                    <VStack mt="$2" p="$4" gap="$4">
-                        <CardButton label={t('settings.label.personal.data')} />
-                        <CardButton label={t('settings.label.subscriptions')} />
-                        <CardButton label={t('settings.label.notifications')} />
-                        <CardButton label={t('settings.label.language')} />
-                    </VStack>
-                    <TextButton
-                        text={t('settings.label.logout')}
-                        textAlign="center"
-                        fontWeight="$medium"
-                        color={AppColors.error}
-                        py="$4"
-                        onPress={() => setDialogOpen(true)}
-                    />
-                </ScrollView>
+                    </ScrollView>
+                ) : (
+                    <SplashScreen error={userError} refetch={userRefetch} />
+                )}
             </Scaffold>
         </Fragment>
     )

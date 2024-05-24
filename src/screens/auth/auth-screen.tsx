@@ -14,9 +14,9 @@ import AppInput from '@/components/ui/input'
 import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
 import AppSelect from '@/components/ui/select'
-import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH, phoneCountries } from '@/constants/constants'
 import { routes } from '@/constants/routes'
+import { AppColors } from '@/constants/theme'
 import { useAppDispatch } from '@/hooks/use-app-dispatch'
 import { useAuthMutation } from '@/redux/api/auth'
 import { setAccessToken, setRefreshToken } from '@/redux/reducers/authSlice'
@@ -41,18 +41,17 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
     const dispatch = useAppDispatch()
     const [authUser, { data, error, isSuccess, isLoading }] = useAuthMutation()
 
+    const [selectedCountry, setSelectedCountry] = useState(
+        phoneCountries[0].value
+    )
+
     const [passwordHidden, setPasswordHidden] = useState(true)
 
     const onSubmit = (authData: z.infer<typeof authSchema>) => {
-        authUser({ phone: authData.phone, password: authData.password })
-
-        // TODO remove
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: routes.NAVIGATION }],
-            })
-        )
+        authUser({
+            phone: `${selectedCountry}${authData.phone}`,
+            password: authData.password,
+        })
     }
 
     useEffect(() => {
@@ -107,8 +106,8 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                                 <HStack gap="$4">
                                     <AppSelect
                                         style={{ width: 90 }}
-                                        selectedValue={phoneCountries[0].value}
-                                        onValueChange={() => {}}
+                                        selectedValue={selectedCountry}
+                                        onValueChange={setSelectedCountry}
                                         items={phoneCountries}
                                     />
                                     <AppInput
