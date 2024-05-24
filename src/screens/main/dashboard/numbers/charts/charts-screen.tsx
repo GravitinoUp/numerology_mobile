@@ -1,14 +1,15 @@
 import { DEFAULT_HOST } from '@env'
-import { Center, View } from '@gluestack-ui/themed'
+import { Center, HStack, View } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
 import NumbersLayout from '../components/numbers-layout'
-import AppLineChart from '@/components/chart/app-line-chart'
-import { XLabel } from '@/components/chart/x-label'
+import { AppLineChart, GraphLabel } from '@/components/chart/app-line-chart'
+import buildGraph from '@/components/chart/build-graph'
 import PageLabel from '@/components/page/page-label'
 import NumbersSkeleton from '@/components/skeleton/numbers-skeleton'
 import AppScrollView from '@/components/ui/scroll-view'
 import { MEDIUM_MAX_WIDTH } from '@/constants/constants'
 import { AppColors, AppShapes } from '@/constants/theme'
+import { useGetGraphsQuery } from '@/redux/api/numbers'
 import { DefaultStackScreenProps } from '@/types/interface'
 import { PageInterface } from '@/types/interface/pages'
 
@@ -18,7 +19,16 @@ export default function ChartsScreen({
 }: DefaultStackScreenProps) {
     const routeParams = route.params as PageInterface
 
-    const successLoad = true //!isFetching && isSuccess
+    const {
+        data = [],
+        isFetching,
+        isSuccess,
+        error,
+        refetch,
+    } = useGetGraphsQuery()
+
+    const successLoad = !isFetching && isSuccess
+    const graphData = successLoad ? buildGraph(data) : {}
 
     return (
         <NumbersLayout
@@ -27,7 +37,9 @@ export default function ChartsScreen({
         >
             {successLoad ? (
                 <AppScrollView
-                    contentContainerStyle={{ justifyContent: 'flex-start' }}
+                    contentContainerStyle={{
+                        justifyContent: 'flex-start',
+                    }}
                     maxWidth={MEDIUM_MAX_WIDTH}
                 >
                     <Image
@@ -51,95 +63,31 @@ export default function ChartsScreen({
                     </PageLabel>
                     <View
                         style={{
-                            flex: 1,
-                            justifyContent: 'center',
                             alignItems: 'center',
                         }}
                     >
                         <Center>
-                            <AppLineChart
-                                data={[
-                                    {
-                                        value: 1,
-                                        labelComponent: () => (
-                                            <XLabel value="1989" />
-                                        ),
-                                    },
-                                    {
-                                        value: 10,
-                                        labelComponent: () => (
-                                            <XLabel value="2001" />
-                                        ),
-                                    },
-                                    {
-                                        value: 2,
-                                        labelComponent: () => (
-                                            <XLabel value="2013" />
-                                        ),
-                                    },
-                                    {
-                                        value: 6,
-                                        labelComponent: () => (
-                                            <XLabel value="2025" />
-                                        ),
-                                    },
-                                    {
-                                        value: 12,
-                                        labelComponent: () => (
-                                            <XLabel value="2037" />
-                                        ),
-                                    },
-                                    {
-                                        value: 6,
-                                        labelComponent: () => (
-                                            <XLabel value="2049" />
-                                        ),
-                                    },
-                                ]}
-                                data2={[
-                                    {
-                                        value: 2,
-                                        labelComponent: () => (
-                                            <XLabel value="1989" />
-                                        ),
-                                    },
-                                    {
-                                        value: 5,
-                                        labelComponent: () => (
-                                            <XLabel value="2001" />
-                                        ),
-                                    },
-                                    {
-                                        value: 9,
-                                        labelComponent: () => (
-                                            <XLabel value="2013" />
-                                        ),
-                                    },
-                                    {
-                                        value: 10,
-                                        labelComponent: () => (
-                                            <XLabel value="2025" />
-                                        ),
-                                    },
-                                    {
-                                        value: 6,
-                                        labelComponent: () => (
-                                            <XLabel value="2037" />
-                                        ),
-                                    },
-                                    {
-                                        value: 8,
-                                        labelComponent: () => (
-                                            <XLabel value="2049" />
-                                        ),
-                                    },
-                                ]}
-                            />
+                            <AppLineChart {...graphData} />
                         </Center>
                     </View>
+                    <HStack
+                        my="$4"
+                        mx="$6"
+                        flexWrap="wrap"
+                        alignItems="center"
+                        gap="$4"
+                    >
+                        {data.map((value, index) => (
+                            <GraphLabel
+                                key={index}
+                                value={value}
+                                index={index}
+                            />
+                        ))}
+                    </HStack>
                 </AppScrollView>
             ) : (
-                <NumbersSkeleton />
+                <NumbersSkeleton error={error} refetch={refetch} />
             )}
         </NumbersLayout>
     )

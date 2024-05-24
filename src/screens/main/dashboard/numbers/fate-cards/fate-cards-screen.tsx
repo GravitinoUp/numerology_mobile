@@ -3,22 +3,27 @@ import { useTranslation } from 'react-i18next'
 import NumbersLayout from '../components/numbers-layout'
 import DashboardLabel from '@/components/dashboard/dashboard-label'
 import { AppColors } from '@/constants/theme'
-import { useGetFateCardQuery } from '@/redux/api/numbers'
+import { useGetNumbersQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
+import { PageInterface } from '@/types/interface/pages'
 
 export default function FateCardsScreen({
     navigation,
+    route,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
+    const routeParams = route.params as PageInterface
 
     const {
-        data: fateCard,
+        data = [],
         isFetching,
         isSuccess,
         error,
         refetch,
-    } = useGetFateCardQuery()
+    } = useGetNumbersQuery({
+        type: routeParams.key,
+    })
 
     const successLoad = !isFetching && isSuccess
 
@@ -33,12 +38,12 @@ export default function FateCardsScreen({
                             color={AppColors.text}
                             textAlign="center"
                         >
-                            {fateCard.result_name}
+                            {data[0].result_name}
                         </DashboardLabel>
-                        {fateCard.result_image !== '' && (
+                        {data[0].result_image !== '' && (
                             <Center>
                                 <Image
-                                    source={fateCard?.result_image}
+                                    source={data[0]?.result_image}
                                     alt=""
                                     h={135}
                                     w={90}
@@ -46,7 +51,7 @@ export default function FateCardsScreen({
                             </Center>
                         )}
                         <Text color={AppColors.text}>
-                            {fateCard.result_content}
+                            {data[0].result_content}
                         </Text>
                     </VStack>
                 </ScrollView>
