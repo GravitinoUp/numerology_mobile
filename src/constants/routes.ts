@@ -15,6 +15,7 @@ export const routes = {
     LUCKY_NUMBERS: 'LuckyNumbersScreen',
     COMPATIBILITY: 'CompatibilityScreen',
     BLOOD_TYPE: 'BloodTypeScreen',
+    CHARTS: 'ChartsScreen',
     COLOR_GRAPH: 'ColorGraphScreen',
     PROFILE: 'ProfileScreen',
     EDIT_PROFILE: 'EditProfileScreen',

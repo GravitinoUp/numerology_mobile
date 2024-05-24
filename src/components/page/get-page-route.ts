@@ -6,7 +6,7 @@ const getPageRoute = (type: PageType) => {
         case 'fate-card':
             return routes.NUMBERS // CARD
         case 'graph':
-            return routes.PLACEHOLDER // GRAPH
+            return routes.CHARTS
         case 'blood-type':
             return routes.BLOOD_TYPE
         case 'phone-calculation':

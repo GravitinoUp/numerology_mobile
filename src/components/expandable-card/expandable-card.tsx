@@ -99,6 +99,7 @@ const ExpandableCard = ({
                                 justifyContent="center"
                                 alignItems="center"
                                 borderRadius="$full"
+                                mr="$2"
                             >
                                 {prefix}
                             </View>
