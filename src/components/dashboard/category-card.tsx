@@ -1,8 +1,8 @@
 import { ComponentProps } from 'react'
-import { DEFAULT_HOST } from '@env'
 import { HStack, Text, View } from '@gluestack-ui/themed'
 import { animated, useSpring } from '@react-spring/native'
 import { Dimensions, Image, TouchableOpacity } from 'react-native'
+import Config from 'react-native-config'
 import LinearGradient from 'react-native-linear-gradient'
 import ChevronRightAlt from '@/assets/icons/chevron-right-alt'
 import LockedIcon from '@/assets/icons/locked'
@@ -93,7 +93,7 @@ const CategoryCard = ({
                             width: '100%',
                             height: '100%',
                         }}
-                        source={{ uri: `${DEFAULT_HOST}${source}` }}
+                        source={{ uri: `${Config.DEFAULT_HOST}${source}` }}
                         width={windowWidth}
                         height={windowWidth}
                     />

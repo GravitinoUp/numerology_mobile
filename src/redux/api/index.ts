@@ -1,13 +1,13 @@
-import { DEFAULT_HOST } from '@env'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import i18next from 'i18next'
+import Config from 'react-native-config'
 import { getJWTtokens } from '@/utils/helpers'
 
 export const api = createApi({
     reducerPath: 'api',
     refetchOnReconnect: true,
     baseQuery: fetchBaseQuery({
-        baseUrl: DEFAULT_HOST,
+        baseUrl: Config.DEFAULT_HOST,
         prepareHeaders: async (headers) => {
             const { accessToken } = await getJWTtokens()
 

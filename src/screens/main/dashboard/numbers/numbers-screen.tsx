@@ -1,6 +1,6 @@
-import { DEFAULT_HOST } from '@env'
 import { HStack, Text } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
+import Config from 'react-native-config'
 import NumbersLayout from './components/numbers-layout'
 import ExpandableCard from '@/components/expandable-card/expandable-card'
 import PageLabel from '@/components/page/page-label'
@@ -55,7 +55,7 @@ export default function NumbersScreen({
                             marginHorizontal: 16,
                         }}
                         source={{
-                            uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                            uri: `${Config.DEFAULT_HOST}${routeParams.page_image}`,
                         }}
                     />
                     <PageLabel

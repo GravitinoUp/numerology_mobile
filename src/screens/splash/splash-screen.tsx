@@ -45,6 +45,15 @@ export default function SplashScreen({ error, refetch }: SplashScreenProps) {
                             ? errorData.data?.message
                             : t('error.default')}
                     </Text>
+                    <Text color={AppColors.text} textAlign="center">
+                        {`${errorData.status}`}
+                    </Text>
+                    <Text color={AppColors.text} textAlign="center">
+                        {`${errorData.data}`}
+                    </Text>
+                    <Text color={AppColors.text} textAlign="center">
+                        {`${errorData.data?.statusCode}`}
+                    </Text>
                     {typeof refetch !== 'undefined' && (
                         <AppButton
                             mt="$4"

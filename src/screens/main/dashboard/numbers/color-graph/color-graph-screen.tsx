@@ -1,6 +1,6 @@
-import { DEFAULT_HOST } from '@env'
 import { HStack } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
+import Config from 'react-native-config'
 import NumbersLayout from '../components/numbers-layout'
 import PageLabel from '@/components/page/page-label'
 import NumbersSkeleton from '@/components/skeleton/numbers-skeleton'
@@ -45,7 +45,7 @@ export default function ColorGraphScreen({
                             marginHorizontal: 16,
                         }}
                         source={{
-                            uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                            uri: `${Config.DEFAULT_HOST}${routeParams.page_image}`,
                         }}
                     />
                     <PageLabel

@@ -1,6 +1,6 @@
-import { DEFAULT_HOST } from '@env'
 import { Center, HStack, View } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
+import Config from 'react-native-config'
 import NumbersLayout from '../components/numbers-layout'
 import { AppLineChart, GraphLabel } from '@/components/chart/app-line-chart'
 import buildGraph from '@/components/chart/build-graph'
@@ -51,7 +51,7 @@ export default function ChartsScreen({
                             marginHorizontal: 16,
                         }}
                         source={{
-                            uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                            uri: `${Config.DEFAULT_HOST}${routeParams.page_image}`,
                         }}
                     />
                     <PageLabel

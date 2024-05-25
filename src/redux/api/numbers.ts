@@ -35,6 +35,11 @@ const numbersApi = api.injectEndpoints({
                 url: `number/graphs`,
             }),
         }),
+        getLuckyNumbers: builder.query<number[], void>({
+            query: () => ({
+                url: 'number/lucky-numbers',
+            }),
+        }),
     }),
 })
 
@@ -43,4 +48,5 @@ export const {
     useGetSingleNumberQuery,
     useGetCompatibilityQuery,
     useGetGraphsQuery,
+    useGetLuckyNumbersQuery,
 } = numbersApi

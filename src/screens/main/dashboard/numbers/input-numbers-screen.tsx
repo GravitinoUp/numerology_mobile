@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react'
-import { DEFAULT_HOST } from '@env'
 import { Center, Text, VStack } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import { Dimensions, Image } from 'react-native'
+import Config from 'react-native-config'
 import NumbersLayout from './components/numbers-layout'
 import PageLabel from '@/components/page/page-label'
 import AppInput from '@/components/ui/input'
@@ -64,7 +64,7 @@ export default function InputNumbersScreen({
                         marginHorizontal: 16,
                     }}
                     source={{
-                        uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                        uri: `${Config.DEFAULT_HOST}${routeParams.page_image}`,
                     }}
                 />
                 <PageLabel

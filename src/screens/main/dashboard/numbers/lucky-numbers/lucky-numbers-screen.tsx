@@ -1,7 +1,7 @@
-import { DEFAULT_HOST } from '@env'
 import { HStack, Text } from '@gluestack-ui/themed'
 import { View } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
+import Config from 'react-native-config'
 import NumbersLayout from '../components/numbers-layout'
 import PageLabel from '@/components/page/page-label'
 import AppScrollView from '@/components/ui/scroll-view'
@@ -47,7 +47,7 @@ export default function LuckyNumbersScreen({
                             marginHorizontal: 16,
                         }}
                         source={{
-                            uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                            uri: `${Config.DEFAULT_HOST}${routeParams.page_image}`,
                         }}
                     />
                     <PageLabel

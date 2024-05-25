@@ -1,6 +1,6 @@
-import { DEFAULT_HOST } from '@env'
 import { ScrollView, VStack } from '@gluestack-ui/themed'
 import { Image } from 'react-native'
+import Config from 'react-native-config'
 import LinearGradient from 'react-native-linear-gradient'
 import CardButton from '@/components/card-button/card-button'
 import CategoryLabel from '@/components/dashboard/category-label'
@@ -55,7 +55,7 @@ export default function CategoryScreen({
                     backgroundColor: AppColors.primary,
                 }}
                 source={{
-                    uri: `${DEFAULT_HOST}${routeParams.category_image}`,
+                    uri: `${Config.DEFAULT_HOST}${routeParams.category_image}`,
                 }}
             />
             <CategoryLabel top={-8}>{routeParams.category_name}</CategoryLabel>

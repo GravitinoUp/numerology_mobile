@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
-import { DEFAULT_HOST } from '@env'
 import { HStack, Text, VStack, View } from '@gluestack-ui/themed'
 import { Dimensions, Image, TouchableOpacity } from 'react-native'
+import Config from 'react-native-config'
 import ChevronDown from '@/assets/icons/chevron-down'
 import {
     ACTIVE_OPACITY,
@@ -81,7 +81,7 @@ const ExpandableCard = ({
                                 backgroundColor: AppColors.primary,
                             }}
                             source={{
-                                uri: `${DEFAULT_HOST}${image}`,
+                                uri: `${Config.DEFAULT_HOST}${image}`,
                             }}
                         />
                     )}

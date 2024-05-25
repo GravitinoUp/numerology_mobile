@@ -1,8 +1,8 @@
 import { Fragment, useState } from 'react'
-import { DEFAULT_HOST } from '@env'
 import { Center, HStack, Text, VStack, View } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import { Dimensions, Image } from 'react-native'
+import Config from 'react-native-config'
 import DatePicker from 'react-native-date-picker'
 import DropShadow from 'react-native-drop-shadow'
 import NumbersLayout from '../components/numbers-layout'
@@ -74,7 +74,7 @@ export default function CompatibilityScreen({
                             marginHorizontal: 16,
                         }}
                         source={{
-                            uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                            uri: `${Config.DEFAULT_HOST}${routeParams.page_image}`,
                         }}
                     />
                     <PageLabel

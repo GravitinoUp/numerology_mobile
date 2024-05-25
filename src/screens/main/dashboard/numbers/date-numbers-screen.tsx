@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import { DEFAULT_HOST } from '@env'
 import { Text, VStack, View } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
+import Config from 'react-native-config'
 import DatePicker from 'react-native-date-picker'
 import NumbersLayout from './components/numbers-layout'
 import ExpandableCard from '@/components/expandable-card/expandable-card'
@@ -47,7 +47,7 @@ export default function DateNumbersScreen({
                         marginHorizontal: 16,
                     }}
                     source={{
-                        uri: `${DEFAULT_HOST}${routeParams.page_image}`,
+                        uri: `${Config.DEFAULT_HOST}${routeParams.page_image}`,
                     }}
                 />
                 <PageLabel
