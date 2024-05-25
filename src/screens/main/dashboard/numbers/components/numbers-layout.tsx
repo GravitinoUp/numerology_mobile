@@ -11,6 +11,7 @@ import { DefaultStackNavigationProp } from '@/types/interface'
 
 type NumbersLayoutProps = {
     title?: string
+    topBarBackground?: string
     description?: string
     navigation: DefaultStackNavigationProp
     children: React.ReactNode
@@ -18,6 +19,7 @@ type NumbersLayoutProps = {
 
 const NumbersLayout = ({
     title,
+    topBarBackground,
     description,
     navigation,
     children,
@@ -39,6 +41,7 @@ const NumbersLayout = ({
                         />
                     )
                 }
+                bgColor={topBarBackground}
             />
             {children}
             {description && (

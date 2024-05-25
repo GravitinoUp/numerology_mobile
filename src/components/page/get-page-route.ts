@@ -24,7 +24,7 @@ const getPageRoute = (type: PageType) => {
         case 'fate-number-gifts':
             return routes.DATE_NUMBERS
         case 'totemic-animals':
-            return routes.NUMBERS
+            return routes.TOTEMIC_ANIMALS
         case 'lucky-numbers':
             return routes.LUCKY_NUMBERS
         case 'guessing-number':

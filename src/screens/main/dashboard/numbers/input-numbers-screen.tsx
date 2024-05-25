@@ -57,7 +57,7 @@ export default function InputNumbersScreen({
             >
                 <Image
                     style={{
-                        height: Dimensions.get('window').width * 0.5,
+                        height: Dimensions.get('window').height * 0.3,
                         maxHeight: 280,
                         backgroundColor: AppColors.primary,
                         borderRadius: AppShapes.largeRadius,

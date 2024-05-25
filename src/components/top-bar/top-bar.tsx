@@ -33,6 +33,7 @@ const TopBar = ({
             px="$4"
             borderBottomLeftRadius="$2xl"
             borderBottomRightRadius="$2xl"
+            zIndex={10}
             {...props}
         >
             {navigation && <BackButton navigation={navigation} />}

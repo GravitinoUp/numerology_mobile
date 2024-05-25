@@ -28,6 +28,7 @@ import InputNumbersScreen from './screens/main/dashboard/numbers/input-numbers-s
 import LuckyNumbersScreen from './screens/main/dashboard/numbers/lucky-numbers/lucky-numbers-screen'
 import NumbersScreen from './screens/main/dashboard/numbers/numbers-screen'
 import PlaceholderScreen from './screens/main/dashboard/numbers/placeholder-screen.tsx'
+import TotemicAnimalsScreen from './screens/main/dashboard/numbers/totemic-animals/totemic-animals-screen.tsx'
 import NavigationScreen from './screens/main/navigation-screen'
 import NotificationScreen from './screens/main/notifications/notification-screen'
 import EditProfileScreen from './screens/main/profile/edit-profile-screen'
@@ -244,6 +245,10 @@ function App({ initial }: { initial: string }) {
                         <Stack.Screen
                             name={routes.LUCKY_NUMBERS}
                             component={LuckyNumbersScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.TOTEMIC_ANIMALS}
+                            component={TotemicAnimalsScreen}
                         />
                     </Stack.Group>
                 </Stack.Group>

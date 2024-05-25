@@ -14,7 +14,7 @@ type ExpandableCardProps = {
     prefix?: React.ReactNode
     title?: string
     content?: string
-    image: string
+    image?: string
     adaptive?: boolean
 }
 
@@ -22,7 +22,7 @@ const ExpandableCard = ({
     prefix,
     title,
     content,
-    image,
+    image = '',
     adaptive = true,
 }: ExpandableCardProps) => {
     const [expanded, setExpanded] = useState(true)

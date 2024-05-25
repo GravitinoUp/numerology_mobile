@@ -1,7 +1,7 @@
-import { HStack, Text } from '@gluestack-ui/themed'
-import { Dimensions, Image } from 'react-native'
+import { HStack, Text, View } from '@gluestack-ui/themed'
+import { Dimensions, ImageBackground } from 'react-native'
 import Config from 'react-native-config'
-import NumbersLayout from './components/numbers-layout'
+import NumbersLayout from '../components/numbers-layout'
 import ExpandableCard from '@/components/expandable-card/expandable-card'
 import PageLabel from '@/components/page/page-label'
 import NumbersSkeleton from '@/components/skeleton/numbers-skeleton'
@@ -13,7 +13,7 @@ import { DefaultStackScreenProps } from '@/types/interface'
 import { PageInterface } from '@/types/interface/pages'
 import { formatTime } from '@/utils/helpers'
 
-export default function NumbersScreen({
+export default function TotemicAnimalsScreen({
     navigation,
     route,
 }: DefaultStackScreenProps) {
@@ -38,6 +38,7 @@ export default function NumbersScreen({
 
     return (
         <NumbersLayout
+            topBarBackground={AppColors.transparent}
             description={routeParams.page_description}
             navigation={navigation}
         >
@@ -46,13 +47,33 @@ export default function NumbersScreen({
                     contentContainerStyle={{ justifyContent: 'flex-start' }}
                     maxWidth={MEDIUM_MAX_WIDTH}
                 >
-                    <Image
+                    {data[0] && (
+                        <View mt="$12" top={-64}>
+                            <ImageBackground
+                                style={{}}
+                                imageStyle={{
+                                    height: Dimensions.get('window').width,
+                                    maxHeight: 240,
+                                    borderRadius: AppShapes.largeRadius,
+                                    marginHorizontal: 16,
+                                    objectFit: 'contain',
+                                    zIndex: 2,
+                                }}
+                                source={{
+                                    uri: `${Config.DEFAULT_HOST}${data[0].result_image}`,
+                                }}
+                            />
+                        </View>
+                    )}
+                    <ImageBackground
                         style={{
                             height: Dimensions.get('window').height * 0.3,
                             maxHeight: 280,
+                            marginHorizontal: 16,
+                        }}
+                        imageStyle={{
                             backgroundColor: AppColors.primary,
                             borderRadius: AppShapes.largeRadius,
-                            marginHorizontal: 16,
                         }}
                         source={{
                             uri: `${Config.DEFAULT_HOST}${routeParams.page_image}`,
@@ -81,7 +102,6 @@ export default function NumbersScreen({
                                 }
                                 title={value.result_name}
                                 content={value.result_content}
-                                image={value.result_image}
                                 adaptive={data.length > 1}
                             />
                         ))}

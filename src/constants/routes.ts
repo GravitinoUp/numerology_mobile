@@ -25,4 +25,5 @@ export const routes = {
     NOTIFICATION: 'NotificationScreen',
     LANGUAGE: 'LanguageScreen',
     PLACEHOLDER: 'PlaceholderScreen',
+    TOTEMIC_ANIMALS: 'TotemicAnimalsScreen',
 }
