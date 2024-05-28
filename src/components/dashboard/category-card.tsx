@@ -15,8 +15,10 @@ type CategoryCardProps = {
     category: string
     source?: string
     locked?: boolean
+    disabled?: boolean
     onPress?: () => void
     onLockedPress?: () => void
+    onDisabledPress?: () => void
 } & ViewProps
 
 const AnimatedView = animated(View)
@@ -26,8 +28,10 @@ const CategoryCard = ({
     category,
     source,
     locked = false,
+    disabled = false,
     onPress,
     onLockedPress,
+    onDisabledPress,
     ...props
 }: CategoryCardProps) => {
     const windowWidth = Dimensions.get('window').width / 2 - 32
@@ -48,6 +52,29 @@ const CategoryCard = ({
                     h="$full"
                     zIndex={2}
                     onTouchEnd={onLockedPress}
+                >
+                    <View
+                        position="absolute"
+                        w="$full"
+                        h="$full"
+                        bgColor={AppColors.background}
+                        opacity={0.7}
+                        borderRadius={20}
+                        zIndex={-1}
+                    />
+                    <View p="$4">
+                        <LockedIcon />
+                    </View>
+                </View>
+            )}
+            {disabled && (
+                <View
+                    position="absolute"
+                    alignItems="flex-end"
+                    w="$full"
+                    h="$full"
+                    zIndex={2}
+                    onTouchEnd={onDisabledPress}
                 >
                     <View
                         position="absolute"

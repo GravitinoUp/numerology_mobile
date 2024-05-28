@@ -19,6 +19,7 @@ export default function DashboardScreen({
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
+    const [disabledOpen, setDisabledOpen] = useState(false)
     const [proDialogOpen, setProDialogOpen] = useState(false)
 
     const [windowQuery, setWindowQuery] = useState(
@@ -53,6 +54,28 @@ export default function DashboardScreen({
 
     return (
         <Fragment>
+            <Dialog
+                title={t('category.disabled')}
+                isOpen={disabledOpen}
+                setOpen={setDisabledOpen}
+                footer={
+                    <HStack justifyContent="flex-end">
+                        <View style={{ flex: 1 }} />
+                        <AppButton
+                            style={{ flex: 1 }}
+                            textProps={{
+                                fontSize: '$sm',
+                                fontWeight: '$normal',
+                            }}
+                            px="$1"
+                            text={t('action.ok')}
+                            onPress={() => setDisabledOpen(false)}
+                        />
+                    </HStack>
+                }
+            >
+                <Text fontSize="$sm">{t('category.disabled.description')}</Text>
+            </Dialog>
             <Dialog
                 title={t('required.pro.title')}
                 isOpen={proDialogOpen}
@@ -155,6 +178,10 @@ export default function DashboardScreen({
                                             onLockedPress={() =>
                                                 setProDialogOpen(true)
                                             }
+                                            disabled={!value.is_active}
+                                            onDisabledPress={() =>
+                                                setDisabledOpen(true)
+                                            }
                                         />
                                     </DropShadow>
                                 ) : (
@@ -173,6 +200,10 @@ export default function DashboardScreen({
                                         }}
                                         onLockedPress={() =>
                                             setProDialogOpen(true)
+                                        }
+                                        disabled={!value.is_active}
+                                        onDisabledPress={() =>
+                                            setDisabledOpen(true)
                                         }
                                     />
                                 )

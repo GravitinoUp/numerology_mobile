@@ -5,6 +5,7 @@ export interface CategoryInterface {
     category_name: string
     category_image: string
     category_description: string
+    is_active: boolean
 }
 
 export interface PageInterface {
@@ -16,4 +17,5 @@ export interface PageInterface {
     page_icon: string
     color: string
     category_id: number
+    is_active: boolean
 }
