@@ -3,7 +3,7 @@ import { SerializedError } from '@reduxjs/toolkit'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { useTranslation } from 'react-i18next'
 import { SafeAreaView } from 'react-native-safe-area-context'
-import { LogoLarge } from '@/assets/icons/logo'
+import { Logo } from '@/assets/icons/logo'
 import AppButton from '@/components/ui/button'
 import { MAX_WIDTH } from '@/constants/constants'
 import { AppColors } from '@/constants/theme'
@@ -28,9 +28,9 @@ export default function SplashScreen({ error, refetch }: SplashScreenProps) {
                 backgroundColor: AppColors.background,
             }}
         >
-            <LogoLarge />
+            <Logo />
             <Text
-                mb="$6"
+                my="$6"
                 fontSize="$2xl"
                 fontWeight="$black"
                 color={AppColors.text}
@@ -44,15 +44,6 @@ export default function SplashScreen({ error, refetch }: SplashScreenProps) {
                         {errorData && errorData.data
                             ? errorData.data?.message
                             : t('error.default')}
-                    </Text>
-                    <Text color={AppColors.text} textAlign="center">
-                        {`${errorData.status}`}
-                    </Text>
-                    <Text color={AppColors.text} textAlign="center">
-                        {`${errorData.data}`}
-                    </Text>
-                    <Text color={AppColors.text} textAlign="center">
-                        {`${errorData.data?.statusCode}`}
                     </Text>
                     {typeof refetch !== 'undefined' && (
                         <AppButton

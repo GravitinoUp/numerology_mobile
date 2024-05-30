@@ -1,7 +1,7 @@
 import { Center, Text } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import NumbersLayout from './components/numbers-layout'
-import { LogoLarge } from '@/assets/icons/logo'
+import { Logo } from '@/assets/icons/logo'
 import AppScrollView from '@/components/ui/scroll-view'
 import { MAX_WIDTH } from '@/constants/constants'
 import { AppColors } from '@/constants/theme'
@@ -16,7 +16,7 @@ export default function PlaceholderScreen({
         <NumbersLayout navigation={navigation}>
             <AppScrollView maxWidth={MAX_WIDTH}>
                 <Center px="$9">
-                    <LogoLarge />
+                    <Logo />
                     <Text
                         color={AppColors.text}
                         textAlign="center"
