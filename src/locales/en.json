@@ -113,5 +113,7 @@
     "type.number.uqual.to": "Please, specify a number with the number of digits equal to {{to}}",
     "select.blood.type": "Please, select your blood type",
     "category.disabled": "Category disabled",
-    "category.disabled.description": "This category is currently disabled! It will be enabled in future releases."
+    "category.disabled.description": "This category is currently disabled! It will be enabled in future releases.",
+    "privacy.policy.description": "By registering in the app, you agree to ",
+    "privacy.policy": "the Privacy Policy"
 }
