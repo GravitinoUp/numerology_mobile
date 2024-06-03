@@ -3,6 +3,7 @@ import { Center, HStack, Text } from '@gluestack-ui/themed'
 import i18next from 'i18next'
 import { Eye, EyeOff } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
+import { Linking, TouchableOpacity } from 'react-native'
 import { z } from 'zod'
 import { Logo } from '@/assets/icons/logo'
 import { CustomForm, useForm } from '@/components/form/form'
@@ -205,6 +206,26 @@ export default function FirstRegisterScreen({
                             </FormItem>
                         )}
                     />
+                    <TouchableOpacity
+                        activeOpacity={0.8}
+                        onPress={() =>
+                            Linking.openURL(
+                                'https://matrix-77.com/privacy-policy/'
+                            )
+                        }
+                    >
+                        <Text textAlign="center">
+                            <Text color={AppColors.borderActive}>
+                                {t('privacy.policy.description')}
+                            </Text>
+                            <Text
+                                color={AppColors.proColor}
+                                fontWeight="$semibold"
+                            >
+                                {t('privacy.policy')}
+                            </Text>
+                        </Text>
+                    </TouchableOpacity>
                     <AppButton
                         mt="$8"
                         onPress={form.handleSubmit(onSubmit)}
