@@ -62,20 +62,22 @@ export default function CategoryScreen({
             {successLoad ? (
                 <ScrollView>
                     <VStack p="$6" gap="$5">
-                        {pages.map((value, index) => (
-                            <CardButton
-                                key={index}
-                                index={index}
-                                prefix={value.page_icon}
-                                label={value.page_name}
-                                onPress={() =>
-                                    navigation.navigate(
-                                        getPageRoute(value.key),
-                                        value
-                                    )
-                                }
-                            />
-                        ))}
+                        {pages
+                            .filter((page) => page.is_active)
+                            .map((value, index) => (
+                                <CardButton
+                                    key={index}
+                                    index={index}
+                                    prefix={value.page_icon}
+                                    label={value.page_name}
+                                    onPress={() =>
+                                        navigation.navigate(
+                                            getPageRoute(value.key),
+                                            value
+                                        )
+                                    }
+                                />
+                            ))}
                     </VStack>
                 </ScrollView>
             ) : (
