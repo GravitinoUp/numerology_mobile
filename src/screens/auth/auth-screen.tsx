@@ -83,7 +83,7 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
         <Scaffold>
             <TopBar navigation={navigation} hardShadow={undefined} />
             <AppScrollView maxWidth={MAX_WIDTH}>
-                <Center mb="$4">
+                <Center mb="$10">
                     <Logo />
                 </Center>
                 <Text

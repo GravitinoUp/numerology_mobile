@@ -100,8 +100,7 @@ export default function TotemicAnimalsScreen({
                                         </Text>
                                     )
                                 }
-                                title={value.result_name}
-                                content={value.result_content}
+                                result={{ ...value, result_image: '' }}
                                 adaptive={data.length > 1}
                             />
                         ))}

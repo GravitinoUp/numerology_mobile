@@ -79,9 +79,7 @@ export default function NumbersScreen({
                                         </Text>
                                     )
                                 }
-                                title={value.result_name}
-                                content={value.result_content}
-                                image={value.result_image}
+                                result={value}
                                 adaptive={data.length > 1}
                             />
                         ))}

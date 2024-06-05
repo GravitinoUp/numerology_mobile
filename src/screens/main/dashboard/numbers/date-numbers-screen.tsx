@@ -83,9 +83,7 @@ export default function DateNumbersScreen({
                                         {value.result_keys[0]}
                                     </Text>
                                 }
-                                title={value.result_name}
-                                content={value.result_content}
-                                image={value.result_image}
+                                result={value}
                                 adaptive={false}
                             />
                         ))

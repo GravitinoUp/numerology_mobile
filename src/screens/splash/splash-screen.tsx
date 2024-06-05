@@ -1,4 +1,4 @@
-import { Spinner, Text, VStack } from '@gluestack-ui/themed'
+import { Center, Spinner, Text, VStack } from '@gluestack-ui/themed'
 import { SerializedError } from '@reduxjs/toolkit'
 import { FetchBaseQueryError } from '@reduxjs/toolkit/query'
 import { useTranslation } from 'react-i18next'
@@ -28,7 +28,9 @@ export default function SplashScreen({ error, refetch }: SplashScreenProps) {
                 backgroundColor: AppColors.background,
             }}
         >
-            <Logo />
+            <Center mb="$4">
+                <Logo />
+            </Center>
             <Text
                 my="$6"
                 fontSize="$2xl"

@@ -9,20 +9,17 @@ import {
     MEDIUM_MAX_WIDTH,
 } from '@/constants/constants'
 import { AppColors, AppShapes } from '@/constants/theme'
+import { ResultInterface } from '@/types/interface/numbers'
 
 type ExpandableCardProps = {
     prefix?: React.ReactNode
-    title?: string
-    content?: string
-    image?: string
+    result: ResultInterface
     adaptive?: boolean
 }
 
 const ExpandableCard = ({
     prefix,
-    title,
-    content,
-    image = '',
+    result,
     adaptive = true,
 }: ExpandableCardProps) => {
     const [expanded, setExpanded] = useState(true)
@@ -73,7 +70,7 @@ const ExpandableCard = ({
                     backgroundColor={AppColors.background}
                     overflow="hidden"
                 >
-                    {image !== '' && (
+                    {result.result_image !== '' && (
                         <Image
                             style={{
                                 width: '100%',
@@ -81,7 +78,7 @@ const ExpandableCard = ({
                                 backgroundColor: AppColors.primary,
                             }}
                             source={{
-                                uri: `${Config.DEFAULT_HOST}${image}`,
+                                uri: `${Config.DEFAULT_HOST}${result.result_image}`,
                             }}
                         />
                     )}
@@ -104,13 +101,24 @@ const ExpandableCard = ({
                                 {prefix}
                             </View>
                         )}
-                        <Text
-                            fontWeight="$medium"
-                            color={AppColors.text}
-                            flexShrink={1}
-                        >
-                            {title}
-                        </Text>
+                        <VStack alignItems={prefix ? 'center' : 'flex-start'}>
+                            <Text
+                                fontWeight="$medium"
+                                color={AppColors.text}
+                                flexShrink={1}
+                            >
+                                {result?.result_name}
+                            </Text>
+                            {result.formula_type && (
+                                <Text
+                                    fontSize="$xs"
+                                    color={AppColors.hint}
+                                    flexShrink={1}
+                                >
+                                    {result.formula_type.formula_type_name}
+                                </Text>
+                            )}
+                        </VStack>
                         <View
                             transform={[
                                 { rotate: expanded ? '180deg' : '0deg' },
@@ -122,8 +130,8 @@ const ExpandableCard = ({
                 </VStack>
             </TouchableOpacity>
             {expanded && (
-                <Text pt="$2" color={AppColors.text}>
-                    {content}
+                <Text px="$2" pt="$2" color={AppColors.text}>
+                    {result.result_content}
                 </Text>
             )}
         </VStack>

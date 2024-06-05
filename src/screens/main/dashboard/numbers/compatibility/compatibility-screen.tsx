@@ -141,9 +141,7 @@ export default function CompatibilityScreen({
                                                 {value.result_keys[0]}
                                             </Text>
                                         }
-                                        title={value.result_name}
-                                        content={value.result_content}
-                                        image={value.result_image}
+                                        result={value}
                                         adaptive={false}
                                     />
                                 ))
