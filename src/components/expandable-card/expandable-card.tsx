@@ -75,7 +75,7 @@ const ExpandableCard = ({
                             style={{
                                 width: '100%',
                                 height: 180,
-                                backgroundColor: AppColors.primary,
+                                backgroundColor: '#FFFFFFFF',
                             }}
                             source={{
                                 uri: `${Config.DEFAULT_HOST}${result.result_image}`,
