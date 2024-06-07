@@ -1,5 +1,5 @@
 import { api } from '.'
-import { GraphLineInterface } from '@/types/interface/graph'
+import { GraphResult } from '@/types/interface/graph'
 import { ResultInterface, PageType } from '@/types/interface/numbers'
 
 const numbersApi = api.injectEndpoints({
@@ -30,7 +30,7 @@ const numbersApi = api.injectEndpoints({
                 body,
             }),
         }),
-        getGraphs: builder.query<GraphLineInterface[], void>({
+        getGraphs: builder.query<GraphResult, void>({
             query: () => ({
                 url: `number/graphs`,
             }),

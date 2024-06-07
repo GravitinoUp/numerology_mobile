@@ -20,7 +20,7 @@ export default function ChartsScreen({
     const routeParams = route.params as PageInterface
 
     const {
-        data = [],
+        data = { graphs: [], graph_results: [] },
         isFetching,
         isSuccess,
         error,
@@ -28,7 +28,7 @@ export default function ChartsScreen({
     } = useGetGraphsQuery()
 
     const successLoad = !isFetching && isSuccess
-    const graphData = successLoad ? buildGraph(data) : {}
+    const graphData = successLoad ? buildGraph(data.graphs) : {}
 
     return (
         <NumbersLayout
@@ -66,8 +66,24 @@ export default function ChartsScreen({
                             alignItems: 'center',
                         }}
                     >
-                        <Center>
-                            <AppLineChart {...graphData} />
+                        <Center position="relative" h={260}>
+                            <View position="absolute">
+                                <AppLineChart disableScroll {...graphData} />
+                            </View>
+                            <View position="absolute">
+                                <AppLineChart
+                                    hideUI
+                                    disableScroll
+                                    {...graphData}
+                                />
+                            </View>
+                            {/* <View position="absolute">
+                                <AppLineChart
+                                    hideUI
+                                    disableScroll
+                                    {...graphData}
+                                />
+                            </View> */}
                         </Center>
                     </View>
                     <HStack
@@ -77,7 +93,7 @@ export default function ChartsScreen({
                         alignItems="center"
                         gap="$4"
                     >
-                        {data.map((value, index) => (
+                        {data.graphs.map((value, index) => (
                             <GraphLabel
                                 key={index}
                                 value={value}

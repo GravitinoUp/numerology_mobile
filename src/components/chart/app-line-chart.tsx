@@ -7,12 +7,22 @@ import { AppColors } from '@/constants/theme'
 import { GraphLineInterface } from '@/types/interface/graph'
 
 type LineChartProps = ComponentProps<typeof LineChart>
-type AppLineChartProps = LineChartProps
+type AppLineChartProps = {
+    hideUI?: boolean
+} & LineChartProps
 
-export const AppLineChart = ({ ...props }: AppLineChartProps) => (
+export const AppLineChart = ({
+    hideUI = false,
+    ...props
+}: AppLineChartProps) => (
     <LineChart
         isAnimated
-        yAxisTextStyle={{ color: AppColors.primary }}
+        yAxisTextStyle={{
+            color: hideUI ? AppColors.transparent : AppColors.primary,
+        }}
+        xAxisColor={hideUI ? AppColors.transparent : AppColors.primary}
+        yAxisColor={hideUI ? AppColors.transparent : AppColors.primary}
+        rulesColor={hideUI ? AppColors.transparent : undefined}
         dataPointsRadius={5}
         rulesType="solid"
         color="#165BAA"
