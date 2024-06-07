@@ -2,6 +2,7 @@ import { Fragment } from 'react'
 import { ScrollView } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import NotificationCard from './components/notification-card'
+import EmptyList from '@/components/empty-list/empty-list'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
 import { routes } from '@/constants/routes'
@@ -29,20 +30,24 @@ export default function NotificationsScreen({
             <Scaffold>
                 <TopBar title={t('route.notifications')} />
                 {successLoad ? (
-                    <ScrollView p="$5" gap="$5">
-                        {notifications.map((value) => (
-                            <NotificationCard
-                                key={value.notification_uuid}
-                                title={value.notification_name}
-                                onPress={() =>
-                                    navigation.navigate(
-                                        routes.NOTIFICATION,
-                                        value
-                                    )
-                                }
-                            />
-                        ))}
-                    </ScrollView>
+                    notifications.length > 0 ? (
+                        <ScrollView p="$5" gap="$5">
+                            {notifications.map((value) => (
+                                <NotificationCard
+                                    key={value.notification_uuid}
+                                    title={value.notification_name}
+                                    onPress={() =>
+                                        navigation.navigate(
+                                            routes.NOTIFICATION,
+                                            value
+                                        )
+                                    }
+                                />
+                            ))}
+                        </ScrollView>
+                    ) : (
+                        <EmptyList text={t('notifications.not.found')} />
+                    )
                 ) : (
                     <SplashScreen
                         error={notificationsError}

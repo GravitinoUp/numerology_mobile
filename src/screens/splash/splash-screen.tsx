@@ -28,17 +28,9 @@ export default function SplashScreen({ error, refetch }: SplashScreenProps) {
                 backgroundColor: AppColors.background,
             }}
         >
-            <Center mb="$4">
+            <Center mt="$6" mb="$10">
                 <Logo />
             </Center>
-            <Text
-                my="$6"
-                fontSize="$2xl"
-                fontWeight="$black"
-                color={AppColors.text}
-            >
-                {t('app.name')}
-            </Text>
             {!error && <Spinner size="large" color={AppColors.primary} />}
             {error && (
                 <VStack w="$full" maxWidth={MAX_WIDTH} alignItems="center">

@@ -114,7 +114,7 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                                     )
                                 }
                             />
-                            <CardButton
+                            {/* <CardButton
                                 index={1}
                                 label={t('settings.label.subscriptions')}
                                 onPress={() =>
@@ -129,7 +129,7 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                                         routes.MANAGE_NOTIFICATIONS
                                     )
                                 }
-                            />
+                            /> */}
                             <CardButton
                                 index={3}
                                 label={t('settings.label.language')}

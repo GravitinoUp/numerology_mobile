@@ -1,5 +1,5 @@
 {
-    "app.name": "Numerology",
+    "app.name": "Matrix 77",
     "app.description": "App description App description App description App description",
     "route": {
         "dashboard": "Dashboard",
@@ -115,5 +115,6 @@
     "category.disabled": "Category disabled",
     "category.disabled.description": "This category is currently disabled! It will be enabled in future releases.",
     "privacy.policy.description": "By registering in the app, you agree to ",
-    "privacy.policy": "the Privacy Policy"
+    "privacy.policy": "the Privacy Policy",
+    "notifications.not.found": "There are no unread notifications!"
 }

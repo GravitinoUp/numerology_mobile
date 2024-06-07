@@ -83,7 +83,7 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
         <Scaffold>
             <TopBar navigation={navigation} hardShadow={undefined} />
             <AppScrollView maxWidth={MAX_WIDTH}>
-                <Center mb="$10">
+                <Center mb="$16">
                     <Logo />
                 </Center>
                 <Text
@@ -155,7 +155,7 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                             </FormItem>
                         )}
                     />
-                    <AppButton
+                    {/* <AppButton
                         mt="$2"
                         textProps={{
                             color: AppColors.hint,
@@ -165,8 +165,9 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                         bgColor={AppColors.transparent}
                         onPress={() => {}}
                         text={t('forgot.password')}
-                    />
+                    /> */}
                     <AppButton
+                        mt="$4"
                         onPress={form.handleSubmit(onSubmit)}
                         text={t('action.continue')}
                         isLoading={isLoading}

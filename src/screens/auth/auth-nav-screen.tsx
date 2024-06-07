@@ -16,7 +16,7 @@ export default function AuthNavScreen({ navigation }: DefaultStackScreenProps) {
     return (
         <Scaffold>
             <AppScrollView maxWidth={MAX_WIDTH}>
-                <Center justifyContent="center" mb="$10">
+                <Center justifyContent="center" mb="$16">
                     <Logo />
                 </Center>
                 <Text

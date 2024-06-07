@@ -83,7 +83,7 @@ const ExpandableCard = ({
                         />
                     )}
                     <HStack
-                        h={80}
+                        minHeight={80}
                         px="$4"
                         justifyContent="space-between"
                         alignItems="center"
@@ -101,11 +101,14 @@ const ExpandableCard = ({
                                 {prefix}
                             </View>
                         )}
-                        <VStack alignItems={prefix ? 'center' : 'flex-start'}>
+                        <VStack
+                            alignItems={prefix ? 'center' : 'flex-start'}
+                            flexShrink={1}
+                        >
                             <Text
                                 fontWeight="$medium"
                                 color={AppColors.text}
-                                flexShrink={1}
+                                textAlign={prefix ? 'center' : 'left'}
                             >
                                 {result?.result_name}
                             </Text>
@@ -113,7 +116,7 @@ const ExpandableCard = ({
                                 <Text
                                     fontSize="$xs"
                                     color={AppColors.hint}
-                                    flexShrink={1}
+                                    textAlign={prefix ? 'center' : 'left'}
                                 >
                                     {result.formula_type.formula_type_name}
                                 </Text>

@@ -5,9 +5,7 @@ import NotificationsScreen from './notifications/notifications-screen'
 import ProfileScreen from './profile/profile-screen'
 import DashboardIcon from '@/assets/icons/dashboard'
 import NotificationsIcon from '@/assets/icons/notifications'
-import PredictionIcon from '@/assets/icons/prediction'
 import ProfileIcon from '@/assets/icons/profile'
-import UnionIcon from '@/assets/icons/union'
 import NavigationBar from '@/components/navigation-bar/navigation-bar'
 import { useGetCurrentUserQuery } from '@/redux/api/users'
 
@@ -30,7 +28,7 @@ export default function NavigationScreen() {
                     tabBarIcon: ({ color }) => <DashboardIcon color={color} />,
                 })}
             />
-            <Tab.Screen
+            {/* <Tab.Screen
                 name={t('route.union')}
                 component={DashboardScreen}
                 options={() => ({
@@ -43,7 +41,7 @@ export default function NavigationScreen() {
                 options={() => ({
                     tabBarIcon: ({ color }) => <PredictionIcon color={color} />,
                 })}
-            />
+            /> */}
             <Tab.Screen
                 name={t('route.notifications')}
                 component={NotificationsScreen}
