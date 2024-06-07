@@ -1,7 +1,7 @@
 import { ComponentProps } from 'react'
 import { Text } from '@gluestack-ui/themed'
 import { StyleProp, TouchableOpacity, ViewStyle } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type TextProps = ComponentProps<typeof Text>
 type Props = {

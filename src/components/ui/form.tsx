@@ -8,7 +8,7 @@ import {
     useFormContext,
 } from 'react-hook-form'
 import { StyleProp, ViewStyle } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type FormFieldContextValue<
     TFieldValues extends FieldValues = FieldValues,
@@ -88,7 +88,13 @@ const FormMessage = ({ children }: { children?: React.ReactNode }) => {
     }
 
     return (
-        <Text fontSize={14} color={AppColors.error} id={formMessageId}>
+        <Text
+            mt="$1"
+            fontSize={14}
+            color={AppColors.error}
+            fontWeight="$medium"
+            id={formMessageId}
+        >
             {body}
         </Text>
     )

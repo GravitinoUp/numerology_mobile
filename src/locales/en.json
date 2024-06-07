@@ -1,12 +1,12 @@
 {
-    "app.name": "Numerology",
+    "app.name": "Matrix 77",
     "app.description": "App description App description App description App description",
     "route": {
         "dashboard": "Dashboard",
         "union": "Union",
         "prediction": "Prediction",
-        "profile": "Profile",
-        "numbers": "Numbers in matrix"
+        "notifications": "Notifications",
+        "profile": "Profile"
     },
     "select": {
         "birthday": "Select your birthday"
@@ -19,14 +19,19 @@
     },
     "register": {
         "title": "Register an account",
-        "description": "Register description TODO"
+        "description": "Set the phone number and password for your account, please",
+        "user.data.description": "Enter your name and birthday, please",
+        "create.account": "Create new account"
     },
     "user": {
         "phone": "Your phone number",
+        "email": "Your email",
         "password": "Password",
         "repeat.password": "Repeat password",
         "data": "User data",
-        "name": "Your name",
+        "first.name": "First name",
+        "last.name": "Last name",
+        "patronymic": "Patronymic",
         "birthday": "Your birthday"
     },
     "placeholder": {
@@ -35,34 +40,81 @@
             "name": "Bill",
             "birthday": "2024-01-28"
         },
+        "select.value": "Select value",
         "long.default": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
     },
     "settings": {
         "label": {
+            "personal.data": "Personal data",
+            "subscriptions": "Subscriptions",
             "notifications": "Notifications",
-            "customization": "App customization",
+            "language": "Language",
             "other": "Other",
             "logout": "Logout"
         },
         "description": {
-            "notifications": "Enable or disable app notifications",
-            "customization": "Customize the app theme for yourself",
-            "other": "Other settings",
             "logout": "Are you sure you want to logout from account?"
         }
     },
     "error": {
-        "required": ""
+        "default": "An error has occurred, please try again later",
+        "required": "This field is required",
+        "phone.required": "Provide the correct phone number",
+        "password.mismatch": "Passwords don't match",
+        "user.exists": "User with this phone is already exists"
+    },
+    "success": {
+        "user.update": "User data has been successfully updated"
     },
     "action": {
         "continue": "Continue",
         "cancel": "Cancel",
-        "confirm": "Confirm"
+        "confirm": "Confirm",
+        "skip": "Skip",
+        "retry": "Retry",
+        "verify": "Verify",
+        "save": "Save",
+        "buy": "Buy",
+        "subscribe": "Subscribe",
+        "unsubscribe": "Unsubscribe",
+        "ok": "OK"
     },
     "date.format": "yyyy-MM-dd",
     "birthday": "Birthday",
     "day": "Day",
     "month": "Month",
     "year": "Year",
-    "forgot.password": "Forgot your password?"
+    "forgot.password": "Forgot your password?",
+    "section": {
+        "health.numerology": "Нумерология здоровья",
+        "fate.cards": "Карты судьбы",
+        "professions": "Профессии и самореализация",
+        "weaknesses": "Слабые качества",
+        "lucky.numbers": "Числа удачи",
+        "planets": "Планеты",
+        "ancestors": "Кем были ваши предки?"
+    },
+    "planets": {
+        "life.path.number": "The number of the life path",
+        "soul.number": "The number of the soul"
+    },
+    "title": "Title",
+    "description": "Description",
+    "categories": "Categories",
+    "no.patronymic": "I don't have a patronymic",
+    "required.pro.title": "PRO subscription is required",
+    "required.pro.content": "To access locked content you need to have an active PRO subscription.",
+    "active.subscriptions": "Active subscriptions",
+    "you": "You",
+    "select.date": "Select a date",
+    "under.development": "Under development",
+    "under.development.description": "This section is under development! Feature will be introduced in future updates.",
+    "type.number.from.to": "Please, specify a number with the number of digits from {{from}} to {{to}}",
+    "type.number.uqual.to": "Please, specify a number with the number of digits equal to {{to}}",
+    "select.blood.type": "Please, select your blood type",
+    "category.disabled": "Category disabled",
+    "category.disabled.description": "This category is currently disabled! It will be enabled in future releases.",
+    "privacy.policy.description": "By registering in the app, you agree to ",
+    "privacy.policy": "the Privacy Policy",
+    "notifications.not.found": "There are no unread notifications!"
 }

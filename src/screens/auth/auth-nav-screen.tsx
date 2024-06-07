@@ -5,17 +5,18 @@ import ProfileIcon from '@/assets/icons/profile'
 import AppButton from '@/components/ui/button'
 import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
-import { AppColors } from '@/constants/colors'
 import { MAX_WIDTH } from '@/constants/constants'
 import { routes } from '@/constants/routes'
+import { AppColors } from '@/constants/theme'
+import { DefaultStackScreenProps } from '@/types/interface'
 
-export default function AuthNavScreen({ navigation }: any) {
+export default function AuthNavScreen({ navigation }: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
     return (
         <Scaffold>
             <AppScrollView maxWidth={MAX_WIDTH}>
-                <Center justifyContent="center" mb="$4">
+                <Center justifyContent="center" mb="$16">
                     <Logo />
                 </Center>
                 <Text

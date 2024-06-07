@@ -8,7 +8,7 @@ import {
     View,
     ViewStyle,
 } from 'react-native'
-import { AppColors } from '@/constants/colors'
+import { AppColors } from '@/constants/theme'
 
 type InputFieldProps = ComponentProps<typeof InputField>
 type TextProps = ComponentProps<typeof Text>
@@ -36,9 +36,11 @@ const AppInput = ({
         fontSize: '$sm',
         color: AppColors.text,
     },
+    h = 52,
     minHeight,
     leadingIcon,
     trailingIcon,
+    borderRadius = '$lg',
     onTrailingIconPress,
     onTouchEnd,
     ...props
@@ -56,12 +58,12 @@ const AppInput = ({
         )}
         <Input
             variant="rounded"
-            h={props.multiline ? undefined : 52}
+            h={props.multiline ? undefined : h}
             minHeight={minHeight}
             borderColor={AppColors.border}
             $focus-borderColor={AppColors.borderActive}
             $invalid-borderColor={AppColors.error}
-            borderRadius="$lg"
+            borderRadius={borderRadius}
             borderWidth={1.5}
             onTouchEnd={onTouchEnd}
             isReadOnly={props.readOnly}

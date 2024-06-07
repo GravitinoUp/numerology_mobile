@@ -1,17 +1,20 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTranslation } from 'react-i18next'
 import DashboardScreen from './dashboard/dashboard-screen'
-import ProfileScreen from './settings/profile-screen'
+import NotificationsScreen from './notifications/notifications-screen'
+import ProfileScreen from './profile/profile-screen'
 import DashboardIcon from '@/assets/icons/dashboard'
-import PredictionIcon from '@/assets/icons/prediction'
+import NotificationsIcon from '@/assets/icons/notifications'
 import ProfileIcon from '@/assets/icons/profile'
-import UnionIcon from '@/assets/icons/union'
 import NavigationBar from '@/components/navigation-bar/navigation-bar'
+import { useGetCurrentUserQuery } from '@/redux/api/users'
 
 const Tab = createBottomTabNavigator()
 
 export default function NavigationScreen() {
     const { t } = useTranslation()
+
+    useGetCurrentUserQuery()
 
     return (
         <Tab.Navigator
@@ -25,7 +28,7 @@ export default function NavigationScreen() {
                     tabBarIcon: ({ color }) => <DashboardIcon color={color} />,
                 })}
             />
-            <Tab.Screen
+            {/* <Tab.Screen
                 name={t('route.union')}
                 component={DashboardScreen}
                 options={() => ({
@@ -37,6 +40,15 @@ export default function NavigationScreen() {
                 component={DashboardScreen}
                 options={() => ({
                     tabBarIcon: ({ color }) => <PredictionIcon color={color} />,
+                })}
+            /> */}
+            <Tab.Screen
+                name={t('route.notifications')}
+                component={NotificationsScreen}
+                options={() => ({
+                    tabBarIcon: ({ color }) => (
+                        <NotificationsIcon color={color} />
+                    ),
                 })}
             />
             <Tab.Screen

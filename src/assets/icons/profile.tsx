@@ -1,13 +1,7 @@
-import Svg, { Path } from 'react-native-svg'
+import Svg, { Path, SvgProps } from 'react-native-svg'
 
-const ProfileIcon = (props: any) => (
-    <Svg
-        xmlns="http://www.w3.org/2000/svg"
-        width={32}
-        height={32}
-        fill="none"
-        {...props}
-    >
+const ProfileIcon = (props: SvgProps) => (
+    <Svg width={32} height={32} fill="none" {...props}>
         <Path
             fill={props.color}
             fillRule="evenodd"
