@@ -2,7 +2,7 @@ import { ResultInterface } from './numbers'
 
 export interface GraphResult {
     graphs: GraphLineInterface[]
-    graph_results: ResultInterface[]
+    results: ResultInterface[]
 }
 
 export interface GraphLineInterface {

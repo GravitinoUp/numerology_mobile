@@ -1,9 +1,10 @@
-import { Center, HStack, View } from '@gluestack-ui/themed'
+import { Center, HStack, Text, View } from '@gluestack-ui/themed'
 import { Dimensions, Image } from 'react-native'
 import Config from 'react-native-config'
 import NumbersLayout from '../components/numbers-layout'
 import { AppLineChart, GraphLabel } from '@/components/chart/app-line-chart'
 import buildGraph from '@/components/chart/build-graph'
+import ExpandableCard from '@/components/expandable-card/expandable-card'
 import PageLabel from '@/components/page/page-label'
 import NumbersSkeleton from '@/components/skeleton/numbers-skeleton'
 import AppScrollView from '@/components/ui/scroll-view'
@@ -20,7 +21,7 @@ export default function ChartsScreen({
     const routeParams = route.params as PageInterface
 
     const {
-        data = { graphs: [], graph_results: [] },
+        data = { graphs: [], results: [] },
         isFetching,
         isSuccess,
         error,
@@ -98,6 +99,25 @@ export default function ChartsScreen({
                                 key={index}
                                 value={value}
                                 index={index}
+                            />
+                        ))}
+                    </HStack>
+                    <HStack p="$4" gap="$4" flexWrap="wrap">
+                        {data.results.map((value, index) => (
+                            <ExpandableCard
+                                key={index}
+                                prefix={
+                                    value.result_keys[0].length <= 2 && (
+                                        <Text
+                                            fontWeight="$bold"
+                                            color={AppColors.text}
+                                        >
+                                            {value.result_keys[0]}
+                                        </Text>
+                                    )
+                                }
+                                result={value}
+                                adaptive={data.results.length > 1}
                             />
                         ))}
                     </HStack>
