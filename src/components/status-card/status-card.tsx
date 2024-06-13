@@ -1,4 +1,4 @@
-import { Text } from '@gluestack-ui/themed'
+import { Text, View } from '@gluestack-ui/themed'
 import { AppColors } from '@/constants/theme'
 
 type StatusCardProps = {
@@ -6,17 +6,20 @@ type StatusCardProps = {
 }
 
 const StatusCard = ({ pro = false }: StatusCardProps) => (
-    <Text
-        w="$20"
-        py="$1"
+    <View 
         borderRadius="$full"
         bgColor={pro ? AppColors.proColor : AppColors.trialColor}
-        fontWeight="$bold"
-        color={AppColors.text}
-        textAlign="center"
     >
-        {pro ? 'Pro' : 'Trial'}
-    </Text>
+        <Text
+            w="$20"
+            py="$1"
+            fontWeight="$bold"
+            color={AppColors.text}
+            textAlign="center"
+        >
+            {pro ? 'Pro' : 'Trial'}
+        </Text>
+    </View>
 )
 
 export default StatusCard

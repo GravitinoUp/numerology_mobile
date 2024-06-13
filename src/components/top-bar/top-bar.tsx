@@ -1,9 +1,10 @@
 import { ComponentProps, Fragment } from 'react'
 import { HStack, Text, VStack, View } from '@gluestack-ui/themed'
-import { StatusBar } from 'react-native'
+import { Platform, StatusBar } from 'react-native'
 import BackButton from '../back-button/back-button'
 import { AppColors } from '@/constants/theme'
 import { DefaultStackNavigationProp } from '@/types/interface'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 type HStackProps = ComponentProps<typeof HStack>
 type TopBarProps = {
@@ -19,7 +20,10 @@ const TopBar = ({
     suffix,
     navigation,
     ...props
-}: TopBarProps) => (
+}: TopBarProps) => {
+    const insets = useSafeAreaInsets()
+
+    return (
     <Fragment>
         <StatusBar
             backgroundColor={AppColors.background}
@@ -35,6 +39,7 @@ const TopBar = ({
             borderBottomRightRadius="$2xl"
             zIndex={10}
             {...props}
+            marginTop={props.position === 'absolute' && Platform.OS === 'ios' ? insets.top : undefined}
         >
             {navigation && <BackButton navigation={navigation} />}
             {!subtitle ? (
@@ -66,6 +71,6 @@ const TopBar = ({
             {suffix && <View>{suffix}</View>}
         </HStack>
     </Fragment>
-)
+)}
 
 export default TopBar

@@ -1,5 +1,5 @@
 import { ScrollView, VStack } from '@gluestack-ui/themed'
-import { Image } from 'react-native'
+import { Image, Platform } from 'react-native'
 import Config from 'react-native-config'
 import LinearGradient from 'react-native-linear-gradient'
 import CardButton from '@/components/card-button/card-button'
@@ -12,12 +12,14 @@ import { AppColors } from '@/constants/theme'
 import { useGetPagesByCategoryQuery } from '@/redux/api/pages'
 import { DefaultStackScreenProps } from '@/types/interface'
 import { CategoryInterface } from '@/types/interface/pages'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function CategoryScreen({
     navigation,
     route,
 }: DefaultStackScreenProps) {
     const routeParams = route.params as CategoryInterface
+    const insets = useSafeAreaInsets()
 
     const {
         data: pages = [],
@@ -43,6 +45,7 @@ export default function CategoryScreen({
                     width: '100%',
                     height: 180,
                     zIndex: 1,
+                    marginTop: Platform.OS === 'ios' ? insets.top : undefined,
                 }}
                 colors={['#00000000', '#00000000', '#00000000', '#FFFFFFFF']}
                 start={{ x: 0, y: 0 }}

@@ -3,6 +3,7 @@ import { HStack, Text, View } from '@gluestack-ui/themed'
 import getCardPrefix from '../card-button/get-card-prefix'
 import { AppColors } from '@/constants/theme'
 import { PageType } from '@/types/interface/numbers'
+import { Platform } from 'react-native'
 
 type ViewProps = ComponentProps<typeof View>
 type PageLabelProps = {
@@ -36,6 +37,7 @@ const PageLabel = ({ type, ...props }: PageLabelProps) => (
             fontWeight="$black"
             height="$10"
             verticalAlign="middle"
+            lineHeight={Platform.OS === 'ios' ? 40 : undefined}
             color={AppColors.background}
             textTransform="uppercase"
             textAlign="center"

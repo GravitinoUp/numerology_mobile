@@ -1,7 +1,7 @@
 import { Fragment, useEffect, useState } from 'react'
 import { HStack, ScrollView, Text, VStack, View } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
-import { Dimensions } from 'react-native'
+import { Dimensions, Platform } from 'react-native'
 import DropShadow from 'react-native-drop-shadow'
 import CategoryCard from '@/components/dashboard/category-card'
 import StatusCard from '@/components/status-card/status-card'
@@ -13,11 +13,13 @@ import { AppColors } from '@/constants/theme'
 import { useGetCategoriesQuery } from '@/redux/api/pages'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function DashboardScreen({
     navigation,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
+    const insets = useSafeAreaInsets()
 
     const [disabledOpen, setDisabledOpen] = useState(false)
     const [proDialogOpen, setProDialogOpen] = useState(false)
@@ -118,6 +120,7 @@ export default function DashboardScreen({
                     alignItems="center"
                     h={80}
                     zIndex={100}
+                    marginTop={Platform.OS === 'ios' ? insets.top : undefined}
                 >
                     <StatusCard pro />
                 </HStack>

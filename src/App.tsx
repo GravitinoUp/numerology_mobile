@@ -41,6 +41,7 @@ import UserRegisterScreen from './screens/register/user-register-screen'
 import VerifyCodeScreen from './screens/register/verify-code-screen'
 import SplashScreen from './screens/splash/splash-screen'
 import { getJWTtokens } from './utils/helpers'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const Stack = createNativeStackNavigator()
 
@@ -84,6 +85,7 @@ export const AppWrapper = () => {
     return (
         !isLoading &&
         initialScreen !== null && (
+            <SafeAreaProvider>
             <Provider store={store}>
                 <GluestackUIProvider config={config}>
                     <StatusBar
@@ -93,6 +95,7 @@ export const AppWrapper = () => {
                     <App initial={initialScreen} />
                 </GluestackUIProvider>
             </Provider>
+            </SafeAreaProvider>
         )
     )
 }
@@ -141,7 +144,6 @@ function App({ initial }: { initial: string }) {
             <Stack.Navigator
                 screenOptions={{
                     headerShown: false,
-                    presentation: 'modal',
                     animationTypeForReplace: 'push',
                     animation: 'fade',
                 }}
