@@ -18,33 +18,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Matrix77" translatesAutoresizingMaskIntoConstraints="NO" id="qUo-i8-Z3q">
-                                <rect key="frame" x="67" y="59" width="295" height="839"/>
+                                <rect key="frame" x="48" y="0.0" width="334" height="932"/>
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="Bcu-3y-fUS"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="bottomMargin" secondItem="qUo-i8-Z3q" secondAttribute="bottom" id="070-Mj-DE2"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="qUo-i8-Z3q" secondAttribute="bottom" id="3fM-1Q-3cz"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="qUo-i8-Z3q" secondAttribute="trailing" constant="48" id="5If-ml-h3N"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="qUo-i8-Z3q" secondAttribute="trailing" constant="68" id="6W4-je-LIf"/>
-                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="7C8-Hy-dXj"/>
-                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="topMargin" id="9HY-oh-Cuo"/>
-                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="67" id="9dO-e7-OUz"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="qUo-i8-Z3q" secondAttribute="trailing" id="BH0-5P-Voi"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="bottom" secondItem="qUo-i8-Z3q" secondAttribute="bottom" constant="270" id="D7w-cy-9GG"/>
-                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" constant="67" id="W7q-9s-g5O"/>
-                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" constant="249" id="beh-Bc-DP4"/>
-                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="top" secondItem="Bcu-3y-fUS" secondAttribute="top" id="cCu-Wa-gjs"/>
-                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leadingMargin" constant="47" id="cJe-I4-a7B"/>
-                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="leading" secondItem="Bcu-3y-fUS" secondAttribute="leading" id="ugv-OF-FHg"/>
-                            <constraint firstItem="Bcu-3y-fUS" firstAttribute="trailing" secondItem="qUo-i8-Z3q" secondAttribute="trailing" constant="68" id="wge-1X-mra"/>
+                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="leading" secondItem="Ze5-6b-2t3" secondAttribute="leading" constant="48" id="MCg-0c-gI2"/>
+                            <constraint firstAttribute="trailing" secondItem="qUo-i8-Z3q" secondAttribute="trailing" constant="48" id="UA9-X7-sUs"/>
+                            <constraint firstItem="qUo-i8-Z3q" firstAttribute="top" secondItem="Ze5-6b-2t3" secondAttribute="top" id="Xc0-Ec-1Aj"/>
+                            <constraint firstAttribute="bottom" secondItem="qUo-i8-Z3q" secondAttribute="bottom" id="iNU-bp-yWE"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="52.173913043478265" y="375"/>
+            <point key="canvasLocation" x="51.627906976744185" y="374.67811158798287"/>
         </scene>
     </scenes>
     <resources>
