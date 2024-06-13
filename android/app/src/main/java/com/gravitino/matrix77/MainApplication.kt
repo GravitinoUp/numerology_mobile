@@ -1,4 +1,4 @@
-package com.gravitino.numerology
+package com.gravitino.matrix77
 
 import android.app.Application
 import com.facebook.react.PackageList
