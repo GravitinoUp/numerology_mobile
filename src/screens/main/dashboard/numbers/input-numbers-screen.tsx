@@ -9,7 +9,7 @@ import AppInput from '@/components/ui/input'
 import AppScrollView from '@/components/ui/scroll-view'
 import { INPUT_LENGTH, MEDIUM_MAX_WIDTH } from '@/constants/constants'
 import { AppColors, AppShapes } from '@/constants/theme'
-import { useGetSingleNumberQuery } from '@/redux/api/numbers'
+import { useGetNumbersQuery } from '@/redux/api/numbers'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
 import { PageInterface } from '@/types/interface/pages'
@@ -26,11 +26,10 @@ export default function InputNumbersScreen({
     const [query, setQuery] = useState('')
     const [input, setInput] = useState('')
 
-    const { data, isFetching, isSuccess, error, refetch } =
-        useGetSingleNumberQuery(
-            { type: routeParams.key, query: query },
-            { skip: query === '' }
-        )
+    const { data, isFetching, isSuccess, error, refetch } = useGetNumbersQuery(
+        { type: routeParams.key, query: query },
+        { skip: query === '' }
+    )
 
     const successLoad = !isFetching && isSuccess
 
@@ -92,8 +91,8 @@ export default function InputNumbersScreen({
                     {input.trim().length >= length[0] &&
                     input.trim().length <= length[1] ? (
                         successLoad ? (
-                            <Text color={AppColors.text}>
-                                {data.result_content}
+                            <Text color={AppColors.text} px="$2">
+                                {data[0].result_content}
                             </Text>
                         ) : (
                             <SplashScreen error={error} refetch={refetch} />
