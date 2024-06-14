@@ -9,4 +9,4 @@
 
 # Add any project specific keep options here:
 
--keep class com.gravitino.matrix77.BuildConfig { *; }
+-keep class com.gravitino.numerology.BuildConfig { *; }

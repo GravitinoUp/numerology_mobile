@@ -86,14 +86,14 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace "com.gravitino.matrix77"
+    namespace "com.gravitino.numerology"
     defaultConfig {
-        applicationId "com.gravitino.matrix77"
+        applicationId "com.gravitino.numerology"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 4
+        versionCode 5
         versionName "1.0.0"
-        resValue "string", "build_config_package", "com.gravitino.matrix77"
+        resValue "string", "build_config_package", "com.gravitino.numerology"
     }
     signingConfigs {
         debug {
