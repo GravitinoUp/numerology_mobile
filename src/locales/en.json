@@ -15,7 +15,7 @@
         "hello.title": "Hello!",
         "hello.description": "Sign in or create a new account",
         "title": "Sign in",
-        "description": "Sign in description"
+        "description": "Sign in using your phone number and password"
     },
     "register": {
         "title": "Register an account",

@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTranslation } from 'react-i18next'
 import { NativeModules, Platform } from 'react-native'
+import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Provider } from 'react-redux'
 import { routes } from './constants/routes'
 import { storageKeys } from './constants/storage'
@@ -41,7 +42,6 @@ import UserRegisterScreen from './screens/register/user-register-screen'
 import VerifyCodeScreen from './screens/register/verify-code-screen'
 import SplashScreen from './screens/splash/splash-screen'
 import { getJWTtokens } from './utils/helpers'
-import { SafeAreaProvider } from 'react-native-safe-area-context'
 
 const Stack = createNativeStackNavigator()
 
@@ -86,15 +86,15 @@ export const AppWrapper = () => {
         !isLoading &&
         initialScreen !== null && (
             <SafeAreaProvider>
-            <Provider store={store}>
-                <GluestackUIProvider config={config}>
-                    <StatusBar
-                        backgroundColor={AppColors.background}
-                        barStyle="dark-content"
-                    />
-                    <App initial={initialScreen} />
-                </GluestackUIProvider>
-            </Provider>
+                <Provider store={store}>
+                    <GluestackUIProvider config={config}>
+                        <StatusBar
+                            backgroundColor={AppColors.background}
+                            barStyle="dark-content"
+                        />
+                        <App initial={initialScreen} />
+                    </GluestackUIProvider>
+                </Provider>
             </SafeAreaProvider>
         )
     )
