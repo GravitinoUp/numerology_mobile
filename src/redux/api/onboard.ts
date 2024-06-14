@@ -5,7 +5,7 @@ const onboardApi = api.injectEndpoints({
     endpoints: (builder) => ({
         getAllOnboardScreens: builder.query<OnboardInterface[], void>({
             query: () => ({
-                url: 'onboard/all?format_names=false',
+                url: 'onboard/all?format_names=true',
             }),
         }),
     }),
