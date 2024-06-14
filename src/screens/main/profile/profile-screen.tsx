@@ -114,6 +114,13 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                                     )
                                 }
                             />
+                            <CardButton
+                                index={1}
+                                label={t('settings.label.products')}
+                                onPress={() =>
+                                    navigation.navigate(routes.PRODUCTS)
+                                }
+                            />
                             {/* <CardButton
                                 index={1}
                                 label={t('settings.label.subscriptions')}

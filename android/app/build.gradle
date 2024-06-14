@@ -91,9 +91,10 @@ android {
         applicationId "com.gravitino.numerology"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 5
+        versionCode 8
         versionName "1.0.0"
         resValue "string", "build_config_package", "com.gravitino.numerology"
+        missingDimensionStrategy "store", "play"
     }
     signingConfigs {
         debug {
@@ -124,6 +125,7 @@ android {
 dependencies {
     implementation("com.facebook.react:react-android")
     implementation("com.facebook.react:flipper-integration")
+    implementation "com.android.billingclient:billing:7.0.0"
 
     if (hermesEnabled.toBoolean()) {
         implementation("com.facebook.react:hermes-android")

@@ -48,6 +48,7 @@
             "personal.data": "Personal data",
             "subscriptions": "Subscriptions",
             "notifications": "Notifications",
+            "products": "Products",
             "language": "Language",
             "other": "Other",
             "logout": "Logout"
@@ -116,5 +117,6 @@
     "category.disabled.description": "This category is currently disabled! It will be enabled in future releases.",
     "privacy.policy.description": "By registering in the app, you agree to ",
     "privacy.policy": "the Privacy Policy",
-    "notifications.not.found": "There are no unread notifications!"
+    "notifications.not.found": "There are no unread notifications!",
+    "buy.for": ""
 }

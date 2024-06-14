@@ -7,6 +7,7 @@ import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTranslation } from 'react-i18next'
 import { NativeModules, Platform } from 'react-native'
+import { withIAPContext } from 'react-native-iap'
 import { SafeAreaProvider } from 'react-native-safe-area-context'
 import { Provider } from 'react-redux'
 import { routes } from './constants/routes'
@@ -32,6 +33,7 @@ import PlaceholderScreen from './screens/main/dashboard/numbers/placeholder-scre
 import TotemicAnimalsScreen from './screens/main/dashboard/numbers/totemic-animals/totemic-animals-screen.tsx'
 import NavigationScreen from './screens/main/navigation-screen'
 import NotificationScreen from './screens/main/notifications/notification-screen'
+import ProductsScreen from './screens/main/products/products-screen.tsx'
 import EditProfileScreen from './screens/main/profile/edit-profile-screen'
 import LanguageScreen from './screens/main/profile/language-screen'
 import ManageNotificationsScreen from './screens/main/profile/manage-notifications-screen'
@@ -45,7 +47,7 @@ import { getJWTtokens } from './utils/helpers'
 
 const Stack = createNativeStackNavigator()
 
-export const AppWrapper = () => {
+export const AppWrapper = withIAPContext(() => {
     const { i18n } = useTranslation()
 
     const [isLoading, setLoading] = useState<boolean>(true)
@@ -98,7 +100,7 @@ export const AppWrapper = () => {
             </SafeAreaProvider>
         )
     )
-}
+})
 
 function App({ initial }: { initial: string }) {
     const [isLoading, setLoading] = useState<boolean | null>(null)
@@ -196,6 +198,10 @@ function App({ initial }: { initial: string }) {
                         <Stack.Screen
                             name={routes.SUBSCRIPTIONS}
                             component={SubscriptionsScreen}
+                        />
+                        <Stack.Screen
+                            name={routes.PRODUCTS}
+                            component={ProductsScreen}
                         />
                         <Stack.Screen
                             name={routes.MANAGE_NOTIFICATIONS}

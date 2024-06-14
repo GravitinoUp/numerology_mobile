@@ -26,4 +26,5 @@ export const routes = {
     LANGUAGE: 'LanguageScreen',
     PLACEHOLDER: 'PlaceholderScreen',
     TOTEMIC_ANIMALS: 'TotemicAnimalsScreen',
+    PRODUCTS: 'ProductsScreen',
 }

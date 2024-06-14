@@ -48,6 +48,7 @@
             "personal.data": "Персональная информация",
             "subscriptions": "Подписки",
             "notifications": "Уведомления",
+            "products": "Продукты",
             "language": "Язык приложения",
             "other": "Другие настройки",
             "logout": "Выйти из аккаунта"
@@ -117,5 +118,6 @@
     "category.disabled.description": "На данный момент эта категория отключена! Она будет разблокирована в будущих обновлениях.",
     "privacy.policy.description": "Регистрируясь в приложении, вы соглашаетесь с ",
     "privacy.policy": "Политикой конфиденциальности",
-    "notifications.not.found": "Уведомления отсутствуют!"
+    "notifications.not.found": "Уведомления отсутствуют!",
+    "buy.for": " за"
 }
