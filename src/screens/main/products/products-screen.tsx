@@ -1,11 +1,12 @@
 import { useEffect } from 'react'
 import { useTranslation } from 'react-i18next'
-import { useIAP } from 'react-native-iap'
+import { initConnection, useIAP } from 'react-native-iap'
 import ProductCard from '../profile/components/product-card'
 import TopBar from '@/components/top-bar/top-bar'
 import Scaffold from '@/components/ui/scaffold'
 import AppScrollView from '@/components/ui/scroll-view'
 import { MAX_WIDTH } from '@/constants/constants'
+import { useAppToast } from '@/hooks/use-toast'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
 
@@ -13,7 +14,9 @@ export default function ProductsScreen({
     navigation,
 }: DefaultStackScreenProps) {
     const { t } = useTranslation()
+    const { showSuccessToast, showErrorToast } = useAppToast()
     const {
+        initConnectionError,
         products,
         getProducts,
         requestPurchase,
@@ -22,11 +25,7 @@ export default function ProductsScreen({
     } = useIAP()
 
     const getGooglePlayProducts = async () => {
-        try {
-            await getProducts({ skus: ['com.gravitino.test'] })
-        } catch (error) {
-            console.log(error)
-        }
+        await getProducts({ skus: ['com.gravitino.test'] })
     }
 
     useEffect(() => {
@@ -34,12 +33,37 @@ export default function ProductsScreen({
     }, [])
 
     const handlePurchase = async (sku: string) => {
-        await requestPurchase({ sku })
+        const initResult = await initConnection()
+        if (initResult) {
+            await requestPurchase({ skus: [sku] })
+        } else {
+            showErrorToast({
+                label: 'INIT ERROR',
+            })
+        }
     }
 
-    useEffect(() => {}, [currentPurchaseError])
+    useEffect(() => {
+        if (initConnectionError) {
+            showErrorToast({
+                label: `${initConnectionError.message}`,
+            })
+        }
+    }, [initConnectionError])
 
-    useEffect(() => {}, [currentPurchase])
+    useEffect(() => {
+        if (currentPurchaseError) {
+            showErrorToast({
+                label: `${currentPurchaseError.message}`,
+            })
+        }
+    }, [currentPurchaseError])
+
+    useEffect(() => {
+        if (currentPurchase) {
+            showSuccessToast({ label: 'SUCCESS' })
+        }
+    }, [currentPurchase])
 
     useEffect(() => {
         console.log(products)
