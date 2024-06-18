@@ -1,15 +1,17 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, LegacyRef } from 'react'
 import { VStack } from '@gluestack-ui/themed'
 import { ScrollView, StyleSheet } from 'react-native'
 
 type ScrollViewProps = ComponentProps<typeof ScrollView>
 type AppScrollViewProps = {
+    ref?: LegacyRef<ScrollView> | undefined
     maxWidth?: number
 } & ScrollViewProps
 
-const AppScrollView = ({ maxWidth, ...props }: AppScrollViewProps) => (
+const AppScrollView = ({ maxWidth, ref, ...props }: AppScrollViewProps) => (
     <ScrollView
         {...props}
+        ref={ref}
         contentContainerStyle={[styles.scrollView, props.contentContainerStyle]}
     >
         <VStack w="$full" maxWidth={maxWidth}>

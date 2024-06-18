@@ -6,7 +6,8 @@
         "union": "Union",
         "prediction": "Prediction",
         "notifications": "Notifications",
-        "profile": "Profile"
+        "profile": "Profile",
+        "ai": "Artificial intelligence"
     },
     "select": {
         "birthday": "Select your birthday"

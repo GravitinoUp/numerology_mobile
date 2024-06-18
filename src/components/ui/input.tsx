@@ -10,6 +10,7 @@ import {
 } from 'react-native'
 import { AppColors } from '@/constants/theme'
 
+type InputProps = ComponentProps<typeof Input>
 type InputFieldProps = ComponentProps<typeof InputField>
 type TextProps = ComponentProps<typeof Text>
 
@@ -20,6 +21,7 @@ type AppInputProps = {
     required?: boolean
     hint?: string
     hintStyle?: TextProps
+    inputStyle?: InputProps
     trailingIcon?: React.JSX.Element
     onTrailingIconPress?: () => void
     leadingIcon?: React.JSX.Element
@@ -36,6 +38,7 @@ const AppInput = ({
         fontSize: '$sm',
         color: AppColors.text,
     },
+    inputStyle,
     h = 52,
     minHeight,
     leadingIcon,
@@ -67,6 +70,7 @@ const AppInput = ({
             borderWidth={1.5}
             onTouchEnd={onTouchEnd}
             isReadOnly={props.readOnly}
+            {...inputStyle}
         >
             {leadingIcon && (
                 <InputSlot style={styles.leading}>{leadingIcon}</InputSlot>
