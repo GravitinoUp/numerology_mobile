@@ -1,6 +1,8 @@
+import { useCallback, useEffect, useState } from 'react'
 import { Text } from '@gluestack-ui/themed'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import { useTranslation } from 'react-i18next'
+import { Keyboard } from 'react-native'
 import AIHelper from './ai-helper/ai-helper'
 import DashboardScreen from './dashboard/dashboard-screen'
 import NotificationsScreen from './notifications/notifications-screen'
@@ -15,13 +17,31 @@ const Tab = createBottomTabNavigator()
 
 export default function NavigationScreen() {
     const { t } = useTranslation()
+    const [visible, setVisible] = useState(true)
+
+    const keyboardDidShow = useCallback(() => {
+        setVisible(false)
+    }, [])
+    const keyboardDidHide = useCallback(() => {
+        setVisible(true)
+    }, [])
+
+    useEffect(() => {
+        Keyboard.addListener('keyboardDidShow', keyboardDidShow)
+        Keyboard.addListener('keyboardDidHide', keyboardDidHide)
+
+        return () => {
+            Keyboard.removeAllListeners('keyboardDidShow')
+            Keyboard.removeAllListeners('keyboardDidHide')
+        }
+    }, [keyboardDidShow, keyboardDidHide])
 
     useGetCurrentUserQuery()
 
     return (
         <Tab.Navigator
-            screenOptions={{ headerShown: false, tabBarHideOnKeyboard: true }}
-            tabBar={(props) => <NavigationBar {...props} />}
+            screenOptions={{ headerShown: false }}
+            tabBar={(props) => <NavigationBar visible={visible} {...props} />}
         >
             <Tab.Screen
                 name={t('route.dashboard')}
