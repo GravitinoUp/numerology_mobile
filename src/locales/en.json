@@ -14,8 +14,8 @@
     },
     "auth": {
         "hello.title": "Hello!",
-        "hello.description": "Sign in or create a new account",
-        "hello.2.description": "Sign in or create a new account",
+        "hello.description": "Enter your full name to find out your fate",
+        "hello.2.description": "Enter your birthday to find out your fate",
         "title": "Sign in",
         "description": "Sign in using your phone number and password",
         "with.password": "Sign in with phone and password"

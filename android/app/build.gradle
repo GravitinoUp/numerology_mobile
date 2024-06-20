@@ -91,7 +91,7 @@ android {
         applicationId "com.gravitino.numerology"
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode 10
+        versionCode 12
         versionName "1.0.1"
         resValue "string", "build_config_package", "com.gravitino.numerology"
     }
