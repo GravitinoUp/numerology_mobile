@@ -12,6 +12,10 @@ export interface AuthPayloadInterface {
     password: string
 }
 
+export interface PasswordlessAuthPayloadInterface {
+    code: string
+}
+
 export interface RefreshPayloadInterface {
     refresh_token: string
 }

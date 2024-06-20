@@ -16,7 +16,7 @@ const usersApi = api.injectEndpoints({
             providesTags: ['User'],
         }),
         createUser: builder.mutation<
-            FetchResultInterface,
+            FetchResultInterface<UserInterface>,
             UserPayloadInterface
         >({
             query: (body) => ({

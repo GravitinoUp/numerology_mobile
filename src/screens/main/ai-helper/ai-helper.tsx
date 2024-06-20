@@ -115,7 +115,7 @@ export default function AIHelper() {
                             </VStack>
                         </HStack>
                     ))}
-                    {false && (
+                    {true && (
                         <ChatMessage
                             value={{
                                 type: 'answer',
