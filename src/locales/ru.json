@@ -14,7 +14,8 @@
     },
     "auth": {
         "hello.title": "Здравствуйте!",
-        "hello.description": "Укажите ФИО и дату рождения, чтобы узнать свою судьбу",
+        "hello.description": "Enter your full name to find out your fate",
+        "hello.2.description": "Enter your birthday to find out your fate",
         "title": "Вход в аккаунт",
         "description": "Войдите в аккаунт, используя номер телефона и пароль",
         "with.password": "Войти в аккаунт с номером телефона и паролем"

@@ -7,6 +7,7 @@ import Config from 'react-native-config'
 import LinearGradient from 'react-native-linear-gradient'
 import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import CardButton from '@/components/card-button/card-button'
+import getCardPrefix from '@/components/card-button/get-card-prefix'
 import CategoryLabel from '@/components/dashboard/category-label'
 import getPageRoute from '@/components/page/get-page-route'
 import CategorySkeleton from '@/components/skeleton/category-skeleton'
@@ -121,7 +122,10 @@ export default function CategoryScreen({
                                     <CardButton
                                         key={index}
                                         index={index}
-                                        prefix={value.page_icon}
+                                        prefix={
+                                            value.key &&
+                                            getCardPrefix(value.key)
+                                        }
                                         label={value.page_name}
                                         onPress={() =>
                                             navigation.navigate(

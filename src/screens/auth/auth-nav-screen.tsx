@@ -211,7 +211,9 @@ export default function AuthNavScreen({ navigation }: DefaultStackScreenProps) {
                     {t('auth.hello.title')}
                 </Text>
                 <Text mt="$3" mb="$8" color={AppColors.hint} textAlign="center">
-                    {t('auth.hello.description')}
+                    {step === 0
+                        ? t('auth.hello.description')
+                        : t('auth.hello.2.description')}
                 </Text>
                 <CustomForm form={form}>
                     {step === 0 && (

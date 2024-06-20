@@ -1,9 +1,9 @@
 import { ComponentProps } from 'react'
 import { HStack, Text, View } from '@gluestack-ui/themed'
+import { Platform } from 'react-native'
 import getCardPrefix from '../card-button/get-card-prefix'
 import { AppColors } from '@/constants/theme'
 import { PageType } from '@/types/interface/numbers'
-import { Platform } from 'react-native'
 
 type ViewProps = ComponentProps<typeof View>
 type PageLabelProps = {
