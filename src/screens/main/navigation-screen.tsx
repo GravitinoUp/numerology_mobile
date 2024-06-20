@@ -20,7 +20,7 @@ export default function NavigationScreen() {
 
     return (
         <Tab.Navigator
-            screenOptions={{ headerShown: false }}
+            screenOptions={{ headerShown: false, tabBarHideOnKeyboard: true }}
             tabBar={(props) => <NavigationBar {...props} />}
         >
             <Tab.Screen
