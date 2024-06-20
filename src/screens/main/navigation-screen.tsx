@@ -41,13 +41,6 @@ export default function NavigationScreen() {
                     ),
                 })}
             />
-            {/*<Tab.Screen
-                name={t('route.prediction')}
-                component={DashboardScreen}
-                options={() => ({
-                    tabBarIcon: ({ color }) => <PredictionIcon color={color} />,
-                })}
-            /> */}
             <Tab.Screen
                 name={t('route.notifications')}
                 component={NotificationsScreen}

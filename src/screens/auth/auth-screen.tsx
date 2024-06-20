@@ -155,17 +155,6 @@ export default function AuthScreen({ navigation }: DefaultStackScreenProps) {
                             </FormItem>
                         )}
                     />
-                    {/* <AppButton
-                        mt="$2"
-                        textProps={{
-                            color: AppColors.hint,
-                            fontWeight: '$normal',
-                            textAlign: 'right',
-                        }}
-                        bgColor={AppColors.transparent}
-                        onPress={() => {}}
-                        text={t('forgot.password')}
-                    /> */}
                     <AppButton
                         mt="$4"
                         onPress={form.handleSubmit(onSubmit)}

@@ -7,7 +7,7 @@
         "prediction": "Prediction",
         "notifications": "Notifications",
         "profile": "Profile",
-        "ai": "Artificial intelligence"
+        "ai": "AI Numerologist"
     },
     "select": {
         "birthday": "Select your birthday"
@@ -118,5 +118,6 @@
     "category.disabled.description": "This category is currently disabled! It will be enabled in future releases.",
     "privacy.policy.description": "By registering in the app, you agree to ",
     "privacy.policy": "the Privacy Policy",
-    "notifications.not.found": "There are no unread notifications!"
+    "notifications.not.found": "There are no unread notifications!",
+    "answer": "Answer"
 }

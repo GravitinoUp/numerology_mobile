@@ -36,9 +36,6 @@ import LanguageScreen from './screens/main/profile/language-screen'
 import ManageNotificationsScreen from './screens/main/profile/manage-notifications-screen'
 import SubscriptionsScreen from './screens/main/profile/subscriptions-screen'
 import OnboardScreen from './screens/onboard/onboard-screen'
-import FirstRegisterScreen from './screens/register/first-register-screen'
-import UserRegisterScreen from './screens/register/user-register-screen'
-import VerifyCodeScreen from './screens/register/verify-code-screen'
 import SplashScreen from './screens/splash/splash-screen'
 import { getJWTtokens } from './utils/helpers'
 
@@ -136,7 +133,6 @@ function App({ initial }: { initial: string }) {
 
     useEffect(() => {
         if (error) {
-            console.log(error)
             setLoading(false)
         }
     }, [error])
@@ -161,20 +157,6 @@ function App({ initial }: { initial: string }) {
                         component={AuthNavScreen}
                     />
                     <Stack.Screen name={routes.AUTH} component={AuthScreen} />
-                    <Stack.Group>
-                        <Stack.Screen
-                            name={routes.REGISTER}
-                            component={FirstRegisterScreen}
-                        />
-                        <Stack.Screen
-                            name={routes.USER_REGISTER}
-                            component={UserRegisterScreen}
-                        />
-                        <Stack.Screen
-                            name={routes.VERIFY_CODE}
-                            component={VerifyCodeScreen}
-                        />
-                    </Stack.Group>
                 </Stack.Group>
                 <Stack.Group>
                     <Stack.Screen

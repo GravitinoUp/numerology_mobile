@@ -13,6 +13,7 @@ const AppScrollView = ({ maxWidth, ref, ...props }: AppScrollViewProps) => (
         {...props}
         ref={ref}
         contentContainerStyle={[styles.scrollView, props.contentContainerStyle]}
+        keyboardShouldPersistTaps="handled"
     >
         <VStack w="$full" maxWidth={maxWidth}>
             {props.children}

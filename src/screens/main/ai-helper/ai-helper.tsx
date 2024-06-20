@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react'
-import { HStack, Text, VStack } from '@gluestack-ui/themed'
+import { useEffect, useRef, useState } from 'react'
+import { HStack, VStack } from '@gluestack-ui/themed'
 import { SendIcon } from 'lucide-react-native'
 import { useTranslation } from 'react-i18next'
-import { Image, ScrollView } from 'react-native'
+import { ScrollView } from 'react-native'
 import ChatMessage from './components/chat-message'
 import { History } from './constants'
 import IconButton from '@/components/icon-button/icon-button'
@@ -10,6 +10,8 @@ import TopBar from '@/components/top-bar/top-bar'
 import AppInput from '@/components/ui/input'
 import Scaffold from '@/components/ui/scaffold'
 import { AppColors } from '@/constants/theme'
+import useErrorToast from '@/hooks/use-error-toast'
+import { useGetAnswerMutation } from '@/redux/api/chat'
 
 export default function AIHelper() {
     const { t } = useTranslation()
@@ -17,29 +19,21 @@ export default function AIHelper() {
     const ref = useRef<ScrollView>(null)
     const [question, setQuestion] = useState('')
 
-    const [history, setHistory] = useState<History[]>([
-        { type: 'answer', message: 'Задайте свой запрос' },
-        { type: 'question', message: 'Что означает число 6 в нумерологии?' },
-        {
-            type: 'answer',
-            message:
-                'Число 6 в нумерологии, значение числа и его влияние на человека Числа имеют особую энергию, которая оказывает влияние на нашу жизнь и характер. В нумерологии число 6 считается одним из наиболее гармоничных и стабильных чисел. Оно символизирует гармонию, семью, ответственность и заботу о других.',
-        },
-        {
-            type: 'question',
-            message: 'В каком разделе можно найти числа удачи?',
-        },
-        { type: 'answer', message: 'Ответ чат-бота' },
-        {
-            type: 'question',
-            message:
-                'Какие профессии подойдут человеку, который родился 01.01.1999?',
-        },
-        { type: 'answer', message: 'Ответ чат-бота' },
-        { type: 'question', message: 'Вопрос пользователя' },
-        { type: 'answer', message: 'Ответ чат-бота' },
-        { type: 'question', message: 'Вопрос пользователя' },
-    ])
+    const [history, setHistory] = useState<History[]>([])
+
+    const [getAnswer, { data, error, isSuccess, isLoading }] =
+        useGetAnswerMutation()
+
+    useEffect(() => {
+        if (isSuccess) {
+            setHistory([
+                ...history,
+                { role: 'assistant', content: data.answer },
+            ])
+        }
+    }, [isSuccess])
+
+    useErrorToast(error)
 
     return (
         <Scaffold style={{ backgroundColor: AppColors.primary }}>
@@ -52,74 +46,17 @@ export default function AIHelper() {
                     paddingVertical: 8,
                 }}
                 onContentSizeChange={() => ref.current?.scrollToEnd()}
+                keyboardShouldPersistTaps="handled"
             >
                 <VStack mx="$4" gap="$4">
                     {history.map((value, index) => (
-                        <HStack
-                            maxWidth="$5/6"
-                            alignSelf={
-                                value.type === 'answer'
-                                    ? 'flex-start'
-                                    : 'flex-end'
-                            }
-                            px="$3"
-                            py="$2"
-                            rounded="$2xl"
-                            key={index}
-                            backgroundColor={AppColors.background}
-                            gap="$2"
-                        >
-                            <VStack gap="$1">
-                                {value.type === 'answer' ? (
-                                    <HStack gap="$2" alignItems="center">
-                                        <Image
-                                            style={{
-                                                width: 40,
-                                                height: 40,
-                                                borderRadius: 999,
-                                                overflow: 'hidden',
-                                            }}
-                                            source={require('@/assets/images/matrix-77.png')}
-                                        />
-                                        <VStack>
-                                            <Text
-                                                fontWeight="$semibold"
-                                                color={'#0085FF'}
-                                            >
-                                                Чат-GPT
-                                            </Text>
-                                            <Text
-                                                fontSize="$sm"
-                                                color={AppColors.hint}
-                                            >
-                                                Ответ на вопрос
-                                            </Text>
-                                        </VStack>
-                                    </HStack>
-                                ) : (
-                                    <Text
-                                        fontWeight="$semibold"
-                                        color={AppColors.chatColor}
-                                    >
-                                        Вы
-                                    </Text>
-                                )}
-                                <VStack flexShrink={1}>
-                                    <Text
-                                        color={AppColors.text}
-                                        flexWrap="wrap"
-                                    >
-                                        {value.message}
-                                    </Text>
-                                </VStack>
-                            </VStack>
-                        </HStack>
+                        <ChatMessage key={index} value={value} />
                     ))}
-                    {true && (
+                    {isLoading && (
                         <ChatMessage
                             value={{
-                                type: 'answer',
-                                message: 'Ищу ответ на вопрос...',
+                                role: 'assistant',
+                                content: 'Ищу ответ на вопрос...',
                             }}
                         />
                     )}
@@ -146,11 +83,20 @@ export default function AIHelper() {
                     style={{ backgroundColor: AppColors.transparent }}
                     icon={<SendIcon color={AppColors.background} />}
                     onPress={() => {
-                        setHistory([
-                            ...history,
-                            { type: 'question', message: question },
-                        ])
-                        setQuestion('')
+                        if (question.trim() !== '') {
+                            const userQuestion: History = {
+                                role: 'user',
+                                content: question,
+                            }
+
+                            getAnswer({
+                                messages: history,
+                                question: userQuestion.content,
+                            })
+
+                            setHistory([...history, userQuestion])
+                            setQuestion('')
+                        }
                     }}
                 />
             </HStack>

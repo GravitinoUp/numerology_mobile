@@ -198,10 +198,7 @@ export default function AuthNavScreen({ navigation }: DefaultStackScreenProps) {
                     </TouchableOpacity>
                 </DropShadow>
             )}
-            <AppScrollView
-                contentContainerStyle={{ justifyContent: 'flex-start' }}
-                maxWidth={MAX_WIDTH}
-            >
+            <AppScrollView maxWidth={MAX_WIDTH}>
                 <Center justifyContent="center" my="$16">
                     <Logo />
                 </Center>
@@ -227,7 +224,7 @@ export default function AuthNavScreen({ navigation }: DefaultStackScreenProps) {
                                         <AppInput
                                             value={field.value}
                                             onChangeText={field.onChange}
-                                            placeholder={t('user.first.name')}
+                                            placeholder={t('user.last.name')}
                                             required
                                         />
                                         <FormMessage />
@@ -242,7 +239,7 @@ export default function AuthNavScreen({ navigation }: DefaultStackScreenProps) {
                                         <AppInput
                                             value={field.value}
                                             onChangeText={field.onChange}
-                                            placeholder={t('user.last.name')}
+                                            placeholder={t('user.first.name')}
                                             required
                                         />
                                         <FormMessage />
