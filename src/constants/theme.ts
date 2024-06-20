@@ -18,6 +18,7 @@ export const AppColors = {
     proColor: '#FFE471',
     skeletonBackgroundColor: '#EDEDED',
     skeletonForegroundColor: '#D1D1D1',
+    chatColor: '#0085FF',
 }
 
 export const AppShapes = {

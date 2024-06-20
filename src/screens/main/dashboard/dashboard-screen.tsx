@@ -3,6 +3,7 @@ import { HStack, ScrollView, Text, VStack, View } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import { Dimensions, Platform } from 'react-native'
 import DropShadow from 'react-native-drop-shadow'
+import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import CategoryCard from '@/components/dashboard/category-card'
 import StatusCard from '@/components/status-card/status-card'
 import AppButton from '@/components/ui/button'
@@ -13,7 +14,6 @@ import { AppColors } from '@/constants/theme'
 import { useGetCategoriesQuery } from '@/redux/api/pages'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
-import { useSafeAreaInsets } from 'react-native-safe-area-context'
 
 export default function DashboardScreen({
     navigation,

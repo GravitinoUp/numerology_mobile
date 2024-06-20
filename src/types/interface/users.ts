@@ -29,10 +29,6 @@ export interface UserPayloadInterface {
     birthday_day: number
     birthday_month: number
     birthday_year: number
-    email?: string
-    phone: string
-    password: string
-    code: number
 }
 
 export interface UpdateUserPayloadInterface {

@@ -6,16 +6,19 @@
         "union": "Союз",
         "prediction": "Предсказание",
         "notifications": "Уведомления",
-        "profile": "Профиль"
+        "profile": "Профиль",
+        "ai": "ИИ Нумеролог"
     },
     "select": {
         "birthday": "Выберите ваш день рождения"
     },
     "auth": {
         "hello.title": "Здравствуйте!",
-        "hello.description": "Войдите в аккаунт или создайте новый",
+        "hello.description": "Enter your full name to find out your fate",
+        "hello.2.description": "Enter your birthday to find out your fate",
         "title": "Вход в аккаунт",
-        "description": "Войдите в аккаунт, используя номер телефона и пароль"
+        "description": "Войдите в аккаунт, используя номер телефона и пароль",
+        "with.password": "Войти в аккаунт с номером телефона и паролем"
     },
     "register": {
         "title": "Регистрация",
@@ -117,5 +120,6 @@
     "category.disabled.description": "На данный момент эта категория отключена! Она будет разблокирована в будущих обновлениях.",
     "privacy.policy.description": "Регистрируясь в приложении, вы соглашаетесь с ",
     "privacy.policy": "Политикой конфиденциальности",
-    "notifications.not.found": "Уведомления отсутствуют!"
+    "notifications.not.found": "Уведомления отсутствуют!",
+    "answer": "Ответ на вопрос"
 }

@@ -1,10 +1,14 @@
 import { HStack, VStack } from '@gluestack-ui/themed'
 import { BottomTabBarProps } from '@react-navigation/bottom-tabs'
 import { TouchableOpacity } from 'react-native'
-import { AppColors } from '@/constants/theme'
 import { ACTIVE_OPACITY } from '@/constants/constants'
+import { AppColors } from '@/constants/theme'
 
-const NavigationBar = ({ ...props }: BottomTabBarProps) => (
+type NavigationBarProps = {
+    visible?: boolean
+} & BottomTabBarProps
+
+const NavigationBar = ({ visible = true, ...props }: NavigationBarProps) => (
     <HStack bgColor={AppColors.background} hardShadow="5" alignItems="center">
         {props.state.routes.map((route, index) => {
             const isFocused = props.state.index === index
@@ -31,14 +35,19 @@ const NavigationBar = ({ ...props }: BottomTabBarProps) => (
             }
 
             return (
-                <TouchableOpacity
-                    style={{ flex: 1, paddingVertical: 32 }}
-                    key={route.key}
-                    onPress={onPress}
-                    activeOpacity={ACTIVE_OPACITY}
-                >
-                    <VStack alignItems="center">{icon}</VStack>
-                </TouchableOpacity>
+                visible && (
+                    <TouchableOpacity
+                        style={{
+                            flex: 1,
+                            paddingVertical: 32,
+                        }}
+                        key={route.key}
+                        onPress={onPress}
+                        activeOpacity={ACTIVE_OPACITY}
+                    >
+                        <VStack alignItems="center">{icon}</VStack>
+                    </TouchableOpacity>
+                )
             )
         })}
     </HStack>

@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react'
 import { config } from '@gluestack-ui/config'
 import { GluestackUIProvider, StatusBar } from '@gluestack-ui/themed'
 import AsyncStorage from '@react-native-async-storage/async-storage'
-import { useNetInfo } from '@react-native-community/netinfo'
 import { NavigationContainer } from '@react-navigation/native'
 import { createNativeStackNavigator } from '@react-navigation/native-stack'
 import { useTranslation } from 'react-i18next'
@@ -37,9 +36,6 @@ import LanguageScreen from './screens/main/profile/language-screen'
 import ManageNotificationsScreen from './screens/main/profile/manage-notifications-screen'
 import SubscriptionsScreen from './screens/main/profile/subscriptions-screen'
 import OnboardScreen from './screens/onboard/onboard-screen'
-import FirstRegisterScreen from './screens/register/first-register-screen'
-import UserRegisterScreen from './screens/register/user-register-screen'
-import VerifyCodeScreen from './screens/register/verify-code-screen'
 import SplashScreen from './screens/splash/splash-screen'
 import { getJWTtokens } from './utils/helpers'
 
@@ -69,15 +65,22 @@ export const AppWrapper = () => {
                 }
             }
 
-            AsyncStorage.getItem(storageKeys.onboardDisabled).then(
-                (onboardDisabled) => {
-                    setInitialScreen(
-                        onboardDisabled === 'true'
-                            ? routes.AUTH_NAV
-                            : routes.ONBOARD
-                    )
-                    setLoading(false)
-                }
+            AsyncStorage.getItem(storageKeys.uuid).then((uuid) =>
+                AsyncStorage.getItem(storageKeys.onboardDisabled).then(
+                    (onboardDisabled) => {
+                        if (onboardDisabled === 'true') {
+                            if (uuid) {
+                                setInitialScreen(routes.NAVIGATION)
+                            } else {
+                                setInitialScreen(routes.AUTH_NAV)
+                            }
+                        } else {
+                            setInitialScreen(routes.ONBOARD)
+                        }
+
+                        setLoading(false)
+                    }
+                )
             )
         })
     }, [])
@@ -104,7 +107,6 @@ function App({ initial }: { initial: string }) {
     const [isLoading, setLoading] = useState<boolean | null>(null)
     const [initialRoute, setInitialRoute] = useState<string>(initial)
 
-    const netInfo = useNetInfo()
     const dispatch = useAppDispatch()
 
     const [fetchRefresh, { data: newAccessToken, error, isSuccess }] =
@@ -131,10 +133,6 @@ function App({ initial }: { initial: string }) {
 
     useEffect(() => {
         if (error) {
-            if (netInfo.isConnected === false) {
-                setInitialRoute(routes.NAVIGATION)
-                // TODO offline mode
-            }
             setLoading(false)
         }
     }, [error])
@@ -159,20 +157,6 @@ function App({ initial }: { initial: string }) {
                         component={AuthNavScreen}
                     />
                     <Stack.Screen name={routes.AUTH} component={AuthScreen} />
-                    <Stack.Group>
-                        <Stack.Screen
-                            name={routes.REGISTER}
-                            component={FirstRegisterScreen}
-                        />
-                        <Stack.Screen
-                            name={routes.USER_REGISTER}
-                            component={UserRegisterScreen}
-                        />
-                        <Stack.Screen
-                            name={routes.VERIFY_CODE}
-                            component={VerifyCodeScreen}
-                        />
-                    </Stack.Group>
                 </Stack.Group>
                 <Stack.Group>
                     <Stack.Screen

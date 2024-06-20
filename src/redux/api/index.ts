@@ -22,3 +22,13 @@ export const api = createApi({
     tagTypes: ['User'],
     endpoints: () => ({}),
 })
+
+export const chatApi = createApi({
+    reducerPath: 'chat-api',
+    refetchOnReconnect: true,
+    baseQuery: fetchBaseQuery({
+        baseUrl: Config.CHAT_HOST,
+    }),
+    tagTypes: ['Chat'],
+    endpoints: () => ({}),
+})
