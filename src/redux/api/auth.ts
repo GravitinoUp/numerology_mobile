@@ -1,6 +1,7 @@
 import { api } from '.'
 import {
     AuthPayloadInterface,
+    PasswordlessAuthPayloadInterface,
     RefreshPayloadInterface,
     TokenInterface,
 } from '../../types/interface/auth'
@@ -8,6 +9,16 @@ import { FetchResultInterface } from '@/types/interface'
 
 const authApi = api.injectEndpoints({
     endpoints: (builder) => ({
+        passwordlessAuth: builder.mutation<
+            TokenInterface,
+            PasswordlessAuthPayloadInterface
+        >({
+            query: (body) => ({
+                url: 'auth/passwordless',
+                method: 'POST',
+                body,
+            }),
+        }),
         auth: builder.mutation<TokenInterface, AuthPayloadInterface>({
             query: (body) => ({
                 url: 'auth',
@@ -44,6 +55,7 @@ const authApi = api.injectEndpoints({
 })
 
 export const {
+    usePasswordlessAuthMutation,
     useAuthMutation,
     useRefreshTokenMutation,
     useLogoutMutation,

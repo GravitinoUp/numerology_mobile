@@ -7,16 +7,18 @@
         "prediction": "Prediction",
         "notifications": "Notifications",
         "profile": "Profile",
-        "ai": "Artificial intelligence"
+        "ai": "AI Numerologist"
     },
     "select": {
         "birthday": "Select your birthday"
     },
     "auth": {
         "hello.title": "Hello!",
-        "hello.description": "Sign in or create a new account",
+        "hello.description": "Enter your full name to find out your fate",
+        "hello.2.description": "Enter your birthday to find out your fate",
         "title": "Sign in",
-        "description": "Sign in using your phone number and password"
+        "description": "Sign in using your phone number and password",
+        "with.password": "Sign in with phone and password"
     },
     "register": {
         "title": "Register an account",
@@ -119,5 +121,6 @@
     "privacy.policy.description": "By registering in the app, you agree to ",
     "privacy.policy": "the Privacy Policy",
     "notifications.not.found": "There are no unread notifications!",
+    "answer": "Answer",
     "buy.for": ""
 }

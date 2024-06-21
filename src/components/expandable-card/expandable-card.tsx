@@ -133,7 +133,12 @@ const ExpandableCard = ({
                 </VStack>
             </TouchableOpacity>
             {expanded && (
-                <Text px="$2" pt="$2" color={AppColors.text}>
+                <Text
+                    px="$2"
+                    pt="$2"
+                    color={AppColors.text}
+                    textAlign="justify"
+                >
                     {result.result_content}
                 </Text>
             )}

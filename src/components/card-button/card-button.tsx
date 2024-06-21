@@ -2,6 +2,7 @@ import { HStack, Text, View } from '@gluestack-ui/themed'
 import { animated, useSpring } from '@react-spring/native'
 import { TouchableOpacity } from 'react-native'
 import ChevronRight from '@/assets/icons/chevron-right'
+import LockedIcon from '@/assets/icons/locked'
 import { ACTIVE_OPACITY } from '@/constants/constants'
 import { AppColors } from '@/constants/theme'
 
@@ -10,11 +11,20 @@ type CardButtonProps = {
     prefix?: React.ReactNode
     label: string
     onPress?: () => void
+    locked?: boolean
+    onLockedPress?: () => void
 }
 
 const AnimatedView = animated(View)
 
-const CardButton = ({ index, prefix, label, onPress }: CardButtonProps) => {
+const CardButton = ({
+    index,
+    prefix,
+    label,
+    onPress,
+    locked,
+    onLockedPress,
+}: CardButtonProps) => {
     const animatedOpacity = useSpring({
         from: { opacity: 0 },
         to: { opacity: 1 },
@@ -32,6 +42,30 @@ const CardButton = ({ index, prefix, label, onPress }: CardButtonProps) => {
             overflow="hidden"
             justifyContent="center"
         >
+            {locked && (
+                <View
+                    position="absolute"
+                    alignItems="flex-end"
+                    justifyContent="center"
+                    w="$full"
+                    h="$full"
+                    zIndex={2}
+                    onTouchEnd={onLockedPress}
+                >
+                    <View
+                        position="absolute"
+                        w="$full"
+                        h="$full"
+                        bgColor={AppColors.background}
+                        opacity={0.7}
+                        borderRadius={20}
+                        zIndex={-1}
+                    />
+                    <View p="$3">
+                        <LockedIcon />
+                    </View>
+                </View>
+            )}
             <TouchableOpacity activeOpacity={ACTIVE_OPACITY} onPress={onPress}>
                 <HStack
                     h="$20"

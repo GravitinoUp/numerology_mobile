@@ -1,26 +1,12 @@
-import { Fragment, useState } from 'react'
-import {
-    Center,
-    HStack,
-    ScrollView,
-    Text,
-    VStack,
-    View,
-} from '@gluestack-ui/themed'
-import AsyncStorage from '@react-native-async-storage/async-storage'
-import { CommonActions } from '@react-navigation/native'
+import { Fragment } from 'react'
+import { Center, ScrollView, VStack, View } from '@gluestack-ui/themed'
 import { useTranslation } from 'react-i18next'
 import CardButton from '@/components/card-button/card-button'
 import StatusCard from '@/components/status-card/status-card'
 import TopBar from '@/components/top-bar/top-bar'
-import AppButton from '@/components/ui/button'
-import Dialog from '@/components/ui/dialog'
 import Scaffold from '@/components/ui/scaffold'
-import TextButton from '@/components/ui/text-button'
 import { routes } from '@/constants/routes'
 import { AppColors } from '@/constants/theme'
-import { useAppDispatch } from '@/hooks/use-app-dispatch'
-import { api } from '@/redux/api'
 import { useGetCurrentUserQuery } from '@/redux/api/users'
 import SplashScreen from '@/screens/splash/splash-screen'
 import { DefaultStackScreenProps } from '@/types/interface'
@@ -28,8 +14,8 @@ import { DefaultStackScreenProps } from '@/types/interface'
 export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
     const { t } = useTranslation()
 
-    const dispatch = useAppDispatch()
-    const [dialogOpen, setDialogOpen] = useState(false)
+    // const dispatch = useAppDispatch()
+    // const [dialogOpen, setDialogOpen] = useState(false)
 
     const {
         data: user,
@@ -41,21 +27,21 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
 
     const successLoad = !userFetching && userSuccess
 
-    const handleLogout = async () => {
-        await AsyncStorage.clear()
-        dispatch(api.util.resetApiState())
+    // const handleLogout = async () => {
+    //     await AsyncStorage.clear()
+    //     dispatch(api.util.resetApiState())
 
-        navigation.dispatch(
-            CommonActions.reset({
-                index: 0,
-                routes: [{ name: routes.AUTH_NAV }],
-            })
-        )
-    }
+    //     navigation.dispatch(
+    //         CommonActions.reset({
+    //             index: 0,
+    //             routes: [{ name: routes.AUTH_NAV }],
+    //         })
+    //     )
+    // }
 
     return (
         <Fragment>
-            <Dialog
+            {/* <Dialog
                 title={t('settings.label.logout')}
                 isOpen={dialogOpen}
                 setOpen={setDialogOpen}
@@ -87,7 +73,7 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                 }
             >
                 <Text fontSize="$sm">{t('settings.description.logout')}</Text>
-            </Dialog>
+            </Dialog> */}
             <Scaffold>
                 <TopBar title={t('route.profile')} />
                 {successLoad ? (
@@ -145,14 +131,14 @@ export default function ProfileScreen({ navigation }: DefaultStackScreenProps) {
                                 }
                             />
                         </VStack>
-                        <TextButton
+                        {/* <TextButton
                             text={t('settings.label.logout')}
                             textAlign="center"
                             fontWeight="$medium"
                             color={AppColors.error}
                             py="$4"
                             onPress={() => setDialogOpen(true)}
-                        />
+                        /> */}
                     </ScrollView>
                 ) : (
                     <SplashScreen error={userError} refetch={userRefetch} />
